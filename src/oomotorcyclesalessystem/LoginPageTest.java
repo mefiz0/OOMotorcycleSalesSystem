@@ -29,13 +29,14 @@ public class LoginPageTest extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         usernameInput = new javax.swing.JTextField();
-        jSeparator3 = new javax.swing.JSeparator();
+        line = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        passwordInput = new javax.swing.JPasswordField();
+        passwordInputField = new javax.swing.JPasswordField();
         jSeparator4 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -46,11 +47,19 @@ public class LoginPageTest extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(41, 128, 185));
+        jPanel4.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile.png"))); // NOI18N
         jLabel1.setText("Username: ");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(184, 24, 0, 0);
+        jPanel4.add(jLabel1, gridBagConstraints);
 
         usernameInput.setBackground(new java.awt.Color(90, 130, 255));
         usernameInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -62,22 +71,68 @@ public class LoginPageTest extends javax.swing.JFrame {
                 usernameInputActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 351;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(176, 3, 0, 0);
+        jPanel4.add(usernameInput, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.ipadx = 463;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 24, 0, 42);
+        jPanel4.add(line, gridBagConstraints);
 
         jLabel2.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/padlock.png"))); // NOI18N
         jLabel2.setText("Password:");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 14;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(57, 24, 0, 0);
+        jPanel4.add(jLabel2, gridBagConstraints);
 
-        passwordInput.setBackground(new java.awt.Color(90, 130, 255));
-        passwordInput.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        passwordInput.setForeground(new java.awt.Color(255, 255, 255));
-        passwordInput.setToolTipText("Enter Password");
-        passwordInput.setBorder(null);
-        passwordInput.addActionListener(new java.awt.event.ActionListener() {
+        passwordInputField.setBackground(new java.awt.Color(90, 130, 255));
+        passwordInputField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        passwordInputField.setForeground(new java.awt.Color(255, 255, 255));
+        passwordInputField.setToolTipText("Enter Password");
+        passwordInputField.setBorder(null);
+        passwordInputField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordInputActionPerformed(evt);
+                passwordInputFieldActionPerformed(evt);
             }
         });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 5;
+        gridBagConstraints.gridheight = 2;
+        gridBagConstraints.ipadx = 351;
+        gridBagConstraints.ipady = 16;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(49, 4, 0, 0);
+        jPanel4.add(passwordInputField, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 5;
+        gridBagConstraints.gridwidth = 8;
+        gridBagConstraints.ipadx = 463;
+        gridBagConstraints.ipady = 9;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(6, 24, 0, 42);
+        jPanel4.add(jSeparator4, gridBagConstraints);
 
         jButton1.setBackground(new java.awt.Color(26, 188, 156));
         jButton1.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
@@ -85,47 +140,15 @@ public class LoginPageTest extends javax.swing.JFrame {
         jButton1.setText("Log In");
         jButton1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jButton1.setBorderPainted(false);
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jSeparator4, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-                        .addComponent(jSeparator3)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(usernameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(usernameInput, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordInput, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
-        );
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.ipadx = 122;
+        gridBagConstraints.ipady = 36;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(75, 24, 109, 0);
+        jPanel4.add(jButton1, gridBagConstraints);
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 0, 530, 570));
 
@@ -156,10 +179,10 @@ public class LoginPageTest extends javax.swing.JFrame {
         usernameInput.setText(" ");
     }//GEN-LAST:event_usernameInputActionPerformed
 
-    private void passwordInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordInputActionPerformed
+    private void passwordInputFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordInputFieldActionPerformed
         // TODO add your handling code here:
-        passwordInput.setText(" ");
-    }//GEN-LAST:event_passwordInputActionPerformed
+        passwordInputField.setText(" ");
+    }//GEN-LAST:event_passwordInputFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,9 +227,9 @@ public class LoginPageTest extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JPasswordField passwordInput;
+    private javax.swing.JSeparator line;
+    private javax.swing.JPasswordField passwordInputField;
     private javax.swing.JTextField usernameInput;
     // End of variables declaration//GEN-END:variables
 }
