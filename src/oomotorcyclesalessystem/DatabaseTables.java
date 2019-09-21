@@ -15,13 +15,16 @@ public class DatabaseTables {
     */
     public static final String CREATE_USERS_TABLE_SQL = "create table users ( "
                                                       + "UserID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
-                                                      + "Username VARCHAR(10) NOT NULL WITH DEFAULT 'admin', "
-                                                      + "Password VARCHAR(15) NOT NULL WITH DEFAULT 'admin123', "
-                                                      + "Role VARCHAR(10) NOT NULL WITH DEFAULT 'administrator', "
+                                                      + "Username VARCHAR(10) NOT NULL UNIQUE,"
+                                                      + "Password VARCHAR(15) NOT NULL, "
+                                                      + "Role VARCHAR(20) NOT NULL, "
                                                       + "PRIMARY KEY (UserID))";
     
+    public static final String ADD_DEFAULT_VALUES_TO_USERS_TABLE_SQL = "INSERT INTO users (Username, Password, Role) VALUES("
+                                                                     + "'admin','admin123','administrator')";
+    
     //this table contains the access history
-    public static final String CREATE_USERS_ACCESS_HISTORY_TABLE_SQL = "CREATE TABLE accesshistory ("
+    public static final String CREATE_USERS_ACCESS_HISTORY_TABLE_SQL = "CREATE TABLE access_history ("
                                                                      + "AccessID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,"
                                                                      + "UserID INTEGER NOT NULL,"
                                                                      + "AccessDateTime TIMESTAMP,"

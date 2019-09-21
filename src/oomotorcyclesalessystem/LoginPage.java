@@ -1,137 +1,223 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package oomotorcyclesalessystem;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JSeparator;
-import javax.swing.JTextField;
 
-public class LoginPage {
-    
-    public LoginPage(){
-        
-        //create a new Jframe
-        JFrame login = new JFrame("Login Page");
-        
-        //set the frame
-        login.setSize(1000, 700);
-        login.setResizable(false);
-        login.setLayout(new GridLayout (1,2)); //set the layout to have 1 row and 2 columns
-        login.setLocationRelativeTo(null); //centers the component
-        login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        
-        
-        //create the jpanels and content to the panels
-        //right Jpanel
-        JPanel rightPanel = new JPanel();
-        rightPanel.setBackground( new Color(52, 73, 94));
-        rightPanel.setLayout(new GridBagLayout());
-        
-        /*
-        Username
-        */
-        //set the label text
-        JLabel usernameInputLabel = new JLabel("Username:");  
-        usernameInputLabel.setFont(new Font("NewsGoth Lt BT", 1, 14));
-        usernameInputLabel.setForeground(Color.white);
-        usernameInputLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/profile.png")));
-        GridBagConstraints usernameInputLabelConstraints = new GridBagConstraints();
-        usernameInputLabelConstraints.gridx = 0;
-        usernameInputLabelConstraints.gridy = 0;
-        usernameInputLabelConstraints.ipadx = 2;
-        usernameInputLabelConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        usernameInputLabelConstraints.insets = new java.awt.Insets(184, 24, 0, 0);
-        rightPanel.add(usernameInputLabel, usernameInputLabelConstraints);
-        
-        //username text field
-        JTextField usernameInputField = new JTextField();
-        usernameInputField.setBackground(new java.awt.Color(127, 140, 141));
-        usernameInputField.setFont(new java.awt.Font("Tahoma", 0, 14));
-        usernameInputField.setForeground(new java.awt.Color(255, 255, 255));
-        usernameInputField.setToolTipText("Enter username");
-        usernameInputField.setBorder(null);
-        GridBagConstraints usernameInputFieldConstraints = new GridBagConstraints();
-        usernameInputFieldConstraints.gridx = 2;
-        usernameInputFieldConstraints.gridy = 0;
-        usernameInputFieldConstraints.gridwidth = 4;
-        usernameInputFieldConstraints.gridheight = 2;
-        usernameInputFieldConstraints.ipadx = 351;
-        usernameInputFieldConstraints.ipady = 16;
-        usernameInputFieldConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        usernameInputFieldConstraints.insets = new java.awt.Insets(176, 3, 0, 0);
-        rightPanel.add(usernameInputField, usernameInputFieldConstraints);
-        
-        //insert a seprator line
-        JSeparator usernameSeperator = new JSeparator();
-        GridBagConstraints usernameSeperatorConstraints = new GridBagConstraints();
-        usernameSeperatorConstraints.gridx = 0;
-        usernameSeperatorConstraints.gridy = 2;
-        usernameSeperatorConstraints.gridwidth = 8;
-        usernameSeperatorConstraints.ipadx = 463;
-        usernameSeperatorConstraints.ipady = 9;
-        usernameSeperatorConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        usernameSeperatorConstraints.insets = new java.awt.Insets(6, 24, 0, 42);
-        rightPanel.add(usernameSeperator, usernameSeperatorConstraints);
-        
-        /*
-        Password
-        */
-        //set the password label text
-        JLabel passwordInputLabel = new JLabel("Password: ");
-        passwordInputLabel.setFont(new Font("NewsGoth Lt BT", 1, 14));
-        passwordInputLabel.setForeground(Color.white);
-        usernameInputLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/padlock.png")));
-        GridBagConstraints passwordInputLabelConstraints = new GridBagConstraints();
-        passwordInputLabelConstraints.gridx = 0;
-        passwordInputLabelConstraints.gridy = 3;
-        passwordInputLabelConstraints.gridwidth = 2;
-        passwordInputLabelConstraints.ipadx = 14;
-        passwordInputLabelConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        passwordInputLabelConstraints.insets = new java.awt.Insets(57, 24, 0, 0);
-        rightPanel.add(passwordInputLabel, passwordInputLabelConstraints);
-        
-        //password field
-        JPasswordField passwordInputField = new JPasswordField();
-        passwordInputField.setBackground(new java.awt.Color(127, 140, 141));
-        passwordInputField.setFont(new java.awt.Font("Tahoma", 0, 14));
-        passwordInputField.setForeground(new java.awt.Color(255, 255, 255));
-        passwordInputField.setToolTipText("Enter Password");
-        passwordInputField.setBorder(null);
-        GridBagConstraints passwordInputFieldConstraints = new GridBagConstraints();
-        passwordInputFieldConstraints.gridx = 2;
-        passwordInputFieldConstraints.gridy = 3;
-        passwordInputFieldConstraints.gridwidth = 5;
-        passwordInputFieldConstraints.gridheight = 2;
-        passwordInputFieldConstraints.ipadx = 351;
-        passwordInputFieldConstraints.ipady = 16;
-        passwordInputFieldConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        passwordInputFieldConstraints.insets = new java.awt.Insets(49, 4, 0, 0);
-        rightPanel.add(passwordInputField, passwordInputFieldConstraints);
-        
-        
-        
-        
-        JPanel leftPanel = new JPanel();
-        leftPanel.setBackground( new Color(44, 62, 80));
-        
-        
-        //create the input fields
+/**
+ *
+ * @author sath
+ */
+public class LoginPage extends javax.swing.JFrame {
 
-        
-        //add stuff
-        login.getContentPane().add(leftPanel);
-        login.getContentPane().add(rightPanel);
-        
-
-        //set visible
-        login.setVisible(true);
+    /**
+     * Creates new form LoginPage
+     */
+    public LoginPage() {
+        initComponents();
     }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        logInButton = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(19, 15, 64));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 128, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLabel1.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/user.png"))); // NOI18N
+        jLabel1.setText("Username:");
+
+        jLabel2.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/password.png"))); // NOI18N
+        jLabel2.setText("Password:");
+
+        jTextField1.setBackground(new java.awt.Color(229, 229, 229));
+        jTextField1.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jTextField1.setBorder(null);
+
+        jTextField2.setBackground(new java.awt.Color(229, 229, 229));
+        jTextField2.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jTextField2.setBorder(null);
+
+        jLabel3.setFont(new java.awt.Font("Impact", 0, 24)); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/Logo.png"))); // NOI18N
+        jLabel3.setText("OO MOTORCYCLE SALES SYSTEM");
+
+        logInButton.setBackground(new java.awt.Color(161, 202, 141));
+        logInButton.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
+        logInButton.setText("Log In");
+        logInButton.setBorder(null);
+        logInButton.setContentAreaFilled(false);
+        logInButton.setOpaque(true);
+        logInButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                logInButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                logInButtonMouseExited(evt);
+            }
+        });
+
+        jPanel3.setBackground(new java.awt.Color(19, 15, 64));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 128, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 32, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1)
+                            .addComponent(jTextField2)))
+                    .addComponent(jLabel3))
+                .addGap(59, 59, 59))
+            .addComponent(logInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(logInButton, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(65, 65, 65)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(0, 141, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void logInButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logInButtonMouseEntered
+        // TODO add your handling code here:
+        logInButton.setBackground(new Color(178, 229, 153));
+    }//GEN-LAST:event_logInButtonMouseEntered
+
+    private void logInButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logInButtonMouseExited
+        // TODO add your handling code here:
+        logInButton.setBackground(new Color(161,202,141));
+    }//GEN-LAST:event_logInButtonMouseExited
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new LoginPage().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JButton logInButton;
+    // End of variables declaration//GEN-END:variables
 }
