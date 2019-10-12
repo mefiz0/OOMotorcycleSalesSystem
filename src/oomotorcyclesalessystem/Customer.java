@@ -1,8 +1,11 @@
 
 package oomotorcyclesalessystem;
+import static database.PurchaseConfirmedSQL.addToCustomers;
+import java.sql.SQLException;
+        
 
-public class CustomerModel {
-    
+public class Customer {
+        
     private String firstName;
     public void setFirstName(String firstName){ //setter
         this.firstName = firstName;
@@ -58,5 +61,33 @@ public class CustomerModel {
     public int getBankAccountNumber(){ //getter
         return bankAccountNumber;
     }
-
+    
+    public Customer(){
+        //empty
+    }
+    
+    public Customer(String firstName, String lastName, String idNumber,
+                              String permanentAddress, String currentAddress,
+                              int contactNum, int bankAccountNum){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.identityNumber = idNumber;
+        this.permanentAddress = permanentAddress;
+        this.currentAddress = currentAddress;
+        this.contactNumber = contactNum;
+        this.bankAccountNumber = bankAccountNum;
+        
+    }
+    
+    public void updateCustomerDatabase() throws ClassNotFoundException, SQLException{
+       String firstName = this.getFirstName();
+       String lastName = this.getLastName();
+       String idNumber = this.getIdentityNumber();
+       String permanentAddress = this.getPermanentAddress();
+       String currentAddress = this.getCurrentAddress();
+       int ContactNumber = this.getContactNumber();
+       int bankAccountNum = this.getBankAccountNumber();
+       
+       addToCustomers(idNumber, firstName, lastName, permanentAddress, currentAddress, ContactNumber, bankAccountNum);
+    }
 }

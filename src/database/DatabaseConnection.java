@@ -69,9 +69,6 @@ public class DatabaseConnection {
         //check customers table
         checkTable("customers", dbmd, initTables, DatabaseTables.CREATE_CUSTOMERS_TABLE_SQL);
 
-        //check motorcycles table
-        checkTable("motorcycles", dbmd, initTables, DatabaseTables.CREATE_MOTORCYCLES_TABLE_SQL);
-
         //check inventory table
         checkTable("inventory", dbmd, initTables, DatabaseTables.CREATE_INVENTORY_TABLE_SQL);
 

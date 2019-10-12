@@ -43,40 +43,31 @@ public class DatabaseTables {
                                                           + "ContactNumber INTEGER NOT NULL,"
                                                           + "BankAccount INTEGER NOT NULL,"
                                                           + "PRIMARY KEY (CustomerID))";
-    //create the motorcycles table
-    /*
-    This table contains details specific to a motorcycle
-    */
-    public static final String CREATE_MOTORCYCLES_TABLE_SQL = "CREATE TABLE motorcycles ("
-                                                           + "MotorcycleID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,"
-                                                           + "Brand VARCHAR(15) NOT NULL,"
-                                                           + "Model VARCHAR(15) NOT NULL UNIQUE,"
-                                                           + "PRIMARY KEY (MotorcycleID))";
+    
     //create table inventory
     /*
     This table creates an inventory with quantity and prices
     */
     public static final String CREATE_INVENTORY_TABLE_SQL = "CREATE TABLE inventory ("
                                                           + "InventoryID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,"
-                                                          + "MotorcycleID INTEGER NOT NULL,"
+                                                          + "Brand VARCHAR(15) NOT NULL,"
+                                                          + "Model VARCHAR(15) NOT NULL UNIQUE,"
                                                           + "QuantityInStock INTEGER NOT NULL,"
                                                           + "Price INTEGER NOT NULL,"
-                                                          + "PRIMARY KEY (InventoryID),"
-                                                          + "FOREIGN KEY (MotorcycleID) REFERENCES motorcycles(MotorcycleID))";
+                                                          + "PRIMARY KEY (InventoryID))";
     //create sold motorcycles
     /*
     This table contains details of motorcycles sold such as date of purchase, if installment etc.
-    The table forms a history of motorcycles sold.
+    The table forms a history of motorcycles sold. 
     */
     public static final String CREATE_SOLD_MOTORCYCLES_TABLE_SQL = "CREATE TABLE sold_motorcycles ("
                                                                  + "SoldID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,"
-                                                                 + "MotorcycleID INTEGER NOT NULL,"
-                                                                 + "BoardNumber VARCHAR(10) NOT NULL,"
+                                                                 + "Brand VARCHAR(15) NOT NULL,"
+                                                                 + "Model VARCHAR(15) NOT NULL,"
+                                                                 + "BoardNumber VARCHAR(10) NOT NULL UNIQUE,"
                                                                  + "DateOfPurchase TIMESTAMP,"
-                                                                 + "Installment BOOLEAN NOT NULL,"
-                                                                 + "InstallmentDuration INTEGER,"
-                                                                 + "Price INTEGER,"
-                                                                 + "PaymentInProgress BOOLEAN,"
+                                                                 + "Installment VARCHAR(3),"
+                                                                 + "Paid INTEGER NOT NULL,"
                                                                  + "PRIMARY KEY (SoldID))";
     //create purchase table
     /*
@@ -96,15 +87,12 @@ public class DatabaseTables {
     */
     public static final String CREATE_PAYMENTS_TABLE_SQL = "CREATE TABLE payments ("
                                                          + "PurchaseNumber INTEGER NOT NULL,"
-                                                         + "MotorcycleID INTEGER NOT NULL,"
                                                          + "DueDate DATE NOT NULL,"
                                                          + "AmountDue DECIMAL,"
+                                                         + "Rate DECIMAL,"
+                                                         + "NextPayment DATE,"
                                                          + "AmountPaid DECIMAL NOT NULL,"
                                                          + "PRIMARY KEY (DueDate),"
-                                                         + "FOREIGN KEY (PurchaseNumber) REFERENCES purchases (PurchaseNumber),"
-                                                         + "FOREIGN KEY (MotorcycleID) REFERENCES motorcycles (MotorcycleID))";
-    
-    
-    
-                                                                
+                                                         + "FOREIGN KEY (PurchaseNumber) REFERENCES purchases (PurchaseNumber))";
+                                                               
 }

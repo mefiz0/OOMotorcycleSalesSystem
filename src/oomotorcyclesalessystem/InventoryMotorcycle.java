@@ -55,28 +55,11 @@ public class InventoryMotorcycle extends Motorcycle {
         PreparedStatement statement; //prepared statement improves perfomance
         
         //insert into the motorcycles table
-        statement = connection.DatabaseConnection().prepareStatement("INSERT INTO motorcycles (Brand, Model)"
-                                                        + " VALUES ('" + this.brand + "', '" + this.model + "')");
-        statement.executeUpdate();
-        
-        //creates a sql statement and gets the id from motorcycle table
-        Statement stmt = connection.DatabaseConnection().createStatement(); //creates a sql statement
-        //gets the id 
-        ResultSet rs = stmt.executeQuery("SELECT MotorcycleID FROM motorcycles WHERE model = '" + this.model + "'" );
-        
-        int motorcycleID = 0; //this variable holds the motorcycleID from the motorcycle table
-        
-        while(rs.next()){
-            motorcycleID = rs.getInt("MotorcycleID");
-            break;
-        }
-        
-        //insert into the inventory table
-        statement = connection.DatabaseConnection().prepareStatement("INSERT INTO inventory (MotorcycleID, QuantityInStock, Price) VALUES (" + motorcycleID + ", " + this.quantityInStock 
-                         + ", " + this.price +")");
-        
-        statement.executeUpdate();
-        
+        statement = connection.DatabaseConnection().prepareStatement("INSERT INTO inventory (Brand, Model, QuantityInStock, Price)"
+                                                        + " VALUES ('" + this.brand + "', '" + this.model + "', "
+                                                        + this.quantityInStock + ", " + this.price + ")");
+        statement.execute();
+        statement.close();
         connection.DatabaseConnection().close();
     }
     
@@ -85,27 +68,11 @@ public class InventoryMotorcycle extends Motorcycle {
         //get the motorcycleID
         DatabaseConnection connection = new DatabaseConnection();
         //creates a sql statement and gets the id from motorcycle table
-        Statement stmt = connection.DatabaseConnection().createStatement(); //creates a sql statement
-        //gets the id 
-        ResultSet rs = stmt.executeQuery("SELECT MotorcycleID FROM motorcycles WHERE model = '" + this.model + "'" );
+        String deleteQuery = "DELETE FROM inventory WHERE model = '" + this.model + "'" ;
+        PreparedStatement deleteStatement = connection.DatabaseConnection().prepareStatement(deleteQuery); //creates a sql statement
+        deleteStatement.execute();
         
-        int motorcycleID = 0; //this variable holds the motorcycleID from the motorcycle table
-        
-        while(rs.next()){
-            motorcycleID = rs.getInt("MotorcycleID");
-            break;
-        }
-        System.out.println("Delete motorcycle  ID: " + motorcycleID);
-        rs.close();
-        
-        PreparedStatement statement = connection.DatabaseConnection().prepareStatement("DELETE FROM inventory WHERE MotorcycleID = " + motorcycleID);
-        statement.execute();
-        statement.close();
-        
-        PreparedStatement ps = connection.DatabaseConnection().prepareStatement("DELETE FROM motorcycles WHERE MotorcycleID = " + motorcycleID);
-        ps.execute();
-        ps.close();
-        
+        deleteStatement.close();
         connection.DatabaseConnection().close();
         
     }

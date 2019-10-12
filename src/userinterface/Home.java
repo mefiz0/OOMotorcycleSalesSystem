@@ -8,14 +8,18 @@ package userinterface;
 import database.UpdateUIView;
 import database.UpdateUISQL;
 import java.awt.Color;
+import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
-import oomotorcyclesalessystem.CustomerController;
+import oomotorcyclesalessystem.Customer;
 import oomotorcyclesalessystem.InventoryMotorcycle;
+import oomotorcyclesalessystem.PurchaseAndInstallment;
+import oomotorcyclesalessystem.SoldMotorcycle;
 
 /**
  *
@@ -39,7 +43,7 @@ public class Home extends javax.swing.JFrame {
         
         //if installment is not selected these are hidden*****
         installmentPeriodLabel.setVisible(false);
-        installmendPeriodlDropDownMenu.setVisible(false);
+        InstallmentPeriodDropDownMenu.setVisible(false);
         downPaymentLabel.setVisible(false);
         downPaymentField.setVisible(false);  
         //****************************************************
@@ -124,11 +128,12 @@ public class Home extends javax.swing.JFrame {
         installmentLabel = new javax.swing.JLabel();
         installmentCheckBox = new javax.swing.JCheckBox();
         installmentPeriodLabel = new javax.swing.JLabel();
-        installmendPeriodlDropDownMenu = new javax.swing.JComboBox<>();
+        InstallmentPeriodDropDownMenu = new javax.swing.JComboBox<>();
         confirmSaleButton = new javax.swing.JButton();
         downPaymentLabel = new javax.swing.JLabel();
         boardNumField = new javax.swing.JTextField();
         downPaymentField = new javax.swing.JFormattedTextField();
+        monthsLabel = new javax.swing.JLabel();
         inventoryPanel = new javax.swing.JPanel();
         inventoryTablePane = new javax.swing.JScrollPane();
         inventoryTable = new javax.swing.JTable();
@@ -465,10 +470,10 @@ public class Home extends javax.swing.JFrame {
         installmentPeriodLabel.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         installmentPeriodLabel.setText("Installment Period:");
 
-        installmendPeriodlDropDownMenu.setBackground(new java.awt.Color(229, 229, 229));
-        installmendPeriodlDropDownMenu.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        installmendPeriodlDropDownMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "  6 Months", "12 Months", "18 Months", "24 Months" }));
-        installmendPeriodlDropDownMenu.setBorder(null);
+        InstallmentPeriodDropDownMenu.setBackground(new java.awt.Color(229, 229, 229));
+        InstallmentPeriodDropDownMenu.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        InstallmentPeriodDropDownMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "6", "12", "18", "24" }));
+        InstallmentPeriodDropDownMenu.setBorder(null);
 
         confirmSaleButton.setBackground(new java.awt.Color(209, 229, 199));
         confirmSaleButton.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
@@ -500,6 +505,9 @@ public class Home extends javax.swing.JFrame {
         downPaymentField.setBackground(new java.awt.Color(229, 229, 229));
         downPaymentField.setBorder(null);
         downPaymentField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        monthsLabel.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        monthsLabel.setText("Months");
 
         javax.swing.GroupLayout makeSalePaneLayout = new javax.swing.GroupLayout(makeSalePane);
         makeSalePane.setLayout(makeSalePaneLayout);
@@ -540,19 +548,20 @@ public class Home extends javax.swing.JFrame {
                                         .addGap(2, 2, 2)))
                                 .addGap(43, 43, 43)
                                 .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(makeSalePaneLayout.createSequentialGroup()
-                                            .addComponent(modelLabel)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(modelComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGroup(makeSalePaneLayout.createSequentialGroup()
-                                            .addComponent(installmentPeriodLabel)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(installmendPeriodlDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(makeSalePaneLayout.createSequentialGroup()
-                                            .addComponent(installmentLabel)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(installmentCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(makeSalePaneLayout.createSequentialGroup()
+                                        .addComponent(modelLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(modelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(makeSalePaneLayout.createSequentialGroup()
+                                        .addComponent(installmentPeriodLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(InstallmentPeriodDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(monthsLabel))
+                                    .addGroup(makeSalePaneLayout.createSequentialGroup()
+                                        .addComponent(installmentLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(installmentCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(makeSalePaneLayout.createSequentialGroup()
                                         .addComponent(downPaymentLabel)
                                         .addGap(18, 18, 18)
@@ -650,7 +659,8 @@ public class Home extends javax.swing.JFrame {
                     .addComponent(currentPriceLabel)
                     .addComponent(priceLabel)
                     .addComponent(installmentPeriodLabel)
-                    .addComponent(installmendPeriodlDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(InstallmentPeriodDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(monthsLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(downPaymentLabel)
@@ -995,7 +1005,7 @@ public class Home extends javax.swing.JFrame {
         inventoryPanelLayout.setHorizontalGroup(
             inventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(inventoryTablePane, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(inventoryPanelParent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(inventoryPanelParent, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             .addGroup(inventoryPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(inventoryMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1422,8 +1432,11 @@ public class Home extends javax.swing.JFrame {
         String permanentAddress = permanentAddressField.getText();
         String currentAddress = currentAddressField.getText();
         int contactNumber = Integer.parseInt(contactNumberField.getText());
+        System.out.println(contactNumber);
         int bankAccountNum = Integer.parseInt(bankAccountNumField.getText());
-        CustomerController updateCustomers = new CustomerController(
+        System.out.println(bankAccountNum);
+        
+        Customer updateCustomers = new Customer(
                                              firstName, lastName, identityNumber,
                                              permanentAddress, currentAddress,
                                              contactNumber, bankAccountNum);
@@ -1431,11 +1444,92 @@ public class Home extends javax.swing.JFrame {
         //update the database
         try {
             updateCustomers.updateCustomerDatabase();
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e){
+            System.out.println("An error updating the customers table");
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+            System.out.println("----------------------------------------------");
         }
+        
+        //update the sold motorcycles
+        String brand = brandComboBox.getSelectedItem().toString();
+        String model = modelComboBox.getSelectedItem().toString();
+        String boardNumber = boardNumField.getText();
+        int soldAmount = Integer.parseInt(currentPriceLabel.getText());
+        boolean installmentChecked = installmentCheckBox.isSelected();
+        
+        if(installmentChecked == true){ //if it is taken for installment
+            int downPayment = Integer.parseInt(downPaymentField.getText());
+            int installmentPeriod = Integer.parseInt(InstallmentPeriodDropDownMenu.getSelectedItem().toString());
+            
+            //create sold motorcycle object
+            SoldMotorcycle installmentSoldMotorcycle = new SoldMotorcycle(brand, model, boardNumber, downPayment,
+                                                                          installmentPeriod, installmentChecked);
+            //deduct from inventory and update sold motorcycle table
+            try {
+                installmentSoldMotorcycle.deductMotorcycleFromInventory();
+                installmentSoldMotorcycle.updateSoldMotorcycleTable();                
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }catch (Exception e){
+                System.out.println("Error deducting motorcycle from inventory");
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+                System.out.println("--------------------------------------");
+            }
+            
+            //update the purchases and installments tables
+            PurchaseAndInstallment installment = new PurchaseAndInstallment(); //default empty constructor
+            try {
+                //update purchase table
+                installment.updatePurchaseTable(boardNumber, identityNumber);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e){
+                System.out.println("Error updating the purchases table");
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+                System.out.println("----------------------------------------------");
+            }
+            
+            //update installments
+            try {  
+                installment.updateInstallmentsTable(boardNumber, identityNumber, installmentPeriod, soldAmount, downPayment);
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e){
+                System.out.println("Error updating the installments table");
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+                System.out.println("----------------------------------------------");
+            }
+
+        } else if(installmentChecked == false){ //it is taken for fullpayment
+            
+            //create sold motorcycle object
+            SoldMotorcycle fullPaidMotorcycle = new SoldMotorcycle(brand, model, boardNumber, soldAmount, installmentChecked);
+            //deduct from inventory and update the motorcycle table
+            try {
+                fullPaidMotorcycle.deductMotorcycleFromInventory();
+                fullPaidMotorcycle.updateSoldMotorcycleTable();
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e){
+                System.out.println("Error deducting from inventory - fully paid");
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+                System.out.println("----------------------------------------------");
+            }
+            
+            //update the purchases table
+            PurchaseAndInstallment updatePurchases = new PurchaseAndInstallment(); //default empty constructor
+            try {
+                updatePurchases.updatePurchaseTable(boardNumber, identityNumber);
+            } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e){
+                System.out.println("Error updating the purchases table - fully paid");
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+                System.out.println("----------------------------------------------");
+            }
+        }//end if
         
         //reset the fields
         
@@ -1595,13 +1689,13 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(installmentCheckBox.isSelected() == true){
             installmentPeriodLabel.setVisible(true);
-            installmendPeriodlDropDownMenu.setVisible(true);
+            InstallmentPeriodDropDownMenu.setVisible(true);
             downPaymentLabel.setVisible(true);
             downPaymentField.setVisible(true);
 
         }else{
             installmentPeriodLabel.setVisible(false);
-            installmendPeriodlDropDownMenu.setVisible(false);
+            InstallmentPeriodDropDownMenu.setVisible(false);
             downPaymentLabel.setVisible(false);
             downPaymentField.setVisible(false);
         }
@@ -1829,6 +1923,7 @@ public class Home extends javax.swing.JFrame {
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> InstallmentPeriodDropDownMenu;
     private javax.swing.JPanel addNewMotorcycles;
     private javax.swing.JButton addToInventoryButton;
     private javax.swing.JFormattedTextField bankAccountNumField;
@@ -1862,7 +1957,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField idNumField;
     private javax.swing.JLabel idNumLabel;
-    private javax.swing.JComboBox<String> installmendPeriodlDropDownMenu;
     private javax.swing.JCheckBox installmentCheckBox;
     private javax.swing.JLabel installmentLabel;
     private javax.swing.JLabel installmentPeriodLabel;
@@ -1895,6 +1989,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel modelLabel1;
     private javax.swing.JButton modifyInventoryButton;
     private javax.swing.JButton modifyUser;
+    private javax.swing.JLabel monthsLabel;
     private javax.swing.JLabel motorcycleDetailsLabel;
     private javax.swing.JSeparator motorcycleDetailsSeparator;
     private javax.swing.JPanel parentPanel;

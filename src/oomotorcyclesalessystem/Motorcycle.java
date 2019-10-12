@@ -41,7 +41,7 @@ public class Motorcycle {
         DatabaseConnection connection = new DatabaseConnection(); //create a database connection object
         
         PreparedStatement statement;
-        statement = connection.DatabaseConnection().prepareStatement("INSERT INTO motorcycles"
+        statement = connection.DatabaseConnection().prepareStatement("INSERT INTO inventory"
                                                         + " VALUES ('" + this.brand + "', '" + this.model + "')");
         statement.execute();
     }
@@ -51,7 +51,7 @@ public class Motorcycle {
         DatabaseConnection connection = new DatabaseConnection();
         
         PreparedStatement statement;
-        statement = connection.DatabaseConnection().prepareStatement("DELETE FROM motorcycles WHERE model = '"
+        statement = connection.DatabaseConnection().prepareStatement("DELETE FROM inventory WHERE model = '"
                                                                      +this.model+"'");
     }
 }

@@ -23,12 +23,14 @@ public class UpdateUIView {
         DatabaseConnection connection = new DatabaseConnection(); //create connection object
         connection.DatabaseConnection(); //connect to the database
         
-        PreparedStatement ps = connection.DatabaseConnection().prepareStatement(sqlQuery);
+        PreparedStatement ps = connection.DatabaseConnection().prepareStatement(sqlQuery); 
         ResultSet rs = ps.executeQuery();
-        tableName.setModel(DbUtils.resultSetToTableModel(rs));
+        tableName.setModel(DbUtils.resultSetToTableModel(rs)); //set the table model using the methods from rs2xml library
+        rs.close();
+        ps.close();
         connection.DatabaseConnection().close();
         
-        tableName.setAutoCreateRowSorter(true);
+        tableName.setAutoCreateRowSorter(true); //creates a row sorter
     }
     
     //update the view of comboboxes
@@ -57,6 +59,11 @@ public class UpdateUIView {
                 comboBox.addItem(columnData);
             }
         }//end while
+        
+        rs.close();
+        ps.close();
+        
+        connection.DatabaseConnection().close();
     }//end uppdateComboBoxView
     
     //update the view of combo boxes based on the view of another combo box
@@ -77,20 +84,15 @@ public class UpdateUIView {
             ResultSet rs = ps.executeQuery(); //get the result set
             
             comboBoxTwo.removeAllItems(); //clear the jcombobox
+
+            while(rs.next()){
+                String columnData = rs.getString(columnName);
+                comboBoxTwo.addItem(columnData);
+            }//end while
             
-            //check if the combobox one is empty
-            if(comboBoxOne.getItemCount() != 0){
-                /*
-                Add new data
-                */
-                while(rs.next()){
-                    String columnData = rs.getString(columnName);
-                    comboBoxTwo.addItem(columnData);
-                }//end while
-            }else{
-                comboBoxTwo.removeAllItems();
-                comboBoxTwo.addItem("");
-            }
+            rs.close();
+            ps.close();
+            connection.DatabaseConnection().close();
         }catch (Exception e){
             System.out.println("No data in the combo box!"); //if there is nothing to view, this error will be thrown
         }
@@ -100,34 +102,25 @@ public class UpdateUIView {
     public static String updatePriceLabel(JComboBox modelComboBox) throws ClassNotFoundException, SQLException{
         
         String currentlySelected = modelComboBox.getSelectedItem().toString();
-        
-        //get the motorcycleID of the selected model
-        String selectQuery = "SELECT MotorcycleID FROM motorcycles WHERE Model = '" + currentlySelected +"'";
+
         DatabaseConnection connection = new DatabaseConnection(); //create the connection object
-        connection.DatabaseConnection(); //connect to the database
-        PreparedStatement ps = connection.DatabaseConnection().prepareStatement(selectQuery);
-        int motorcycleID = 0;
-        ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-            String columnData = rs.getString("MotorcycleID");
-            motorcycleID = Integer.parseInt(columnData);
-        }//end while
-        System.out.println(motorcycleID);
         //get the price
-        String selectPriceQuery = "SELECT Price FROM inventory WHERE MotorcycleID = " + motorcycleID;
-        Statement statement = connection.DatabaseConnection().createStatement();
-        int price = 0; //gets the price as a string value to return to the jlabel
-        ResultSet rsOne = statement.executeQuery(selectPriceQuery);
-        while(rsOne.next()){
-            price = Integer.parseInt(rsOne.getString("Price"));
-            System.out.println(rsOne.getString("Price"));
+        String selectPriceQuery = "SELECT Price FROM inventory WHERE Model = '" + currentlySelected + "'";
+        PreparedStatement statement = connection.DatabaseConnection().prepareStatement(selectPriceQuery);
+        String price = null; //gets the price as a string value to return to the jlabel
+        ResultSet rs = statement.executeQuery();
+        while(rs.next()){
+            price = rs.getString("Price");
+            System.out.println(rs.getString("Price"));
             break;
         }
         
         System.out.println(price);
         
-        String testPrice = Integer.toString(price);
+        rs.close();
+        statement.close();
+        connection.DatabaseConnection().close();
         
-        return testPrice;
+        return price;
     }
 }

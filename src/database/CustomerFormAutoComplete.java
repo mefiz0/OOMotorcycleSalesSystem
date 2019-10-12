@@ -19,14 +19,17 @@ public class CustomerFormAutoComplete {
    public static int checkCustomerExists(String identityNumber) throws ClassNotFoundException, SQLException{
        int customerExists = 0;
        
-       DatabaseConnection connection = new DatabaseConnection(); //create connection object
-       Statement statement = connection.DatabaseConnection().createStatement(); //create a statement
+       DatabaseConnection connection = new DatabaseConnection();
+       Statement statement = connection.DatabaseConnection().createStatement();
        
        ResultSet rs = statement.executeQuery("SELECT CustomerID from customers WHERE NID='"
-                                             + identityNumber +"'");
+                                             + identityNumber +"'"); //get the user id
        if(rs.next()){
            customerExists = rs.getInt("CustomerID");
        }
+       rs.close();
+       statement.close();
+       connection.DatabaseConnection().close();
        return customerExists;
    } 
    
@@ -48,9 +51,9 @@ public class CustomerFormAutoComplete {
            
            Statement statement = connection.DatabaseConnection().createStatement(); //create a statement
            
-           ResultSet rs = statement.executeQuery("SELECT * from customers WHERE CustomerID = '" 
-                        + customerID + "'");
-           
+           ResultSet rs = statement.executeQuery("SELECT * from customers WHERE CustomerID = " 
+                        + customerID + "");
+           //set the values
            while(rs.next()){
                firstNameField.setText(rs.getString("FirstName"));
                firstNameField.setEditable(false);
@@ -64,7 +67,13 @@ public class CustomerFormAutoComplete {
                permanentAddressField.setEditable(false);
                currentAddressField.setText(rs.getString("CurrentAddress"));
                currentAddressField.setEditable(false);
-           } 
+               break;
+           } //end while
+           
+            rs.close();
+            statement.close();
+       
+           //if the user doesn't exist
        } else{
            firstNameField.setText("");
                firstNameField.setEditable(true);
@@ -78,7 +87,7 @@ public class CustomerFormAutoComplete {
                permanentAddressField.setEditable(true);
                currentAddressField.setText("");
                currentAddressField.setEditable(true);
-       }
+       }// end if
    }
    
 }

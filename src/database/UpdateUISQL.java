@@ -17,13 +17,11 @@ import java.util.Vector;
 public class UpdateUISQL {
     
     public static final String VIEW_INVENTORY_TABLE_SQL = "SELECT inventory.InventoryID,"
-                                                        + "motorcycles.Brand,"
-                                                        + "motorcycles.Model,"
+                                                        + "inventory.Brand,"
+                                                        + "inventory.Model,"
                                                         + "inventory.QuantityInStock,"
                                                         + "inventory.Price"
-                                                        + " FROM inventory"
-                                                        + " JOIN motorcycles "
-                                                        + " ON inventory.MotorcycleID = motorcycles.MotorcycleID";
+                                                        + " FROM inventory";
     
     public static final String VIEW_CUSTOMERS_TABLE_SQL = "SELECT * FROM customers";
     
@@ -33,37 +31,37 @@ public class UpdateUISQL {
                                                             + "customers.FirstName,"
                                                             + "customers.LastName,"
                                                             + "customers.NID,"
-                                                            + "motorcycles.Brand,"
-                                                            + "motorcycles.Model,"
+                                                            + "sold_motorcycles.Brand,"
+                                                            + "sold_motorcycles.Model,"
                                                             + "sold_motorcycles.BoardNumber,"
                                                             + "sold_motorcycles.Installment,"
-                                                            + "sold_motorcycles.AmountPaid"
+                                                            + "sold_motorcycles.Paid"
                                                             + " FROM purchases"
                                                             + " LEFT JOIN customers"
                                                             + " ON purchases.CustomerID = customers.CustomerID"
                                                             + " LEFT JOIN sold_motorcycles"
-                                                            + " ON purchases.SoldID = sold_motorcycles.SoldID"
-                                                            + " LEFT JOIN motorcycles"
-                                                            + " ON sold_motorcycles.MotorcycleID = motorcycles.MotorcycleID";
+                                                            + " ON purchases.SoldID = sold_motorcycles.SoldID";
     
     public static final String VIEW_INSTALLMENTS_TABLE_SQL = "SELECT payments.PurchaseNumber,"
-                                                           + "payments.DueDate,"
                                                            + "customers.FirstName,"
                                                            + "customers.NID,"
-                                                           + "motorcycles.Brand,"
-                                                           + "motorcycles.Model,"
+                                                           + "sold_motorcycles.Brand,"
+                                                           + "sold_motorcycles.Model,"
+                                                           + "sold_motorcycles.BoardNumber,"
                                                            + "payments.AmountDue,"
-                                                           + "payments.AmountPaid"
+                                                           + "payments.DueDate,"
+                                                           + "payments.AmountPaid,"
+                                                           + "payments.NextPayment"
                                                            + " FROM payments"
-                                                           + " JOIN purchases"
+                                                           + " LEFT JOIN purchases"
                                                            + " ON payments.PurchaseNumber = purchases.PurchaseNumber"
-                                                           + " JOIN customers"
+                                                           + " LEFT JOIN customers"
                                                            + " ON purchases.CustomerID = customers.CustomerID"
-                                                           + " JOIN motorcycles"
-                                                           + " ON payments.MotorcycleID = motorcycles.MotorcycleID";
+                                                           + " LEFT JOIN sold_motorcycles"
+                                                           + " ON purchases.SoldID = sold_motorcycles.SoldID";
     
-    public static final String INSERT_BRAND_TO_COMBO_BOX = "SELECT Brand FROM motorcycles";
+    public static final String INSERT_BRAND_TO_COMBO_BOX = "SELECT Brand FROM inventory";
     
-    public static final String INSERT_MODEL_TO_COMBO_BOX = "SELECT Model FROM motorcycles WHERE Brand = '"; //concat the brand name in the insert function
+    public static final String INSERT_MODEL_TO_COMBO_BOX = "SELECT Model FROM inventory WHERE Brand = '"; //concat the brand name in the insert function
     
 }

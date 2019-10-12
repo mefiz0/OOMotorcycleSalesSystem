@@ -328,22 +328,22 @@
                                           </Group>
                                           <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="modelLabel" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="modelComboBox" max="32767" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" attributes="0">
-                                                      <Component id="installmentPeriodLabel" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="-2" attributes="0"/>
-                                                      <Component id="installmendPeriodlDropDownMenu" min="-2" pref="184" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="installmentLabel" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                      <Component id="installmentCheckBox" min="-2" pref="45" max="-2" attributes="0"/>
-                                                  </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="modelLabel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="modelComboBox" min="-2" pref="254" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" attributes="0">
+                                                  <Component id="installmentPeriodLabel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="InstallmentPeriodDropDownMenu" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="monthsLabel" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="installmentLabel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="installmentCheckBox" min="-2" pref="45" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="0" attributes="0">
                                                   <Component id="downPaymentLabel" min="-2" max="-2" attributes="0"/>
@@ -471,7 +471,8 @@
                               <Component id="currentPriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="priceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="installmentPeriodLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="installmendPeriodlDropDownMenu" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                              <Component id="InstallmentPeriodDropDownMenu" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                              <Component id="monthsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="34" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -786,7 +787,7 @@
                     <Property name="text" type="java.lang.String" value="Installment Period:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="installmendPeriodlDropDownMenu">
+                <Component class="javax.swing.JComboBox" name="InstallmentPeriodDropDownMenu">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="e5" green="e5" red="e5" type="rgb"/>
@@ -796,10 +797,10 @@
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="4">
-                        <StringItem index="0" value="  6 Months"/>
-                        <StringItem index="1" value="12 Months"/>
-                        <StringItem index="2" value="18 Months"/>
-                        <StringItem index="3" value="24 Months"/>
+                        <StringItem index="0" value="6"/>
+                        <StringItem index="1" value="12"/>
+                        <StringItem index="2" value="18"/>
+                        <StringItem index="3" value="24"/>
                       </StringArray>
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -867,6 +868,14 @@
                     </Property>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JLabel" name="monthsLabel">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Nirmala UI Semilight" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Months"/>
+                  </Properties>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
@@ -887,7 +896,7 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="inventoryTablePane" alignment="1" max="32767" attributes="0"/>
-                  <Component id="inventoryPanelParent" alignment="0" max="32767" attributes="0"/>
+                  <Component id="inventoryPanelParent" alignment="0" pref="0" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="inventoryMenu" max="32767" attributes="0"/>
