@@ -13,20 +13,20 @@ public class DatabaseTables {
     The role defines user permissions and level of access
     */
     public static final String CREATE_USERS_TABLE_SQL = "create table users ( "
-                                                      + "UserID INT NOT NULL GENERATED ALWAYS AS IDENTITY, "
+                                                      + "UserID INT NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), "
                                                       + "Username VARCHAR(10) NOT NULL UNIQUE,"
                                                       + "Password VARCHAR(15) NOT NULL, "
                                                       + "Role VARCHAR(20) NOT NULL, "
                                                       + "PRIMARY KEY (UserID))";
     
     public static final String ADD_DEFAULT_VALUES_TO_USERS_TABLE_SQL = "INSERT INTO users (Username, Password, Role) VALUES("
-                                                                     + "'admin','admin123','administrator')";
+                                                                     + "'admin','admin123','Administrator')";
     
     //this table contains the access history
     public static final String CREATE_USERS_ACCESS_HISTORY_TABLE_SQL = "CREATE TABLE access_history ("
-                                                                     + "AccessID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,"
+                                                                     + "AccessID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
                                                                      + "UserID INTEGER NOT NULL,"
-                                                                     + "AccessDateTime TIMESTAMP,"
+                                                                     + "AccessTime TIMESTAMP,"
                                                                      + "PRIMARY KEY (AccessID),"
                                                                      + "FOREIGN KEY (UserID) REFERENCES users(UserID))";
     //create the Customers Table
@@ -34,7 +34,7 @@ public class DatabaseTables {
     The customers table contains details about the customers.
     */
     public static final String CREATE_CUSTOMERS_TABLE_SQL = "CREATE TABLE customers ("
-                                                          + "CustomerID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,"
+                                                          + "CustomerID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
                                                           + "FirstName VARCHAR(30) NOT NULL,"
                                                           + "LastName VARCHAR(30) NOT NULL,"
                                                           + "NID VARCHAR(20) NOT NULL UNIQUE,"
@@ -49,7 +49,7 @@ public class DatabaseTables {
     This table creates an inventory with quantity and prices
     */
     public static final String CREATE_INVENTORY_TABLE_SQL = "CREATE TABLE inventory ("
-                                                          + "InventoryID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,"
+                                                          + "InventoryID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
                                                           + "Brand VARCHAR(15) NOT NULL,"
                                                           + "Model VARCHAR(15) NOT NULL UNIQUE,"
                                                           + "QuantityInStock INTEGER NOT NULL,"
@@ -61,7 +61,7 @@ public class DatabaseTables {
     The table forms a history of motorcycles sold. 
     */
     public static final String CREATE_SOLD_MOTORCYCLES_TABLE_SQL = "CREATE TABLE sold_motorcycles ("
-                                                                 + "SoldID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,"
+                                                                 + "SoldID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
                                                                  + "Brand VARCHAR(15) NOT NULL,"
                                                                  + "Model VARCHAR(15) NOT NULL,"
                                                                  + "BoardNumber VARCHAR(10) NOT NULL UNIQUE,"
@@ -74,7 +74,7 @@ public class DatabaseTables {
     This table keeps track of purchases made. links the sold motorcycles with the customer
     */
     public static final String CREATE_PURCHASES_TABLE_SQL = "CREATE TABLE purchases ("
-                                                          + "PurchaseNumber INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY,"
+                                                          + "PurchaseNumber INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
                                                           + "CustomerID INTEGER NOT NULL,"
                                                           + "SoldID INTEGER NOT NULL,"
                                                           + "PRIMARY KEY (PurchaseNumber),"
@@ -86,7 +86,7 @@ public class DatabaseTables {
     installment is completed when amount due reaches 0
     */
     public static final String CREATE_PAYMENTS_TABLE_SQL = "CREATE TABLE payments ("
-                                                         + "PurchaseNumber INTEGER NOT NULL,"
+                                                         + "PurchaseNumber INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
                                                          + "DueDate DATE NOT NULL,"
                                                          + "AmountDue DECIMAL,"
                                                          + "Rate DECIMAL,"

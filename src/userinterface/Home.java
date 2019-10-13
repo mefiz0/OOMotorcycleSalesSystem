@@ -7,6 +7,7 @@ package userinterface;
 
 import database.UpdateUIView;
 import database.UpdateUISQL;
+import static database.UpdateUIView.updateComboBoxView;
 import java.awt.Color;
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -20,6 +21,7 @@ import oomotorcyclesalessystem.Customer;
 import oomotorcyclesalessystem.InventoryMotorcycle;
 import oomotorcyclesalessystem.PurchaseAndInstallment;
 import oomotorcyclesalessystem.SoldMotorcycle;
+import oomotorcyclesalessystem.User;
 
 /**
  *
@@ -45,9 +47,60 @@ public class Home extends javax.swing.JFrame {
         installmentPeriodLabel.setVisible(false);
         InstallmentPeriodDropDownMenu.setVisible(false);
         downPaymentLabel.setVisible(false);
-        downPaymentField.setVisible(false);  
+        downPaymentField.setVisible(false);
+        monthsLabel.setVisible(false);
         //****************************************************
+        
+        buttonVisibilityBasedOnRoles(); //changes the ui based on the roles of the currently logged in person
     }
+    
+    //changes the ui based on the role of the currently logged in person
+    public final void buttonVisibilityBasedOnRoles(){
+        //create a users object
+        User userRole = new User();
+        
+        try {
+            if(userRole.getUserRole().equals("Administrator") == false){ //if the user is not an admin, hide the user settings
+                usersSettingsButton.setVisible(false);
+            }//end if
+            
+            if(userRole.getUserRole().equals("Sales") == true){ //if the user is sales hide the inventory menus
+             inventoryMenu.setVisible(false);
+            inventoryPanelParent.setVisible(false);
+            
+            }else if(userRole.getUserRole().equals("Procument") == true){ //if the user is proc disable all the buttons excep inventory
+            makeSaleButton.setEnabled(false);
+            customersButton.setEnabled(false);
+            salesHistoryButton.setEnabled(false);
+            viewInstallmentsButton.setEnabled(false);
+            
+            //update the view
+            parentPanel.removeAll();
+            parentPanel.add(inventoryPanel);
+            parentPanel.repaint();
+            parentPanel.revalidate();
+        
+            resetButtonsColors();
+            inventoryButton.setBackground(new Color(197, 223, 185));
+            
+            try {
+            //update the table
+            database.UpdateUIView.updateTableView(inventoryTable, database.UpdateUISQL.VIEW_INVENTORY_TABLE_SQL);
+            } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //////////////////////////////////////////////////////////////////////////////////////////////////////
+            
+            } //end if
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//end buttonVisibilityBasedOnRoles()
     
     //resets the colors of the left menu buttons
     public void resetButtonsColors(){
@@ -89,6 +142,8 @@ public class Home extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jToolBar1 = new javax.swing.JToolBar();
         menu = new javax.swing.JPanel();
         makeSaleButton = new javax.swing.JButton();
         inventoryButton = new javax.swing.JButton();
@@ -162,23 +217,88 @@ public class Home extends javax.swing.JFrame {
         modelLabel1 = new javax.swing.JLabel();
         modelComboBoxInventory = new javax.swing.JComboBox<>();
         confirmRemoveFromInventoryButton = new javax.swing.JButton();
+        modifyInventoryPanel = new javax.swing.JPanel();
+        removeMotorcycleLabel1 = new javax.swing.JLabel();
+        jSeparator3 = new javax.swing.JSeparator();
+        brandLabel2 = new javax.swing.JLabel();
+        brandComboBoxInventory1 = new javax.swing.JComboBox<>();
+        modelLabel2 = new javax.swing.JLabel();
+        modelComboBoxInventory1 = new javax.swing.JComboBox<>();
+        confirmRemoveFromInventoryButton1 = new javax.swing.JButton();
+        quantityInputField1 = new javax.swing.JFormattedTextField();
+        priceInputField1 = new javax.swing.JFormattedTextField();
+        modelLabel3 = new javax.swing.JLabel();
+        modelLabel4 = new javax.swing.JLabel();
+        customersPanel = new javax.swing.JPanel();
+        customersScrollPane = new javax.swing.JScrollPane();
+        customersTable = new javax.swing.JTable();
         salesHistoryPane = new javax.swing.JScrollPane();
         salesHistoryTable = new javax.swing.JTable();
-        installmentsPane = new javax.swing.JScrollPane();
-        installmentsTable = new javax.swing.JTable();
         usersSettingsPanel = new javax.swing.JPanel();
         usersTablePane = new javax.swing.JScrollPane();
         usersTable = new javax.swing.JTable();
         usersMenu = new javax.swing.JPanel();
-        modifyUser = new javax.swing.JButton();
-        removeUser = new javax.swing.JButton();
-        customersPanel = new javax.swing.JPanel();
-        customersScrollPane = new javax.swing.JScrollPane();
-        customersTable = new javax.swing.JTable();
-        customerMenu = new javax.swing.JPanel();
-        viewCustomer = new javax.swing.JButton();
+        viewUsersAccess = new javax.swing.JButton();
+        modifyUserBUtton = new javax.swing.JButton();
+        removeUserButton = new javax.swing.JButton();
+        addUsersButton = new javax.swing.JButton();
+        userSettingsParentPanel = new javax.swing.JPanel();
+        usersAccessHistoryPanel = new javax.swing.JScrollPane();
+        usersAccessHistoryTable = new javax.swing.JTable();
+        addNewUserPanel = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        usernameInputField = new javax.swing.JTextField();
+        passwordInputField = new javax.swing.JTextField();
+        confirmAddUser = new javax.swing.JButton();
+        roleSelectDropDownMenu = new javax.swing.JComboBox<>();
+        removeUsersPanel = new javax.swing.JPanel();
+        removeUserLabel = new javax.swing.JLabel();
+        jSeparator5 = new javax.swing.JSeparator();
+        brandLabel3 = new javax.swing.JLabel();
+        usernameSelectDropDownMenu = new javax.swing.JComboBox<>();
+        confirmRemoveUser = new javax.swing.JButton();
+        modifyUsersPanel = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        jSeparator6 = new javax.swing.JSeparator();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        newPasswordInputField = new javax.swing.JTextField();
+        confirmModifyUser = new javax.swing.JButton();
+        modifyUsernameDropDownMenu = new javax.swing.JComboBox<>();
+        modifyRoleDropDownMenu = new javax.swing.JComboBox<>();
+        InstallmentsPanel = new javax.swing.JPanel();
+        installmentsPane = new javax.swing.JScrollPane();
+        installmentsTable = new javax.swing.JTable();
+        payInstallmentsPanel = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        jSeparator7 = new javax.swing.JSeparator();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        newPasswordInputField1 = new javax.swing.JTextField();
+        confirmModifyUser1 = new javax.swing.JButton();
+        modifyUsernameDropDownMenu1 = new javax.swing.JComboBox<>();
+        modifyRoleDropDownMenu1 = new javax.swing.JComboBox<>();
 
         jLabel1.setText("jLabel1");
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        jToolBar1.setRollover(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -1000,6 +1120,146 @@ public class Home extends javax.swing.JFrame {
 
         inventoryPanelParent.add(removeMotorcycle, "card3");
 
+        modifyInventoryPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        removeMotorcycleLabel1.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 18)); // NOI18N
+        removeMotorcycleLabel1.setText("Remove Motorcycle");
+
+        jSeparator3.setBackground(new java.awt.Color(204, 204, 204));
+
+        brandLabel2.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        brandLabel2.setText("Brand:");
+
+        brandComboBoxInventory1.setBackground(new java.awt.Color(229, 229, 229));
+        brandComboBoxInventory1.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        brandComboBoxInventory1.setBorder(null);
+        brandComboBoxInventory1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                brandComboBoxInventory1PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                brandComboBoxInventory1PopupMenuWillBecomeVisible(evt);
+            }
+        });
+
+        modelLabel2.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modelLabel2.setText("Model:");
+
+        modelComboBoxInventory1.setBackground(new java.awt.Color(229, 229, 229));
+        modelComboBoxInventory1.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modelComboBoxInventory1.setBorder(null);
+        modelComboBoxInventory1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                modelComboBoxInventory1PopupMenuWillBecomeVisible(evt);
+            }
+        });
+
+        confirmRemoveFromInventoryButton1.setBackground(new java.awt.Color(209, 229, 199));
+        confirmRemoveFromInventoryButton1.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
+        confirmRemoveFromInventoryButton1.setText("Confirm");
+        confirmRemoveFromInventoryButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        confirmRemoveFromInventoryButton1.setContentAreaFilled(false);
+        confirmRemoveFromInventoryButton1.setFocusPainted(false);
+        confirmRemoveFromInventoryButton1.setOpaque(true);
+        confirmRemoveFromInventoryButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirmRemoveFromInventoryButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirmRemoveFromInventoryButton1MouseExited(evt);
+            }
+        });
+        confirmRemoveFromInventoryButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmRemoveFromInventoryButton1ActionPerformed(evt);
+            }
+        });
+
+        quantityInputField1.setBackground(new java.awt.Color(229, 229, 229));
+        quantityInputField1.setBorder(null);
+        quantityInputField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        priceInputField1.setBackground(new java.awt.Color(229, 229, 229));
+        priceInputField1.setBorder(null);
+        priceInputField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+
+        modelLabel3.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modelLabel3.setText("Quantity:");
+
+        modelLabel4.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modelLabel4.setText("Price:");
+
+        javax.swing.GroupLayout modifyInventoryPanelLayout = new javax.swing.GroupLayout(modifyInventoryPanel);
+        modifyInventoryPanel.setLayout(modifyInventoryPanelLayout);
+        modifyInventoryPanelLayout.setHorizontalGroup(
+            modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(confirmRemoveFromInventoryButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(removeMotorcycleLabel1)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
+                            .addGap(24, 24, 24)
+                            .addComponent(brandLabel2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(brandComboBoxInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
+                            .addGap(0, 0, Short.MAX_VALUE)
+                            .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(priceInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
+                                    .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
+                                            .addComponent(modelLabel2)
+                                            .addGap(32, 32, 32))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
+                                            .addComponent(modelLabel4)
+                                            .addGap(39, 39, 39))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
+                                            .addComponent(modelLabel3)
+                                            .addGap(18, 18, 18)))
+                                    .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(quantityInputField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(modelComboBoxInventory1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                .addContainerGap(271, Short.MAX_VALUE))
+        );
+        modifyInventoryPanelLayout.setVerticalGroup(
+            modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(removeMotorcycleLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(brandComboBoxInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(brandLabel2))
+                .addGap(14, 14, 14)
+                .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modelComboBoxInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modelLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(quantityInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modelLabel3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(priceInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modelLabel4))
+                .addGap(18, 18, 18)
+                .addComponent(confirmRemoveFromInventoryButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        inventoryPanelParent.add(modifyInventoryPanel, "card3");
+
         javax.swing.GroupLayout inventoryPanelLayout = new javax.swing.GroupLayout(inventoryPanel);
         inventoryPanel.setLayout(inventoryPanelLayout);
         inventoryPanelLayout.setHorizontalGroup(
@@ -1015,7 +1275,7 @@ public class Home extends javax.swing.JFrame {
             inventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(inventoryPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(inventoryTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                .addComponent(inventoryTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(inventoryMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1024,6 +1284,37 @@ public class Home extends javax.swing.JFrame {
         );
 
         parentPanel.add(inventoryPanel, "card3");
+
+        customersTable.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        customersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        customersScrollPane.setViewportView(customersTable);
+
+        javax.swing.GroupLayout customersPanelLayout = new javax.swing.GroupLayout(customersPanel);
+        customersPanel.setLayout(customersPanelLayout);
+        customersPanelLayout.setHorizontalGroup(
+            customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(customersScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE))
+        );
+        customersPanelLayout.setVerticalGroup(
+            customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(customersPanelLayout.createSequentialGroup()
+                .addComponent(customersScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
+        );
+
+        parentPanel.add(customersPanel, "card8");
 
         salesHistoryTable.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
         salesHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -1042,23 +1333,6 @@ public class Home extends javax.swing.JFrame {
 
         parentPanel.add(salesHistoryPane, "card5");
 
-        installmentsTable.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        installmentsTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        installmentsTable.setEnabled(false);
-        installmentsPane.setViewportView(installmentsTable);
-
-        parentPanel.add(installmentsPane, "card6");
-
         usersTable.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
         usersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1076,45 +1350,87 @@ public class Home extends javax.swing.JFrame {
 
         usersMenu.setBackground(new java.awt.Color(19, 15, 64));
 
-        modifyUser.setBackground(new java.awt.Color(244, 244, 244));
-        modifyUser.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        modifyUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modify.png"))); // NOI18N
-        modifyUser.setText("  Modify                              ");
-        modifyUser.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        modifyUser.setContentAreaFilled(false);
-        modifyUser.setOpaque(true);
-        modifyUser.addMouseListener(new java.awt.event.MouseAdapter() {
+        viewUsersAccess.setBackground(new java.awt.Color(244, 244, 244));
+        viewUsersAccess.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        viewUsersAccess.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/users_history.png"))); // NOI18N
+        viewUsersAccess.setText("    User Access History    ");
+        viewUsersAccess.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        viewUsersAccess.setContentAreaFilled(false);
+        viewUsersAccess.setOpaque(true);
+        viewUsersAccess.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                modifyUserMouseEntered(evt);
+                viewUsersAccessMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                modifyUserMouseExited(evt);
+                viewUsersAccessMouseExited(evt);
             }
         });
-        modifyUser.addActionListener(new java.awt.event.ActionListener() {
+        viewUsersAccess.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                modifyUserActionPerformed(evt);
+                viewUsersAccessActionPerformed(evt);
             }
         });
 
-        removeUser.setBackground(new java.awt.Color(244, 244, 244));
-        removeUser.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        removeUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/remove.png"))); // NOI18N
-        removeUser.setText("  Remove                            ");
-        removeUser.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        removeUser.setContentAreaFilled(false);
-        removeUser.setOpaque(true);
-        removeUser.addMouseListener(new java.awt.event.MouseAdapter() {
+        modifyUserBUtton.setBackground(new java.awt.Color(244, 244, 244));
+        modifyUserBUtton.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modifyUserBUtton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/modify.png"))); // NOI18N
+        modifyUserBUtton.setText("  Modify  ");
+        modifyUserBUtton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        modifyUserBUtton.setContentAreaFilled(false);
+        modifyUserBUtton.setOpaque(true);
+        modifyUserBUtton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                removeUserMouseEntered(evt);
+                modifyUserBUttonMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                removeUserMouseExited(evt);
+                modifyUserBUttonMouseExited(evt);
             }
         });
-        removeUser.addActionListener(new java.awt.event.ActionListener() {
+        modifyUserBUtton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removeUserActionPerformed(evt);
+                modifyUserBUttonActionPerformed(evt);
+            }
+        });
+
+        removeUserButton.setBackground(new java.awt.Color(244, 244, 244));
+        removeUserButton.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        removeUserButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/remove.png"))); // NOI18N
+        removeUserButton.setText("  Remove  ");
+        removeUserButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        removeUserButton.setContentAreaFilled(false);
+        removeUserButton.setOpaque(true);
+        removeUserButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                removeUserButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                removeUserButtonMouseExited(evt);
+            }
+        });
+        removeUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeUserButtonActionPerformed(evt);
+            }
+        });
+
+        addUsersButton.setBackground(new java.awt.Color(244, 244, 244));
+        addUsersButton.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        addUsersButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
+        addUsersButton.setText("    Add    ");
+        addUsersButton.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        addUsersButton.setContentAreaFilled(false);
+        addUsersButton.setOpaque(true);
+        addUsersButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                addUsersButtonMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                addUsersButtonMouseExited(evt);
+            }
+        });
+        addUsersButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUsersButtonActionPerformed(evt);
             }
         });
 
@@ -1122,43 +1438,34 @@ public class Home extends javax.swing.JFrame {
         usersMenu.setLayout(usersMenuLayout);
         usersMenuLayout.setHorizontalGroup(
             usersMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(modifyUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(removeUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(usersMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(viewUsersAccess, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(addUsersButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(removeUserButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(modifyUserBUtton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
         usersMenuLayout.setVerticalGroup(
             usersMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(usersMenuLayout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(removeUser)
-                .addGap(33, 33, 33)
-                .addComponent(modifyUser)
-                .addContainerGap(257, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout usersSettingsPanelLayout = new javax.swing.GroupLayout(usersSettingsPanel);
-        usersSettingsPanel.setLayout(usersSettingsPanelLayout);
-        usersSettingsPanelLayout.setHorizontalGroup(
-            usersSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(usersSettingsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(usersTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(usersMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(usersMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modifyUserBUtton)
+                    .addComponent(removeUserButton)
+                    .addComponent(viewUsersAccess)
+                    .addComponent(addUsersButton))
                 .addContainerGap())
         );
-        usersSettingsPanelLayout.setVerticalGroup(
-            usersSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(usersSettingsPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(usersTablePane, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
-                .addContainerGap())
-            .addComponent(usersMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
 
-        parentPanel.add(usersSettingsPanel, "card3");
+        userSettingsParentPanel.setBackground(new java.awt.Color(255, 255, 255));
+        userSettingsParentPanel.setLayout(new java.awt.CardLayout());
 
-        customersTable.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        customersTable.setModel(new javax.swing.table.DefaultTableModel(
+        usersAccessHistoryTable.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        usersAccessHistoryTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -1169,69 +1476,470 @@ public class Home extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        customersScrollPane.setViewportView(customersTable);
+        usersAccessHistoryTable.setEnabled(false);
+        usersAccessHistoryPanel.setViewportView(usersAccessHistoryTable);
 
-        customerMenu.setBackground(new java.awt.Color(19, 15, 64));
+        userSettingsParentPanel.add(usersAccessHistoryPanel, "card2");
 
-        viewCustomer.setBackground(new java.awt.Color(244, 244, 244));
-        viewCustomer.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        viewCustomer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/add.png"))); // NOI18N
-        viewCustomer.setText("View Customer");
-        viewCustomer.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        viewCustomer.setContentAreaFilled(false);
-        viewCustomer.setOpaque(true);
-        viewCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+        addNewUserPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel7.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 18)); // NOI18N
+        jLabel7.setText("Add New User");
+
+        jSeparator4.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel8.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel8.setText("Username:");
+
+        jLabel9.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel9.setText("Password:");
+
+        jLabel10.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel10.setText("Role:");
+
+        usernameInputField.setBackground(new java.awt.Color(229, 229, 229));
+        usernameInputField.setBorder(null);
+
+        passwordInputField.setBackground(new java.awt.Color(229, 229, 229));
+        passwordInputField.setBorder(null);
+
+        confirmAddUser.setBackground(new java.awt.Color(161, 202, 141));
+        confirmAddUser.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
+        confirmAddUser.setText("Confirm");
+        confirmAddUser.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        confirmAddUser.setContentAreaFilled(false);
+        confirmAddUser.setFocusPainted(false);
+        confirmAddUser.setOpaque(true);
+        confirmAddUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                viewCustomerMouseEntered(evt);
+                confirmAddUserMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                viewCustomerMouseExited(evt);
+                confirmAddUserMouseExited(evt);
             }
         });
-        viewCustomer.addActionListener(new java.awt.event.ActionListener() {
+        confirmAddUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewCustomerActionPerformed(evt);
+                confirmAddUserActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout customerMenuLayout = new javax.swing.GroupLayout(customerMenu);
-        customerMenu.setLayout(customerMenuLayout);
-        customerMenuLayout.setHorizontalGroup(
-            customerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(viewCustomer, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+        roleSelectDropDownMenu.setBackground(new java.awt.Color(229, 229, 229));
+        roleSelectDropDownMenu.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        roleSelectDropDownMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Sales", "Procument" }));
+        roleSelectDropDownMenu.setSelectedIndex(-1);
+        roleSelectDropDownMenu.setBorder(null);
+
+        javax.swing.GroupLayout addNewUserPanelLayout = new javax.swing.GroupLayout(addNewUserPanel);
+        addNewUserPanel.setLayout(addNewUserPanelLayout);
+        addNewUserPanelLayout.setHorizontalGroup(
+            addNewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(confirmAddUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(addNewUserPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(addNewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addNewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(addNewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel7)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(addNewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(usernameInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(addNewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addNewUserPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(passwordInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(addNewUserPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(roleSelectDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(204, Short.MAX_VALUE))
         );
-        customerMenuLayout.setVerticalGroup(
-            customerMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(customerMenuLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(viewCustomer)
-                .addContainerGap(419, Short.MAX_VALUE))
+        addNewUserPanelLayout.setVerticalGroup(
+            addNewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addNewUserPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(addNewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(usernameInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(addNewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(passwordInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addGroup(addNewUserPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(roleSelectDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel10))
+                .addGap(51, 51, 51)
+                .addComponent(confirmAddUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout customersPanelLayout = new javax.swing.GroupLayout(customersPanel);
-        customersPanel.setLayout(customersPanelLayout);
-        customersPanelLayout.setHorizontalGroup(
-            customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customersPanelLayout.createSequentialGroup()
-                .addContainerGap(573, Short.MAX_VALUE)
-                .addComponent(customerMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        userSettingsParentPanel.add(addNewUserPanel, "card2");
+
+        removeUsersPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        removeUserLabel.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 18)); // NOI18N
+        removeUserLabel.setText("Remove User");
+
+        jSeparator5.setBackground(new java.awt.Color(204, 204, 204));
+
+        brandLabel3.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        brandLabel3.setText("Username:");
+
+        usernameSelectDropDownMenu.setBackground(new java.awt.Color(229, 229, 229));
+        usernameSelectDropDownMenu.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        usernameSelectDropDownMenu.setBorder(null);
+        usernameSelectDropDownMenu.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                usernameSelectDropDownMenuPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                usernameSelectDropDownMenuPopupMenuWillBecomeVisible(evt);
+            }
+        });
+        usernameSelectDropDownMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameSelectDropDownMenuActionPerformed(evt);
+            }
+        });
+
+        confirmRemoveUser.setBackground(new java.awt.Color(209, 229, 199));
+        confirmRemoveUser.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
+        confirmRemoveUser.setText("Confirm");
+        confirmRemoveUser.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        confirmRemoveUser.setContentAreaFilled(false);
+        confirmRemoveUser.setFocusPainted(false);
+        confirmRemoveUser.setOpaque(true);
+        confirmRemoveUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirmRemoveUserMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirmRemoveUserMouseExited(evt);
+            }
+        });
+        confirmRemoveUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmRemoveUserActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout removeUsersPanelLayout = new javax.swing.GroupLayout(removeUsersPanel);
+        removeUsersPanel.setLayout(removeUsersPanelLayout);
+        removeUsersPanelLayout.setHorizontalGroup(
+            removeUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(confirmRemoveUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(removeUsersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(removeUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(removeUserLabel)
+                    .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(removeUsersPanelLayout.createSequentialGroup()
+                        .addComponent(brandLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(usernameSelectDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(204, Short.MAX_VALUE))
+        );
+        removeUsersPanelLayout.setVerticalGroup(
+            removeUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(removeUsersPanelLayout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(removeUserLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(removeUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(brandLabel3)
+                    .addComponent(usernameSelectDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(confirmRemoveUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        userSettingsParentPanel.add(removeUsersPanel, "card3");
+
+        modifyUsersPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel11.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 18)); // NOI18N
+        jLabel11.setText("Modify User");
+
+        jSeparator6.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel12.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel12.setText("Username:");
+
+        jLabel13.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel13.setText("Password:");
+
+        jLabel14.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel14.setText("Role:");
+
+        newPasswordInputField.setBackground(new java.awt.Color(229, 229, 229));
+        newPasswordInputField.setBorder(null);
+
+        confirmModifyUser.setBackground(new java.awt.Color(161, 202, 141));
+        confirmModifyUser.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
+        confirmModifyUser.setText("Confirm");
+        confirmModifyUser.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        confirmModifyUser.setContentAreaFilled(false);
+        confirmModifyUser.setFocusPainted(false);
+        confirmModifyUser.setOpaque(true);
+        confirmModifyUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirmModifyUserMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirmModifyUserMouseExited(evt);
+            }
+        });
+        confirmModifyUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmModifyUserActionPerformed(evt);
+            }
+        });
+
+        modifyUsernameDropDownMenu.setBackground(new java.awt.Color(229, 229, 229));
+        modifyUsernameDropDownMenu.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modifyUsernameDropDownMenu.setBorder(null);
+
+        modifyRoleDropDownMenu.setBackground(new java.awt.Color(229, 229, 229));
+        modifyRoleDropDownMenu.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modifyRoleDropDownMenu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Sales", "Procument" }));
+        modifyRoleDropDownMenu.setSelectedIndex(-1);
+        modifyRoleDropDownMenu.setSelectedItem(null);
+        modifyRoleDropDownMenu.setBorder(null);
+
+        javax.swing.GroupLayout modifyUsersPanelLayout = new javax.swing.GroupLayout(modifyUsersPanel);
+        modifyUsersPanel.setLayout(modifyUsersPanelLayout);
+        modifyUsersPanelLayout.setHorizontalGroup(
+            modifyUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(confirmModifyUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(modifyUsersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(modifyUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(modifyUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel11)
+                        .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modifyUsersPanelLayout.createSequentialGroup()
+                        .addGroup(modifyUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modifyUsersPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(modifyUsernameDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, modifyUsersPanelLayout.createSequentialGroup()
+                                .addGroup(modifyUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel13)
+                                    .addComponent(jLabel14))
+                                .addGap(18, 18, 18)
+                                .addGroup(modifyUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(newPasswordInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(modifyRoleDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(204, Short.MAX_VALUE))
+        );
+        modifyUsersPanelLayout.setVerticalGroup(
+            modifyUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(modifyUsersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator6, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(modifyUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(modifyUsernameDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(modifyUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newPasswordInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addGap(18, 18, 18)
+                .addGroup(modifyUsersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(modifyRoleDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(confirmModifyUser, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, customersPanelLayout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(customersScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 544, Short.MAX_VALUE)
-                    .addGap(159, 159, 159)))
-        );
-        customersPanelLayout.setVerticalGroup(
-            customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(customerMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(customersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(customersPanelLayout.createSequentialGroup()
-                    .addComponent(customersScrollPane, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
-                    .addGap(0, 0, 0)))
         );
 
-        parentPanel.add(customersPanel, "card8");
+        userSettingsParentPanel.add(modifyUsersPanel, "card2");
+
+        javax.swing.GroupLayout usersSettingsPanelLayout = new javax.swing.GroupLayout(usersSettingsPanel);
+        usersSettingsPanel.setLayout(usersSettingsPanelLayout);
+        usersSettingsPanelLayout.setHorizontalGroup(
+            usersSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(usersSettingsPanelLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(usersSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(usersSettingsPanelLayout.createSequentialGroup()
+                        .addComponent(userSettingsParentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(usersTablePane)))
+            .addGroup(usersSettingsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(usersMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        usersSettingsPanelLayout.setVerticalGroup(
+            usersSettingsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(usersSettingsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(usersTablePane, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(usersMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(userSettingsParentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        parentPanel.add(usersSettingsPanel, "card3");
+
+        InstallmentsPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        installmentsTable.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        installmentsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        installmentsTable.setEnabled(false);
+        installmentsPane.setViewportView(installmentsTable);
+
+        payInstallmentsPanel.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel15.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 18)); // NOI18N
+        jLabel15.setText("Pay Installment");
+
+        jSeparator7.setBackground(new java.awt.Color(204, 204, 204));
+
+        jLabel16.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel16.setText("Username:");
+
+        jLabel17.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel17.setText("Password:");
+
+        jLabel18.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel18.setText("Role:");
+
+        newPasswordInputField1.setBackground(new java.awt.Color(229, 229, 229));
+        newPasswordInputField1.setBorder(null);
+
+        confirmModifyUser1.setBackground(new java.awt.Color(161, 202, 141));
+        confirmModifyUser1.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
+        confirmModifyUser1.setText("Confirm");
+        confirmModifyUser1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        confirmModifyUser1.setContentAreaFilled(false);
+        confirmModifyUser1.setFocusPainted(false);
+        confirmModifyUser1.setOpaque(true);
+        confirmModifyUser1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                confirmModifyUser1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                confirmModifyUser1MouseExited(evt);
+            }
+        });
+        confirmModifyUser1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmModifyUser1ActionPerformed(evt);
+            }
+        });
+
+        modifyUsernameDropDownMenu1.setBackground(new java.awt.Color(229, 229, 229));
+        modifyUsernameDropDownMenu1.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modifyUsernameDropDownMenu1.setBorder(null);
+
+        modifyRoleDropDownMenu1.setBackground(new java.awt.Color(229, 229, 229));
+        modifyRoleDropDownMenu1.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modifyRoleDropDownMenu1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Sales", "Procument" }));
+        modifyRoleDropDownMenu1.setSelectedIndex(-1);
+        modifyRoleDropDownMenu1.setSelectedItem(null);
+        modifyRoleDropDownMenu1.setBorder(null);
+
+        javax.swing.GroupLayout payInstallmentsPanelLayout = new javax.swing.GroupLayout(payInstallmentsPanel);
+        payInstallmentsPanel.setLayout(payInstallmentsPanelLayout);
+        payInstallmentsPanelLayout.setHorizontalGroup(
+            payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(confirmModifyUser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(payInstallmentsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel15)
+                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, payInstallmentsPanelLayout.createSequentialGroup()
+                        .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, payInstallmentsPanelLayout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(modifyUsernameDropDownMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, payInstallmentsPanelLayout.createSequentialGroup()
+                                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel18))
+                                .addGap(18, 18, 18)
+                                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(newPasswordInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(modifyRoleDropDownMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap(204, Short.MAX_VALUE))
+        );
+        payInstallmentsPanelLayout.setVerticalGroup(
+            payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(payInstallmentsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel15)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel16)
+                    .addComponent(modifyUsernameDropDownMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newPasswordInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17))
+                .addGap(18, 18, 18)
+                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel18)
+                    .addComponent(modifyRoleDropDownMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addComponent(confirmModifyUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout InstallmentsPanelLayout = new javax.swing.GroupLayout(InstallmentsPanel);
+        InstallmentsPanel.setLayout(InstallmentsPanelLayout);
+        InstallmentsPanelLayout.setHorizontalGroup(
+            InstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(InstallmentsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(InstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(installmentsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(payInstallmentsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        InstallmentsPanelLayout.setVerticalGroup(
+            InstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InstallmentsPanelLayout.createSequentialGroup()
+                .addComponent(installmentsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(payInstallmentsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        parentPanel.add(InstallmentsPanel, "card8");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -1611,6 +2319,7 @@ public class Home extends javax.swing.JFrame {
         
         try {
             database.UpdateUIView.updateTableView(usersTable, database.UpdateUISQL.VIEW_USERS_TABLE_SQL);
+            database.UpdateUIView.updateTableView(usersAccessHistoryTable, database.UpdateUISQL.VIEW_USERS_ACCESS_HISTORY_TABLE_SQL);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -1644,46 +2353,52 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_viewInstallmentsButtonActionPerformed
 
-    private void viewCustomerMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCustomerMouseEntered
+    private void modifyUserBUttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyUserBUttonMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_viewCustomerMouseEntered
+    }//GEN-LAST:event_modifyUserBUttonMouseEntered
 
-    private void viewCustomerMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewCustomerMouseExited
+    private void modifyUserBUttonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyUserBUttonMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_viewCustomerMouseExited
+    }//GEN-LAST:event_modifyUserBUttonMouseExited
 
-    private void viewCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewCustomerActionPerformed
-        // TODO add your handling code here:
-        ViewCustomerDetails viewCustomer = new ViewCustomerDetails();
-        viewCustomer.setVisible(true);
+    private void modifyUserBUttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyUserBUttonActionPerformed
+        userSettingsParentPanel.removeAll();
+        userSettingsParentPanel.add(modifyUsersPanel);
+        userSettingsParentPanel.repaint();
+        userSettingsParentPanel.revalidate();
         
-    }//GEN-LAST:event_viewCustomerActionPerformed
+        //add the  users to the combo box
+        try {
+            updateComboBoxView(modifyUsernameDropDownMenu, database.UpdateUISQL.INSERT_USER_TO_COMBO_BOX, "Username");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_modifyUserBUttonActionPerformed
 
-    private void modifyUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyUserMouseEntered
+    private void removeUserButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeUserButtonMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_modifyUserMouseEntered
+    }//GEN-LAST:event_removeUserButtonMouseEntered
 
-    private void modifyUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyUserMouseExited
+    private void removeUserButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeUserButtonMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_modifyUserMouseExited
+    }//GEN-LAST:event_removeUserButtonMouseExited
 
-    private void modifyUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyUserActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_modifyUserActionPerformed
+    private void removeUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserButtonActionPerformed
+        userSettingsParentPanel.removeAll();
+        userSettingsParentPanel.add(removeUsersPanel);
+        userSettingsParentPanel.repaint();
+        userSettingsParentPanel.revalidate();
 
-    private void removeUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeUserMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeUserMouseEntered
-
-    private void removeUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_removeUserMouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_removeUserMouseExited
-
-    private void removeUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUserActionPerformed
-        // TODO add your handling code here:
-        RemoveUser removeUser = new RemoveUser();
-        removeUser.setVisible(true);
-    }//GEN-LAST:event_removeUserActionPerformed
+        try {
+            updateComboBoxView(usernameSelectDropDownMenu, database.UpdateUISQL.INSERT_USER_TO_COMBO_BOX, "Username");
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_removeUserButtonActionPerformed
 
     private void installmentCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_installmentCheckBoxActionPerformed
         // TODO add your handling code here:
@@ -1692,12 +2407,14 @@ public class Home extends javax.swing.JFrame {
             InstallmentPeriodDropDownMenu.setVisible(true);
             downPaymentLabel.setVisible(true);
             downPaymentField.setVisible(true);
+            monthsLabel.setVisible(true);
 
         }else{
             installmentPeriodLabel.setVisible(false);
             InstallmentPeriodDropDownMenu.setVisible(false);
             downPaymentLabel.setVisible(false);
             downPaymentField.setVisible(false);
+            monthsLabel.setVisible(false);
         }
     }//GEN-LAST:event_installmentCheckBoxActionPerformed
 
@@ -1718,19 +2435,19 @@ public class Home extends javax.swing.JFrame {
             modelComboBox.removeAllItems();
             UpdateUIView.updateComboBoxView(brandComboBox, modelComboBox, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }        
     }//GEN-LAST:event_brandComboBoxPopupMenuWillBecomeInvisible
 
     private void modelComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_modelComboBoxPopupMenuWillBecomeInvisible
         try {
             currentPriceLabel.setText((UpdateUIView.updatePriceLabel(modelComboBox)));
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e){
+            System.out.println("No items");
         }
     }//GEN-LAST:event_modelComboBoxPopupMenuWillBecomeInvisible
 
@@ -1739,9 +2456,9 @@ public class Home extends javax.swing.JFrame {
         try {
             UpdateUIView.updateComboBoxView(brandComboBox, UpdateUISQL.INSERT_BRAND_TO_COMBO_BOX, "Brand");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_brandComboBoxPopupMenuWillBecomeVisible
 
@@ -1780,9 +2497,10 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_removeInventoryButtonMouseEntered
 
     private void modifyInventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modifyInventoryButtonActionPerformed
-        // TODO add your handling code here:
-        ModifyInventory modifyInventory = new ModifyInventory();
-        modifyInventory.setVisible(true);
+        inventoryPanelParent.removeAll();
+        inventoryPanelParent.add(modifyInventoryPanel);
+        inventoryPanelParent.repaint();
+        inventoryPanelParent.revalidate();
     }//GEN-LAST:event_modifyInventoryButtonActionPerformed
 
     private void modifyInventoryButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_modifyInventoryButtonMouseExited
@@ -1820,7 +2538,7 @@ public class Home extends javax.swing.JFrame {
             updateInventory.updateMotorcycleDatabase();
             database.UpdateUIView.updateTableView(inventoryTable, database.UpdateUISQL.VIEW_INVENTORY_TABLE_SQL);
         } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(AddToInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception e){
             System.out.println("Error in beep boop land");
         }
@@ -1835,9 +2553,9 @@ public class Home extends javax.swing.JFrame {
         try {
             UpdateUIView.updateComboBoxView(brandComboBoxInventory, modelComboBoxInventory, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_brandComboBoxInventoryPopupMenuWillBecomeInvisible
 
@@ -1863,9 +2581,9 @@ public class Home extends javax.swing.JFrame {
             deleteFromInventory.deleteFromMotorcycleDatabase();
             database.UpdateUIView.updateTableView(inventoryTable, database.UpdateUISQL.VIEW_INVENTORY_TABLE_SQL); //update view
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_confirmRemoveFromInventoryButtonActionPerformed
 
@@ -1873,9 +2591,9 @@ public class Home extends javax.swing.JFrame {
         try {
             UpdateUIView.updateComboBoxView(brandComboBoxInventory, UpdateUISQL.INSERT_BRAND_TO_COMBO_BOX, "Brand");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_brandComboBoxInventoryPopupMenuWillBecomeVisible
 
@@ -1884,11 +2602,184 @@ public class Home extends javax.swing.JFrame {
         try {
             UpdateUIView.updateComboBoxView(brandComboBoxInventory, modelComboBoxInventory, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(RemoveInventory.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_modelComboBoxInventoryPopupMenuWillBecomeVisible
+
+    private void brandComboBoxInventory1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_brandComboBoxInventory1PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_brandComboBoxInventory1PopupMenuWillBecomeInvisible
+
+    private void brandComboBoxInventory1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_brandComboBoxInventory1PopupMenuWillBecomeVisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_brandComboBoxInventory1PopupMenuWillBecomeVisible
+
+    private void modelComboBoxInventory1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_modelComboBoxInventory1PopupMenuWillBecomeVisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modelComboBoxInventory1PopupMenuWillBecomeVisible
+
+    private void confirmRemoveFromInventoryButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmRemoveFromInventoryButton1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmRemoveFromInventoryButton1MouseEntered
+
+    private void confirmRemoveFromInventoryButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmRemoveFromInventoryButton1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmRemoveFromInventoryButton1MouseExited
+
+    private void confirmRemoveFromInventoryButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmRemoveFromInventoryButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmRemoveFromInventoryButton1ActionPerformed
+
+    private void viewUsersAccessMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewUsersAccessMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewUsersAccessMouseEntered
+
+    private void viewUsersAccessMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewUsersAccessMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_viewUsersAccessMouseExited
+
+    private void viewUsersAccessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewUsersAccessActionPerformed
+        userSettingsParentPanel.removeAll();
+        userSettingsParentPanel.add(usersAccessHistoryPanel);
+        userSettingsParentPanel.repaint();
+        userSettingsParentPanel.revalidate();
+        
+        try {
+            database.UpdateUIView.updateTableView(usersAccessHistoryTable, database.UpdateUISQL.VIEW_USERS_ACCESS_HISTORY_TABLE_SQL);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_viewUsersAccessActionPerformed
+
+    private void addUsersButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addUsersButtonMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addUsersButtonMouseEntered
+
+    private void addUsersButtonMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addUsersButtonMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addUsersButtonMouseExited
+
+    private void addUsersButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUsersButtonActionPerformed
+        userSettingsParentPanel.removeAll();
+        userSettingsParentPanel.add(addNewUserPanel);
+        userSettingsParentPanel.repaint();
+        userSettingsParentPanel.revalidate();  
+    }//GEN-LAST:event_addUsersButtonActionPerformed
+
+    private void confirmAddUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmAddUserMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmAddUserMouseEntered
+
+    private void confirmAddUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmAddUserMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmAddUserMouseExited
+
+    private void confirmAddUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmAddUserActionPerformed
+        //get the input
+        String username = usernameInputField.getText();
+        String password = passwordInputField.getText();
+        String role = roleSelectDropDownMenu.getSelectedItem().toString();
+        
+        //create the users object
+        User addUser = new User(username, password, role);
+        
+        //add a new user
+        try {
+            addUser.insertNewUser();
+            database.UpdateUIView.updateTableView(customersTable, database.UpdateUISQL.VIEW_CUSTOMERS_TABLE_SQL);            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        usernameInputField.setText("");
+        passwordInputField.setText("");
+        roleSelectDropDownMenu.setSelectedIndex(-1);
+    }//GEN-LAST:event_confirmAddUserActionPerformed
+
+    private void usernameSelectDropDownMenuPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_usernameSelectDropDownMenuPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameSelectDropDownMenuPopupMenuWillBecomeInvisible
+
+    private void usernameSelectDropDownMenuPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_usernameSelectDropDownMenuPopupMenuWillBecomeVisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameSelectDropDownMenuPopupMenuWillBecomeVisible
+
+    private void confirmRemoveUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmRemoveUserMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmRemoveUserMouseEntered
+
+    private void confirmRemoveUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmRemoveUserMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmRemoveUserMouseExited
+
+    private void confirmRemoveUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmRemoveUserActionPerformed
+        String username = usernameSelectDropDownMenu.getSelectedItem().toString(); //get the input
+        
+        User deleteUser = new User();
+        deleteUser.setUsername(username);
+        
+        //delete the user
+        try {
+            deleteUser.removeUser();
+            database.UpdateUIView.updateTableView(customersTable, database.UpdateUISQL.VIEW_CUSTOMERS_TABLE_SQL);            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_confirmRemoveUserActionPerformed
+
+    private void usernameSelectDropDownMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameSelectDropDownMenuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameSelectDropDownMenuActionPerformed
+
+    private void confirmModifyUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmModifyUserMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmModifyUserMouseEntered
+
+    private void confirmModifyUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmModifyUserMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmModifyUserMouseExited
+
+    private void confirmModifyUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmModifyUserActionPerformed
+        //get the input
+        String username = modifyUsernameDropDownMenu.getSelectedItem().toString();
+        String password = newPasswordInputField.getText();
+        String role = modifyRoleDropDownMenu.getSelectedItem().toString();
+        
+        User modifyUser = new User(username, password, role);
+        
+        //update the user
+        try {
+            modifyUser.updateUser();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        modifyUsernameDropDownMenu.setSelectedIndex(-1);
+        newPasswordInputField.setText("");
+        modifyRoleDropDownMenu.setSelectedIndex(-1);
+    }//GEN-LAST:event_confirmModifyUserActionPerformed
+
+    private void confirmModifyUser1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmModifyUser1MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmModifyUser1MouseEntered
+
+    private void confirmModifyUser1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmModifyUser1MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmModifyUser1MouseExited
+
+    private void confirmModifyUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmModifyUser1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmModifyUser1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1924,19 +2815,30 @@ public class Home extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> InstallmentPeriodDropDownMenu;
+    private javax.swing.JPanel InstallmentsPanel;
     private javax.swing.JPanel addNewMotorcycles;
+    private javax.swing.JPanel addNewUserPanel;
     private javax.swing.JButton addToInventoryButton;
+    private javax.swing.JButton addUsersButton;
     private javax.swing.JFormattedTextField bankAccountNumField;
     private javax.swing.JLabel bankAccountNumLabel;
     private javax.swing.JTextField boardNumField;
     private javax.swing.JLabel boardNumLabel;
     private javax.swing.JComboBox<String> brandComboBox;
     private javax.swing.JComboBox<String> brandComboBoxInventory;
+    private javax.swing.JComboBox<String> brandComboBoxInventory1;
     private javax.swing.JTextField brandInputField;
     private javax.swing.JLabel brandLabel;
     private javax.swing.JLabel brandLabel1;
+    private javax.swing.JLabel brandLabel2;
+    private javax.swing.JLabel brandLabel3;
     private javax.swing.JButton confirmAddToInventoryButton;
+    private javax.swing.JButton confirmAddUser;
+    private javax.swing.JButton confirmModifyUser;
+    private javax.swing.JButton confirmModifyUser1;
     private javax.swing.JButton confirmRemoveFromInventoryButton;
+    private javax.swing.JButton confirmRemoveFromInventoryButton1;
+    private javax.swing.JButton confirmRemoveUser;
     private javax.swing.JButton confirmSaleButton;
     private javax.swing.JLabel contactNumLabel;
     private javax.swing.JFormattedTextField contactNumberField;
@@ -1946,7 +2848,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel currentPriceLabel;
     private javax.swing.JLabel customerDetailsLabel;
     private javax.swing.JSeparator customerDetailsSeperator;
-    private javax.swing.JPanel customerMenu;
     private javax.swing.JButton customersButton;
     private javax.swing.JPanel customersPanel;
     private javax.swing.JScrollPane customersScrollPane;
@@ -1969,13 +2870,32 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTable inventoryTable;
     private javax.swing.JScrollPane inventoryTablePane;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
+    private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JTextField lastNameField;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JButton makeSaleButton;
@@ -1984,34 +2904,59 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel menu;
     private javax.swing.JComboBox<String> modelComboBox;
     private javax.swing.JComboBox<String> modelComboBoxInventory;
+    private javax.swing.JComboBox<String> modelComboBoxInventory1;
     private javax.swing.JTextField modelInputField;
     private javax.swing.JLabel modelLabel;
     private javax.swing.JLabel modelLabel1;
+    private javax.swing.JLabel modelLabel2;
+    private javax.swing.JLabel modelLabel3;
+    private javax.swing.JLabel modelLabel4;
     private javax.swing.JButton modifyInventoryButton;
-    private javax.swing.JButton modifyUser;
+    private javax.swing.JPanel modifyInventoryPanel;
+    private javax.swing.JComboBox<String> modifyRoleDropDownMenu;
+    private javax.swing.JComboBox<String> modifyRoleDropDownMenu1;
+    private javax.swing.JButton modifyUserBUtton;
+    private javax.swing.JComboBox<String> modifyUsernameDropDownMenu;
+    private javax.swing.JComboBox<String> modifyUsernameDropDownMenu1;
+    private javax.swing.JPanel modifyUsersPanel;
     private javax.swing.JLabel monthsLabel;
     private javax.swing.JLabel motorcycleDetailsLabel;
     private javax.swing.JSeparator motorcycleDetailsSeparator;
+    private javax.swing.JTextField newPasswordInputField;
+    private javax.swing.JTextField newPasswordInputField1;
     private javax.swing.JPanel parentPanel;
+    private javax.swing.JTextField passwordInputField;
+    private javax.swing.JPanel payInstallmentsPanel;
     private javax.swing.JTextField permanentAddressField;
     private javax.swing.JLabel permanentAddressLabel;
     private javax.swing.JFormattedTextField priceInputField;
+    private javax.swing.JFormattedTextField priceInputField1;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JFormattedTextField quantityInputField;
+    private javax.swing.JFormattedTextField quantityInputField1;
     private javax.swing.JButton removeInventoryButton;
     private javax.swing.JPanel removeMotorcycle;
     private javax.swing.JLabel removeMotorcycleLabel;
-    private javax.swing.JButton removeUser;
+    private javax.swing.JLabel removeMotorcycleLabel1;
+    private javax.swing.JButton removeUserButton;
+    private javax.swing.JLabel removeUserLabel;
+    private javax.swing.JPanel removeUsersPanel;
+    private javax.swing.JComboBox<String> roleSelectDropDownMenu;
     private javax.swing.JButton salesHistoryButton;
     private javax.swing.JScrollPane salesHistoryPane;
     private javax.swing.JTable salesHistoryTable;
+    private javax.swing.JPanel userSettingsParentPanel;
+    private javax.swing.JTextField usernameInputField;
+    private javax.swing.JComboBox<String> usernameSelectDropDownMenu;
+    private javax.swing.JScrollPane usersAccessHistoryPanel;
+    private javax.swing.JTable usersAccessHistoryTable;
     private javax.swing.JPanel usersMenu;
     private javax.swing.JButton usersSettingsButton;
     private javax.swing.JPanel usersSettingsPanel;
     private javax.swing.JTable usersTable;
     private javax.swing.JScrollPane usersTablePane;
-    private javax.swing.JButton viewCustomer;
     private javax.swing.JButton viewInstallmentsButton;
+    private javax.swing.JButton viewUsersAccess;
     // End of variables declaration//GEN-END:variables
 }
 

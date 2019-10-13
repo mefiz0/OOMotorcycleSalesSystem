@@ -49,8 +49,12 @@ public class UpdateUIView {
         */
         while(rs.next()){
             String columnData = rs.getString(columnName); //get the  current model
+            
+            if(columnData.equals("admin") == false){ //if there is no admin, the rest is carried out. this prevents admin from being
+                                       //being seen and deleted, and doesn't impact the other combo boxes
             comboBox.setSelectedIndex(-1); //set the selected index to -1. this allows us to use the next function
             comboBox.setSelectedItem(columnData); //try and select the data we want to add
+            }
             /*
             if the data is not there the selected index will be at -1. in that case we will add to the jcombobox
             otherwise we just move on

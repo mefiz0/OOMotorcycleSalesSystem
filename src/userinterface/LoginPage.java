@@ -9,7 +9,8 @@ import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import oomotorcyclesalessystem.UserLoginAuthentication;
+import oomotorcyclesalessystem.User;
+
 
 /**
  *
@@ -185,24 +186,28 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_logInButtonMouseExited
 
     private void logInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logInButtonActionPerformed
-        // TODO add your handling code here:
-        UserLoginAuthentication authenticateLogin = new UserLoginAuthentication();
-        authenticateLogin.setUsername(usernameInputField.getText());
-        authenticateLogin.setPassword(passwordInputField.getText());
+        String username = usernameInputField.getText();
+        String password = passwordInputField.getText();
+        User userLogin = new User(username, password);
         
+        //if the user id != 0, that means the user is in the db and we can proceed with the login,
+        //and add the user to the list of accessed people
         try {
-            //if the user is authenticated present homepage
-            if(authenticateLogin.updateView()!= 0){
-                this.dispose();
-                Home home = new Home();
-                home.setVisible(true);
-            }
-            //else present with the login failed page
-            else if (authenticateLogin.updateView() == 0){
-                loginFailed loginFailed = new loginFailed();
-                
-                loginFailed.setVisible(true);
-            }
+                if(userLogin.authenticateLogin() != 0){
+                    userLogin.insertUserAccessRecord();
+                    this.dispose();
+                    Home home = new Home();
+                    home.setVisible(true); 
+                    
+                } else if(userLogin.authenticateLogin() == 0){
+                    
+                    loginFailed loginFailed = new loginFailed();
+                    loginFailed.setVisible(true);
+                    
+                }//end if(userLogin.authenticateLogin)
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             Logger.getLogger(LoginPage.class.getName()).log(Level.SEVERE, null, ex);
         }
