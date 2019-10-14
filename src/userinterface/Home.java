@@ -7,6 +7,7 @@ package userinterface;
 
 import database.UpdateUIView;
 import database.UpdateUISQL;
+import static database.UpdateUISQL.*;
 import static database.UpdateUIView.updateComboBoxView;
 import java.awt.Color;
 import java.math.BigDecimal;
@@ -19,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 import oomotorcyclesalessystem.Customer;
 import oomotorcyclesalessystem.InventoryMotorcycle;
+import oomotorcyclesalessystem.Payments;
 import oomotorcyclesalessystem.PurchaseAndInstallment;
 import oomotorcyclesalessystem.SoldMotorcycle;
 import oomotorcyclesalessystem.User;
@@ -271,7 +273,7 @@ public class Home extends javax.swing.JFrame {
         confirmModifyUser = new javax.swing.JButton();
         modifyUsernameDropDownMenu = new javax.swing.JComboBox<>();
         modifyRoleDropDownMenu = new javax.swing.JComboBox<>();
-        InstallmentsPanel = new javax.swing.JPanel();
+        installmentsPanel = new javax.swing.JPanel();
         installmentsPane = new javax.swing.JScrollPane();
         installmentsTable = new javax.swing.JTable();
         payInstallmentsPanel = new javax.swing.JPanel();
@@ -280,10 +282,10 @@ public class Home extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        newPasswordInputField1 = new javax.swing.JTextField();
-        confirmModifyUser1 = new javax.swing.JButton();
-        modifyUsernameDropDownMenu1 = new javax.swing.JComboBox<>();
-        modifyRoleDropDownMenu1 = new javax.swing.JComboBox<>();
+        confirmPayInstallment = new javax.swing.JButton();
+        idNumberDropDownMenu = new javax.swing.JComboBox<>();
+        boardNumDropDownMenu = new javax.swing.JComboBox<>();
+        paymentsField = new javax.swing.JFormattedTextField();
 
         jLabel1.setText("jLabel1");
 
@@ -1799,7 +1801,7 @@ public class Home extends javax.swing.JFrame {
 
         parentPanel.add(usersSettingsPanel, "card3");
 
-        InstallmentsPanel.setBackground(new java.awt.Color(255, 255, 255));
+        installmentsPanel.setBackground(new java.awt.Color(255, 255, 255));
 
         installmentsTable.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
         installmentsTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -1824,76 +1826,77 @@ public class Home extends javax.swing.JFrame {
         jSeparator7.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel16.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        jLabel16.setText("Username:");
+        jLabel16.setText("Id Number:");
 
         jLabel17.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        jLabel17.setText("Password:");
+        jLabel17.setText("Payment:");
 
         jLabel18.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        jLabel18.setText("Role:");
+        jLabel18.setText("Board Number:");
 
-        newPasswordInputField1.setBackground(new java.awt.Color(229, 229, 229));
-        newPasswordInputField1.setBorder(null);
-
-        confirmModifyUser1.setBackground(new java.awt.Color(161, 202, 141));
-        confirmModifyUser1.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
-        confirmModifyUser1.setText("Confirm");
-        confirmModifyUser1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        confirmModifyUser1.setContentAreaFilled(false);
-        confirmModifyUser1.setFocusPainted(false);
-        confirmModifyUser1.setOpaque(true);
-        confirmModifyUser1.addMouseListener(new java.awt.event.MouseAdapter() {
+        confirmPayInstallment.setBackground(new java.awt.Color(161, 202, 141));
+        confirmPayInstallment.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
+        confirmPayInstallment.setText("Confirm");
+        confirmPayInstallment.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        confirmPayInstallment.setContentAreaFilled(false);
+        confirmPayInstallment.setFocusPainted(false);
+        confirmPayInstallment.setOpaque(true);
+        confirmPayInstallment.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                confirmModifyUser1MouseEntered(evt);
+                confirmPayInstallmentMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                confirmModifyUser1MouseExited(evt);
+                confirmPayInstallmentMouseExited(evt);
             }
         });
-        confirmModifyUser1.addActionListener(new java.awt.event.ActionListener() {
+        confirmPayInstallment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmModifyUser1ActionPerformed(evt);
+                confirmPayInstallmentActionPerformed(evt);
             }
         });
 
-        modifyUsernameDropDownMenu1.setBackground(new java.awt.Color(229, 229, 229));
-        modifyUsernameDropDownMenu1.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        modifyUsernameDropDownMenu1.setBorder(null);
+        idNumberDropDownMenu.setBackground(new java.awt.Color(229, 229, 229));
+        idNumberDropDownMenu.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        idNumberDropDownMenu.setBorder(null);
 
-        modifyRoleDropDownMenu1.setBackground(new java.awt.Color(229, 229, 229));
-        modifyRoleDropDownMenu1.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        modifyRoleDropDownMenu1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrator", "Sales", "Procument" }));
-        modifyRoleDropDownMenu1.setSelectedIndex(-1);
-        modifyRoleDropDownMenu1.setSelectedItem(null);
-        modifyRoleDropDownMenu1.setBorder(null);
+        boardNumDropDownMenu.setBackground(new java.awt.Color(229, 229, 229));
+        boardNumDropDownMenu.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        boardNumDropDownMenu.setSelectedIndex(-1);
+        boardNumDropDownMenu.setSelectedItem(null);
+        boardNumDropDownMenu.setBorder(null);
+
+        paymentsField.setBackground(new java.awt.Color(229, 229, 229));
+        paymentsField.setBorder(null);
+        paymentsField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###,##0.###"))));
 
         javax.swing.GroupLayout payInstallmentsPanelLayout = new javax.swing.GroupLayout(payInstallmentsPanel);
         payInstallmentsPanel.setLayout(payInstallmentsPanelLayout);
         payInstallmentsPanelLayout.setHorizontalGroup(
             payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(confirmModifyUser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(confirmPayInstallment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(payInstallmentsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel15)
-                        .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, payInstallmentsPanelLayout.createSequentialGroup()
-                        .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, payInstallmentsPanelLayout.createSequentialGroup()
-                                .addComponent(jLabel16)
+                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(payInstallmentsPanelLayout.createSequentialGroup()
+                        .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator7, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel16))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(payInstallmentsPanelLayout.createSequentialGroup()
+                        .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(payInstallmentsPanelLayout.createSequentialGroup()
+                                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel18)
+                                    .addGroup(payInstallmentsPanelLayout.createSequentialGroup()
+                                        .addGap(9, 9, 9)
+                                        .addComponent(jLabel17)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(modifyUsernameDropDownMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, payInstallmentsPanelLayout.createSequentialGroup()
-                                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel17)
-                                    .addComponent(jLabel18))
-                                .addGap(18, 18, 18)
-                                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(newPasswordInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(modifyRoleDropDownMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(204, Short.MAX_VALUE))
+                                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(idNumberDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(boardNumDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(paymentsField, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jLabel15))
+                        .addContainerGap(221, Short.MAX_VALUE))))
         );
         payInstallmentsPanelLayout.setVerticalGroup(
             payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1905,41 +1908,45 @@ public class Home extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
-                    .addComponent(modifyUsernameDropDownMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(idNumberDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(boardNumDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel18))
                 .addGap(18, 18, 18)
                 .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newPasswordInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addGap(18, 18, 18)
-                .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(modifyRoleDropDownMenu1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
-                .addComponent(confirmModifyUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(paymentsField, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addComponent(confirmPayInstallment, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        javax.swing.GroupLayout InstallmentsPanelLayout = new javax.swing.GroupLayout(InstallmentsPanel);
-        InstallmentsPanel.setLayout(InstallmentsPanelLayout);
-        InstallmentsPanelLayout.setHorizontalGroup(
-            InstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(InstallmentsPanelLayout.createSequentialGroup()
+        javax.swing.GroupLayout installmentsPanelLayout = new javax.swing.GroupLayout(installmentsPanel);
+        installmentsPanel.setLayout(installmentsPanelLayout);
+        installmentsPanelLayout.setHorizontalGroup(
+            installmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(installmentsPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(InstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(installmentsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 703, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(payInstallmentsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(installmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(installmentsPanelLayout.createSequentialGroup()
+                        .addComponent(installmentsPane)
+                        .addGap(8, 8, 8))
+                    .addGroup(installmentsPanelLayout.createSequentialGroup()
+                        .addComponent(payInstallmentsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(10, 10, 10)))
+                .addContainerGap())
         );
-        InstallmentsPanelLayout.setVerticalGroup(
-            InstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, InstallmentsPanelLayout.createSequentialGroup()
-                .addComponent(installmentsPane, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+        installmentsPanelLayout.setVerticalGroup(
+            installmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, installmentsPanelLayout.createSequentialGroup()
+                .addComponent(installmentsPane, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(payInstallmentsPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(payInstallmentsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
-        parentPanel.add(InstallmentsPanel, "card8");
+        parentPanel.add(installmentsPanel, "card8");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -2330,7 +2337,7 @@ public class Home extends javax.swing.JFrame {
     private void viewInstallmentsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewInstallmentsButtonActionPerformed
         // update the user interface
         parentPanel.removeAll();
-        parentPanel.add(installmentsPane);
+        parentPanel.add(installmentsPanel);
         parentPanel.repaint();
         parentPanel.revalidate();
         
@@ -2346,6 +2353,8 @@ public class Home extends javax.swing.JFrame {
         
         try {
             database.UpdateUIView.updateTableView(installmentsTable, database.UpdateUISQL.VIEW_INSTALLMENTS_TABLE_SQL);
+            updateComboBoxView(idNumberDropDownMenu, INSERT_CUSTOMER_COMBO_BOX_INSTALLMENT, "NID");
+            updateComboBoxView(boardNumDropDownMenu, INSERT_BRAND_TO_COMBO_BOX_INSTALLMENT, "BoardNumber");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -2769,17 +2778,34 @@ public class Home extends javax.swing.JFrame {
         modifyRoleDropDownMenu.setSelectedIndex(-1);
     }//GEN-LAST:event_confirmModifyUserActionPerformed
 
-    private void confirmModifyUser1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmModifyUser1MouseEntered
+    private void confirmPayInstallmentMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmPayInstallmentMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_confirmModifyUser1MouseEntered
+    }//GEN-LAST:event_confirmPayInstallmentMouseEntered
 
-    private void confirmModifyUser1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmModifyUser1MouseExited
+    private void confirmPayInstallmentMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmPayInstallmentMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_confirmModifyUser1MouseExited
+    }//GEN-LAST:event_confirmPayInstallmentMouseExited
 
-    private void confirmModifyUser1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmModifyUser1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmModifyUser1ActionPerformed
+    private void confirmPayInstallmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmPayInstallmentActionPerformed
+        String idNumber = idNumberDropDownMenu.getSelectedItem().toString();
+        String boardNumber = boardNumDropDownMenu.getSelectedItem().toString();
+        BigDecimal installmentPaid = new BigDecimal(paymentsField.getText());
+        
+        Payments payInstallment = new Payments(idNumber, boardNumber, installmentPaid);
+        
+        //update the payments
+        try {
+            payInstallment.updatePayments();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        idNumberDropDownMenu.setSelectedIndex(-1);
+        boardNumDropDownMenu.setSelectedIndex(-1);
+        paymentsField.setText("");
+    }//GEN-LAST:event_confirmPayInstallmentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2815,13 +2841,13 @@ public class Home extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> InstallmentPeriodDropDownMenu;
-    private javax.swing.JPanel InstallmentsPanel;
     private javax.swing.JPanel addNewMotorcycles;
     private javax.swing.JPanel addNewUserPanel;
     private javax.swing.JButton addToInventoryButton;
     private javax.swing.JButton addUsersButton;
     private javax.swing.JFormattedTextField bankAccountNumField;
     private javax.swing.JLabel bankAccountNumLabel;
+    private javax.swing.JComboBox<String> boardNumDropDownMenu;
     private javax.swing.JTextField boardNumField;
     private javax.swing.JLabel boardNumLabel;
     private javax.swing.JComboBox<String> brandComboBox;
@@ -2835,7 +2861,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton confirmAddToInventoryButton;
     private javax.swing.JButton confirmAddUser;
     private javax.swing.JButton confirmModifyUser;
-    private javax.swing.JButton confirmModifyUser1;
+    private javax.swing.JButton confirmPayInstallment;
     private javax.swing.JButton confirmRemoveFromInventoryButton;
     private javax.swing.JButton confirmRemoveFromInventoryButton1;
     private javax.swing.JButton confirmRemoveUser;
@@ -2858,10 +2884,12 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel firstNameLabel;
     private javax.swing.JTextField idNumField;
     private javax.swing.JLabel idNumLabel;
+    private javax.swing.JComboBox<String> idNumberDropDownMenu;
     private javax.swing.JCheckBox installmentCheckBox;
     private javax.swing.JLabel installmentLabel;
     private javax.swing.JLabel installmentPeriodLabel;
     private javax.swing.JScrollPane installmentsPane;
+    private javax.swing.JPanel installmentsPanel;
     private javax.swing.JTable installmentsTable;
     private javax.swing.JButton inventoryButton;
     private javax.swing.JPanel inventoryMenu;
@@ -2914,19 +2942,17 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JButton modifyInventoryButton;
     private javax.swing.JPanel modifyInventoryPanel;
     private javax.swing.JComboBox<String> modifyRoleDropDownMenu;
-    private javax.swing.JComboBox<String> modifyRoleDropDownMenu1;
     private javax.swing.JButton modifyUserBUtton;
     private javax.swing.JComboBox<String> modifyUsernameDropDownMenu;
-    private javax.swing.JComboBox<String> modifyUsernameDropDownMenu1;
     private javax.swing.JPanel modifyUsersPanel;
     private javax.swing.JLabel monthsLabel;
     private javax.swing.JLabel motorcycleDetailsLabel;
     private javax.swing.JSeparator motorcycleDetailsSeparator;
     private javax.swing.JTextField newPasswordInputField;
-    private javax.swing.JTextField newPasswordInputField1;
     private javax.swing.JPanel parentPanel;
     private javax.swing.JTextField passwordInputField;
     private javax.swing.JPanel payInstallmentsPanel;
+    private javax.swing.JFormattedTextField paymentsField;
     private javax.swing.JTextField permanentAddressField;
     private javax.swing.JLabel permanentAddressLabel;
     private javax.swing.JFormattedTextField priceInputField;

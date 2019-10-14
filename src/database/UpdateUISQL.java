@@ -69,10 +69,20 @@ public class UpdateUISQL {
                                                            + " LEFT JOIN sold_motorcycles"
                                                            + " ON purchases.SoldID = sold_motorcycles.SoldID";
     
-    public static final String INSERT_BRAND_TO_COMBO_BOX = "SELECT Brand FROM inventory";
+    public static final String INSERT_BRAND_TO_COMBO_BOX = "SELECT Brand FROM inventory WHERE QuantityInStock != 0";
     
     public static final String INSERT_MODEL_TO_COMBO_BOX = "SELECT Model FROM inventory WHERE Brand = '"; //concat the brand name in the insert function
     
     public static final String INSERT_USER_TO_COMBO_BOX = "SELECT Username FROM users";
+    
+    public static final String INSERT_CUSTOMER_COMBO_BOX_INSTALLMENT = "SELECT customers.NID FROM payments"
+                                                                     + " LEFT JOIN customers"
+                                                                     + " ON purchases.CustomerID = customers.CustomerID"
+                                                                     + " WHERE payments.AmountDue IS NOT NULL";
+    
+    public static final String INSERT_BRAND_TO_COMBO_BOX_INSTALLMENT = "SELECT sold_motorcycles.BoardNumber FROM payments"
+                                                                     + " LEFT JOIN sold_motorcycles"
+                                                                     + " ON purchases.SoldID = sold_motorcycles.SoldID"
+                                                                     + " WHERE payments.AmountDue IS NOT NULL";
     
 }

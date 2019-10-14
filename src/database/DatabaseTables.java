@@ -86,8 +86,8 @@ public class DatabaseTables {
     installment is completed when amount due reaches 0
     */
     public static final String CREATE_PAYMENTS_TABLE_SQL = "CREATE TABLE payments ("
-                                                         + "PurchaseNumber INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
-                                                         + "DueDate DATE NOT NULL,"
+                                                         + "PurchaseNumber INTEGER NOT NULL,"
+                                                         + "DueDate DATE,"
                                                          + "AmountDue DECIMAL,"
                                                          + "Rate DECIMAL,"
                                                          + "NextPayment DATE,"

@@ -60,7 +60,7 @@ public class PurchaseConfirmedSQL {
         ResultSet rs;
         rs = getQuantityInStockQuery.executeQuery(); 
         if(rs.next()){
-            quantity = Integer.parseInt(rs.getString("QuantityInStock")); //set the value
+            quantity = rs.getInt("QuantityInStock"); //set the value
         }//end if(rs.next())
         
         System.out.println(quantity);
@@ -81,7 +81,7 @@ public class PurchaseConfirmedSQL {
         int inventoryID = 0;
         
         if(rs.next()){
-            inventoryID =  Integer.parseInt(rs.getString("InventoryID"));
+            inventoryID =  rs.getInt("InventoryID");
         }
         
         rs.close();
@@ -191,7 +191,7 @@ public class PurchaseConfirmedSQL {
         ResultSet rs = statement.executeQuery();
         
         if(rs.next()){
-            customerID = Integer.parseInt(rs.getString("CustomerID"));
+            customerID = rs.getInt("CustomerID");
         }
         
         rs.close();
@@ -217,7 +217,7 @@ public class PurchaseConfirmedSQL {
         ResultSet rs = statement.executeQuery();
         
         if(rs.next()){
-            soldID = Integer.parseInt(rs.getString("SoldID"));
+            soldID = rs.getInt("SoldID");
         }
         
         rs.close();
@@ -265,7 +265,7 @@ public class PurchaseConfirmedSQL {
         ResultSet rs = statement.executeQuery();
         
         if(rs.next()){
-            purchaseID = Integer.parseInt(rs.getString("PurchaseNumber"));
+            purchaseID = rs.getInt("PurchaseNumber");
         }
         
         rs.close();
