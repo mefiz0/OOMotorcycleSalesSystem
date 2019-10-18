@@ -513,7 +513,7 @@ public class Home extends javax.swing.JFrame {
 
         bankAccountNumField.setBackground(new java.awt.Color(229, 229, 229));
         bankAccountNumField.setBorder(null);
-        bankAccountNumField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        bankAccountNumField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("################0"))));
 
         permanentAddressLabel.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         permanentAddressLabel.setText("Parmenent Address:");
@@ -1267,7 +1267,7 @@ public class Home extends javax.swing.JFrame {
         inventoryPanelLayout.setHorizontalGroup(
             inventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(inventoryTablePane, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(inventoryPanelParent, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(inventoryPanelParent, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(inventoryPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(inventoryMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1867,7 +1867,7 @@ public class Home extends javax.swing.JFrame {
 
         paymentsField.setBackground(new java.awt.Color(229, 229, 229));
         paymentsField.setBorder(null);
-        paymentsField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("###,##0.###"))));
+        paymentsField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#####0.###"))));
 
         javax.swing.GroupLayout payInstallmentsPanelLayout = new javax.swing.GroupLayout(payInstallmentsPanel);
         payInstallmentsPanel.setLayout(payInstallmentsPanelLayout);
@@ -1917,7 +1917,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(payInstallmentsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(paymentsField, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(confirmPayInstallment, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -1955,7 +1955,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+                .addComponent(parentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 713, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
         );
         layout.setVerticalGroup(
@@ -2084,10 +2084,10 @@ public class Home extends javax.swing.JFrame {
         
         try {
             database.UpdateUIView.updateTableView(salesHistoryTable, database.UpdateUISQL.VIEW_SALES_HISTORY_TABLE_SQL);
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_salesHistoryButtonActionPerformed
 
@@ -2161,10 +2161,14 @@ public class Home extends javax.swing.JFrame {
             updateCustomers.updateCustomerDatabase();
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         } catch (Exception e){
             System.out.println("An error updating the customers table");
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-            System.out.println("----------------------------------------------");
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.redefineErrorMessage("An error occured while updating customers!");
+            errorMessage.setVisible(true);
         }
         
         //update the sold motorcycles
@@ -2181,68 +2185,63 @@ public class Home extends javax.swing.JFrame {
             //create sold motorcycle object
             SoldMotorcycle installmentSoldMotorcycle = new SoldMotorcycle(brand, model, boardNumber, downPayment,
                                                                           installmentPeriod, installmentChecked);
-            //deduct from inventory and update sold motorcycle table
             try {
-                installmentSoldMotorcycle.deductMotorcycleFromInventory();
-                installmentSoldMotorcycle.updateSoldMotorcycleTable();                
+                if(installmentSoldMotorcycle.soldIDNumber() == 0){
+                    //deduct from inventory and update sold motorcycle table
+                    installmentSoldMotorcycle.deductMotorcycleFromInventory();
+                    installmentSoldMotorcycle.updateSoldMotorcycleTable();
+
+                    
+                    //update the purchases and installments tables
+                    PurchaseAndInstallment installment = new PurchaseAndInstallment(); //default empty constructor
+                    //update purchase table
+                    installment.updatePurchaseTable(boardNumber, identityNumber);
+                    
+                    //update installments
+                    installment.updateInstallmentsTable(boardNumber, identityNumber, installmentPeriod, soldAmount, downPayment);
+
+                } else if(installmentSoldMotorcycle.soldIDNumber() > 0){
+                    System.out.println("BoardNumber Exists!");
+                    ErrorMessage errorMessage = new ErrorMessage();
+                    errorMessage.redefineErrorMessage("A Motorcycle with that BoardNumber exists");
+                    errorMessage.setVisible(true);
+                }
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            }catch (Exception e){
-                System.out.println("Error deducting motorcycle from inventory");
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-                System.out.println("--------------------------------------");
-            }
-            
-            //update the purchases and installments tables
-            PurchaseAndInstallment installment = new PurchaseAndInstallment(); //default empty constructor
-            try {
-                //update purchase table
-                installment.updatePurchaseTable(boardNumber, identityNumber);
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                ErrorMessage errorMessage = new ErrorMessage();
+                errorMessage.setVisible(true);
             } catch (Exception e){
-                System.out.println("Error updating the purchases table");
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-                System.out.println("----------------------------------------------");
-            }
-            
-            //update installments
-            try {  
-                installment.updateInstallmentsTable(boardNumber, identityNumber, installmentPeriod, soldAmount, downPayment);
-            } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception e){
-                System.out.println("Error updating the installments table");
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-                System.out.println("----------------------------------------------");
+                System.out.println("Error updating installments");
+                ErrorMessage errorMessage = new ErrorMessage();
+                errorMessage.redefineErrorMessage("An error occured while updating installments!");
+                errorMessage.setVisible(true);
+                
             }
 
         } else if(installmentChecked == false){ //it is taken for fullpayment
             
             //create sold motorcycle object
             SoldMotorcycle fullPaidMotorcycle = new SoldMotorcycle(brand, model, boardNumber, soldAmount, installmentChecked);
-            //deduct from inventory and update the motorcycle table
             try {
-                fullPaidMotorcycle.deductMotorcycleFromInventory();
-                fullPaidMotorcycle.updateSoldMotorcycleTable();
+                //deduct from inventory and update the motorcycle table
+                if(fullPaidMotorcycle.soldIDNumber() == 0){
+                    fullPaidMotorcycle.deductMotorcycleFromInventory();
+                    fullPaidMotorcycle.updateSoldMotorcycleTable();
+                    
+                    //update the purchases table
+                    PurchaseAndInstallment updatePurchases = new PurchaseAndInstallment(); //default empty constructor
+                    updatePurchases.updatePurchaseTable(boardNumber, identityNumber);
+                
+                }else if(fullPaidMotorcycle.soldIDNumber() > 0){
+                    System.out.println("Motorcycle with BoardNumber Exists!");
+                    ErrorMessage errorMessage = new ErrorMessage();
+                    errorMessage.redefineErrorMessage("Motorcycle with that BoardNumber Exists!");
+                    errorMessage.setVisible(true);
+                }
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception e){
-                System.out.println("Error deducting from inventory - fully paid");
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-                System.out.println("----------------------------------------------");
-            }
-            
-            //update the purchases table
-            PurchaseAndInstallment updatePurchases = new PurchaseAndInstallment(); //default empty constructor
-            try {
-                updatePurchases.updatePurchaseTable(boardNumber, identityNumber);
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (Exception e){
-                System.out.println("Error updating the purchases table - fully paid");
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-                System.out.println("----------------------------------------------");
+                ErrorMessage errorMessage = new ErrorMessage();
+                errorMessage.setVisible(true);
             }
         }//end if
         
@@ -2250,6 +2249,16 @@ public class Home extends javax.swing.JFrame {
         
         resetFields(firstNameField, lastNameField, idNumField, permanentAddressField, currentAddressField, contactNumberField,
                     bankAccountNumField);
+        brandComboBox.setSelectedIndex(-1);
+        modelComboBox.setSelectedIndex(-1);
+        boardNumField.setText("");
+        currentPriceLabel.setText("Motorcycle Price");
+        if(installmentCheckBox.isSelected() == true){
+            downPaymentField.setText("");
+            InstallmentPeriodDropDownMenu.setSelectedIndex(1);
+            installmentCheckBox.setSelected(false);
+        }
+        
     }//GEN-LAST:event_confirmSaleButtonActionPerformed
 
     private void inventoryButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inventoryButtonActionPerformed
@@ -2272,10 +2281,10 @@ public class Home extends javax.swing.JFrame {
         try {
             //update the table
             database.UpdateUIView.updateTableView(inventoryTable, database.UpdateUISQL.VIEW_INVENTORY_TABLE_SQL);
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
         
         
@@ -2300,10 +2309,10 @@ public class Home extends javax.swing.JFrame {
         
         try {
             database.UpdateUIView.updateTableView(customersTable, database.UpdateUISQL.VIEW_CUSTOMERS_TABLE_SQL);
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_customersButtonActionPerformed
 
@@ -2327,10 +2336,10 @@ public class Home extends javax.swing.JFrame {
         try {
             database.UpdateUIView.updateTableView(usersTable, database.UpdateUISQL.VIEW_USERS_TABLE_SQL);
             database.UpdateUIView.updateTableView(usersAccessHistoryTable, database.UpdateUISQL.VIEW_USERS_ACCESS_HISTORY_TABLE_SQL);
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_usersSettingsButtonActionPerformed
 
@@ -2354,11 +2363,11 @@ public class Home extends javax.swing.JFrame {
         try {
             database.UpdateUIView.updateTableView(installmentsTable, database.UpdateUISQL.VIEW_INSTALLMENTS_TABLE_SQL);
             updateComboBoxView(idNumberDropDownMenu, INSERT_CUSTOMER_COMBO_BOX_INSTALLMENT, "NID");
-            updateComboBoxView(boardNumDropDownMenu, INSERT_BRAND_TO_COMBO_BOX_INSTALLMENT, "BoardNumber");
-        } catch (ClassNotFoundException ex) {
+            updateComboBoxView(idNumberDropDownMenu,boardNumDropDownMenu, INSERT_BRAND_TO_COMBO_BOX_INSTALLMENT, "BoardNumber");
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_viewInstallmentsButtonActionPerformed
 
@@ -2379,10 +2388,10 @@ public class Home extends javax.swing.JFrame {
         //add the  users to the combo box
         try {
             updateComboBoxView(modifyUsernameDropDownMenu, database.UpdateUISQL.INSERT_USER_TO_COMBO_BOX, "Username");
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_modifyUserBUttonActionPerformed
 
@@ -2402,10 +2411,10 @@ public class Home extends javax.swing.JFrame {
 
         try {
             updateComboBoxView(usernameSelectDropDownMenu, database.UpdateUISQL.INSERT_USER_TO_COMBO_BOX, "Username");
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_removeUserButtonActionPerformed
 
@@ -2431,10 +2440,10 @@ public class Home extends javax.swing.JFrame {
         //autocomplete the entire thing if customer exists in the database
         try {
             database.CustomerFormAutoComplete.autoCompleteSalesForm(idNumField, firstNameField, lastNameField, contactNumberField, bankAccountNumField, permanentAddressField, currentAddressField);
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_idNumFieldFocusLost
 
@@ -2443,10 +2452,10 @@ public class Home extends javax.swing.JFrame {
         try {
             modelComboBox.removeAllItems();
             UpdateUIView.updateComboBoxView(brandComboBox, modelComboBox, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }        
     }//GEN-LAST:event_brandComboBoxPopupMenuWillBecomeInvisible
 
@@ -2457,6 +2466,9 @@ public class Home extends javax.swing.JFrame {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception e){
             System.out.println("No items");
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.redefineErrorMessage("No items to add!");
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_modelComboBoxPopupMenuWillBecomeInvisible
 
@@ -2464,10 +2476,10 @@ public class Home extends javax.swing.JFrame {
         //update the combo box views
         try {
             UpdateUIView.updateComboBoxView(brandComboBox, UpdateUISQL.INSERT_BRAND_TO_COMBO_BOX, "Brand");
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_brandComboBoxPopupMenuWillBecomeVisible
 
@@ -2548,8 +2560,13 @@ public class Home extends javax.swing.JFrame {
             database.UpdateUIView.updateTableView(inventoryTable, database.UpdateUISQL.VIEW_INVENTORY_TABLE_SQL);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         } catch (Exception e){
             System.out.println("Error in beep boop land");
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.redefineErrorMessage("The model already exists!");
+            errorMessage.setVisible(true);
         }
         
         //reset the fields
@@ -2561,10 +2578,10 @@ public class Home extends javax.swing.JFrame {
         //update view from database
         try {
             UpdateUIView.updateComboBoxView(brandComboBoxInventory, modelComboBoxInventory, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_brandComboBoxInventoryPopupMenuWillBecomeInvisible
 
@@ -2589,20 +2606,20 @@ public class Home extends javax.swing.JFrame {
         try {
             deleteFromInventory.deleteFromMotorcycleDatabase();
             database.UpdateUIView.updateTableView(inventoryTable, database.UpdateUISQL.VIEW_INVENTORY_TABLE_SQL); //update view
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_confirmRemoveFromInventoryButtonActionPerformed
 
     private void brandComboBoxInventoryPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_brandComboBoxInventoryPopupMenuWillBecomeVisible
         try {
             UpdateUIView.updateComboBoxView(brandComboBoxInventory, UpdateUISQL.INSERT_BRAND_TO_COMBO_BOX, "Brand");
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_brandComboBoxInventoryPopupMenuWillBecomeVisible
 
@@ -2610,10 +2627,10 @@ public class Home extends javax.swing.JFrame {
         //update view from database
         try {
             UpdateUIView.updateComboBoxView(brandComboBoxInventory, modelComboBoxInventory, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_modelComboBoxInventoryPopupMenuWillBecomeVisible
 
@@ -2657,10 +2674,10 @@ public class Home extends javax.swing.JFrame {
         
         try {
             database.UpdateUIView.updateTableView(usersAccessHistoryTable, database.UpdateUISQL.VIEW_USERS_ACCESS_HISTORY_TABLE_SQL);
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_viewUsersAccessActionPerformed
 
@@ -2700,10 +2717,10 @@ public class Home extends javax.swing.JFrame {
         try {
             addUser.insertNewUser();
             database.UpdateUIView.updateTableView(customersTable, database.UpdateUISQL.VIEW_CUSTOMERS_TABLE_SQL);            
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
         
         usernameInputField.setText("");
@@ -2737,10 +2754,10 @@ public class Home extends javax.swing.JFrame {
         try {
             deleteUser.removeUser();
             database.UpdateUIView.updateTableView(customersTable, database.UpdateUISQL.VIEW_CUSTOMERS_TABLE_SQL);            
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
     }//GEN-LAST:event_confirmRemoveUserActionPerformed
 
@@ -2767,10 +2784,10 @@ public class Home extends javax.swing.JFrame {
         //update the user
         try {
             modifyUser.updateUser();
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
         }
         
         modifyUsernameDropDownMenu.setSelectedIndex(-1);
@@ -2796,6 +2813,10 @@ public class Home extends javax.swing.JFrame {
         //update the payments
         try {
             payInstallment.updatePayments();
+            database.UpdateUIView.updateTableView(installmentsTable, database.UpdateUISQL.VIEW_INSTALLMENTS_TABLE_SQL);
+            idNumberDropDownMenu.setSelectedIndex(-1);
+            boardNumDropDownMenu.setSelectedIndex(-1);
+            paymentsField.setText("");
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {

@@ -3,6 +3,7 @@ package oomotorcyclesalessystem;
 
 import static database.PurchaseConfirmedSQL.deductFromInventory;
 import static database.PurchaseConfirmedSQL.getQuantityInStock;
+import static database.PurchaseConfirmedSQL.getSoldID;
 import static database.PurchaseConfirmedSQL.updateSoldMotorcyclesTableSQL;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -86,4 +87,8 @@ public class SoldMotorcycle extends Motorcycle{
         }
     }
     
+    //get the soldID
+    public int soldIDNumber() throws ClassNotFoundException, SQLException{
+        return getSoldID(this.boardNumber);
+    }
 }

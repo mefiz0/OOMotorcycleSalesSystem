@@ -106,7 +106,7 @@ public class Payments {
         connection.DatabaseConnection().close();
         
         if((this.installmentPaid.add(amountPaid)).equals(amountDue)){ //if the remaining amount is paid
-            String updateInstallment = "UPDATE payments SET DueDate = NULL, AmountDue = NULL, NextPayment = Null,"
+            String updateInstallment = "UPDATE payments SET DueDate = NULL, AmountDue = 0, NextPayment = 0,"
                                      + "AmountPaid = " + amountPaid + " WHERE PurchaseNumber = " + purchaseID;
             
             statement = connection.DatabaseConnection().prepareStatement(updateInstallment);

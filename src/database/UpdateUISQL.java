@@ -76,13 +76,19 @@ public class UpdateUISQL {
     public static final String INSERT_USER_TO_COMBO_BOX = "SELECT Username FROM users";
     
     public static final String INSERT_CUSTOMER_COMBO_BOX_INSTALLMENT = "SELECT customers.NID FROM payments"
+                                                                     + " LEFT JOIN purchases"
+                                                                     + " ON payments.PurchaseNumber = purchases.PurchaseNumber"
                                                                      + " LEFT JOIN customers"
                                                                      + " ON purchases.CustomerID = customers.CustomerID"
-                                                                     + " WHERE payments.AmountDue IS NOT NULL";
+                                                                     + " WHERE payments.AmountDue > 0";
     
     public static final String INSERT_BRAND_TO_COMBO_BOX_INSTALLMENT = "SELECT sold_motorcycles.BoardNumber FROM payments"
+                                                                     + " LEFT JOIN purchases"
+                                                                     + " ON payments.PurchaseNumber = purchases.PurchaseNumber"
                                                                      + " LEFT JOIN sold_motorcycles"
                                                                      + " ON purchases.SoldID = sold_motorcycles.SoldID"
-                                                                     + " WHERE payments.AmountDue IS NOT NULL";
+                                                                     + " LEFT JOIN customers"
+                                                                     + " ON purchases.CustomerID = customers.CustomerID"
+                                                                     + " WHERE customers.NID = '"; //concate the NID here
     
 }
