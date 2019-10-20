@@ -191,6 +191,8 @@ public class Home extends javax.swing.JFrame {
         boardNumField = new javax.swing.JTextField();
         downPaymentField = new javax.swing.JFormattedTextField();
         monthsLabel = new javax.swing.JLabel();
+        clutchTypeLabel = new javax.swing.JLabel();
+        clutchTypeSelectBox = new javax.swing.JComboBox<>();
         inventoryPanel = new javax.swing.JPanel();
         inventoryTablePane = new javax.swing.JScrollPane();
         inventoryTable = new javax.swing.JTable();
@@ -211,6 +213,8 @@ public class Home extends javax.swing.JFrame {
         quantityInputField = new javax.swing.JFormattedTextField();
         priceInputField = new javax.swing.JFormattedTextField();
         confirmAddToInventoryButton = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        clutchTypeSelectBoxInventory = new javax.swing.JComboBox<>();
         removeMotorcycle = new javax.swing.JPanel();
         removeMotorcycleLabel = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -631,6 +635,15 @@ public class Home extends javax.swing.JFrame {
         monthsLabel.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         monthsLabel.setText("Months");
 
+        clutchTypeLabel.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
+        clutchTypeLabel.setText("Clutch Type:");
+
+        clutchTypeSelectBox.setBackground(new java.awt.Color(229, 229, 229));
+        clutchTypeSelectBox.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        clutchTypeSelectBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "SemiAuto", "Auto" }));
+        clutchTypeSelectBox.setSelectedIndex(-1);
+        clutchTypeSelectBox.setBorder(null);
+
         javax.swing.GroupLayout makeSalePaneLayout = new javax.swing.GroupLayout(makeSalePane);
         makeSalePane.setLayout(makeSalePaneLayout);
         makeSalePaneLayout.setHorizontalGroup(
@@ -652,27 +665,31 @@ public class Home extends javax.swing.JFrame {
                             .addGroup(makeSalePaneLayout.createSequentialGroup()
                                 .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(makeSalePaneLayout.createSequentialGroup()
-                                        .addComponent(brandLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(brandComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(clutchTypeLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                                        .addComponent(clutchTypeSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makeSalePaneLayout.createSequentialGroup()
                                         .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(makeSalePaneLayout.createSequentialGroup()
-                                                .addComponent(priceLabel)
-                                                .addGap(0, 0, Short.MAX_VALUE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makeSalePaneLayout.createSequentialGroup()
-                                                .addGap(0, 4, Short.MAX_VALUE)
-                                                .addComponent(boardNumLabel)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(priceLabel)
+                                            .addComponent(boardNumLabel))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(currentPriceLabel)
                                             .addComponent(boardNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(2, 2, 2)))
-                                .addGap(43, 43, 43)
+                                        .addGap(2, 2, 2))
+                                    .addGroup(makeSalePaneLayout.createSequentialGroup()
+                                        .addComponent(brandLabel)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(brandComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
                                 .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(makeSalePaneLayout.createSequentialGroup()
+                                        .addComponent(installmentLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(installmentCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(makeSalePaneLayout.createSequentialGroup()
                                         .addComponent(modelLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGap(18, 18, 18)
                                         .addComponent(modelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(makeSalePaneLayout.createSequentialGroup()
                                         .addComponent(installmentPeriodLabel)
@@ -681,14 +698,10 @@ public class Home extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(monthsLabel))
                                     .addGroup(makeSalePaneLayout.createSequentialGroup()
-                                        .addComponent(installmentLabel)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(installmentCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(makeSalePaneLayout.createSequentialGroup()
                                         .addComponent(downPaymentLabel)
-                                        .addGap(18, 18, 18)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(downPaymentField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(111, 111, 111))
+                        .addGap(48, 48, 48))
                     .addGroup(makeSalePaneLayout.createSequentialGroup()
                         .addComponent(motorcycleDetailsSeparator)
                         .addGap(66, 66, 66))))
@@ -758,36 +771,42 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(contentSepratorOne, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(motorcycleDetailsLabel)
+                .addGap(18, 18, 18)
+                .addComponent(motorcycleDetailsSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(makeSalePaneLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(motorcycleDetailsSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clutchTypeLabel)
+                            .addComponent(clutchTypeSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(modelLabel))
+                        .addGap(18, 18, 18)
                         .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(brandLabel)
-                            .addComponent(brandComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modelLabel)
-                            .addComponent(modelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
-                        .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(boardNumLabel)
-                            .addComponent(installmentLabel)
-                            .addComponent(boardNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, makeSalePaneLayout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(installmentCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                            .addComponent(brandComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(makeSalePaneLayout.createSequentialGroup()
+                        .addComponent(modelComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(makeSalePaneLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addComponent(installmentLabel))
+                            .addGroup(makeSalePaneLayout.createSequentialGroup()
+                                .addGap(31, 31, 31)
+                                .addComponent(installmentCheckBox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(currentPriceLabel)
                     .addComponent(priceLabel)
                     .addComponent(installmentPeriodLabel)
                     .addComponent(InstallmentPeriodDropDownMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(monthsLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(downPaymentLabel)
-                    .addComponent(downPaymentField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                    .addComponent(boardNumLabel)
+                    .addComponent(boardNumField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(downPaymentField, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(downPaymentLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addComponent(confirmSaleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -915,7 +934,7 @@ public class Home extends javax.swing.JFrame {
         jLabel4.setText("Model:");
 
         jLabel5.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        jLabel5.setText("Quantity:");
+        jLabel5.setText("Clutch Type:");
 
         jLabel6.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
         jLabel6.setText("Price:");
@@ -955,40 +974,55 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        jLabel19.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        jLabel19.setText("Quantity:");
+
+        clutchTypeSelectBoxInventory.setBackground(new java.awt.Color(229, 229, 229));
+        clutchTypeSelectBoxInventory.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        clutchTypeSelectBoxInventory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "SemiAuto", "Auto" }));
+        clutchTypeSelectBoxInventory.setSelectedIndex(-1);
+        clutchTypeSelectBoxInventory.setBorder(null);
+        clutchTypeSelectBoxInventory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clutchTypeSelectBoxInventoryActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout addNewMotorcyclesLayout = new javax.swing.GroupLayout(addNewMotorcycles);
         addNewMotorcycles.setLayout(addNewMotorcyclesLayout);
         addNewMotorcyclesLayout.setHorizontalGroup(
             addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(confirmAddToInventoryButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(addNewMotorcyclesLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(addNewMotorcyclesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(brandInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addNewMotorcyclesLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(modelInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addNewMotorcyclesLayout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addNewMotorcyclesLayout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(priceInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addNewMotorcyclesLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(quantityInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(291, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addNewMotorcyclesLayout.createSequentialGroup()
+                            .addComponent(jLabel3)
+                            .addGap(45, 45, 45)
+                            .addComponent(brandInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel6)
+                    .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addNewMotorcyclesLayout.createSequentialGroup()
+                            .addComponent(jLabel4)
+                            .addGap(44, 44, 44)
+                            .addComponent(modelInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addNewMotorcyclesLayout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(clutchTypeSelectBoxInventory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(addNewMotorcyclesLayout.createSequentialGroup()
+                                    .addComponent(priceInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jLabel19)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(quantityInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(0, 0, Short.MAX_VALUE))))))
+                .addContainerGap(380, Short.MAX_VALUE))
         );
         addNewMotorcyclesLayout.setVerticalGroup(
             addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1001,21 +1035,22 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(brandInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(26, 26, 26)
+                .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(modelInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(21, 21, 21)
                 .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(quantityInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(clutchTypeSelectBoxInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(addNewMotorcyclesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(priceInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19)
+                    .addComponent(quantityInputField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addComponent(confirmAddToInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                .addComponent(confirmAddToInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         inventoryPanelParent.add(addNewMotorcycles, "card2");
@@ -1099,7 +1134,7 @@ public class Home extends javax.swing.JFrame {
                         .addComponent(brandLabel1)
                         .addGap(18, 18, 18)
                         .addComponent(brandComboBoxInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(380, Short.MAX_VALUE))
         );
         removeMotorcycleLayout.setVerticalGroup(
             removeMotorcycleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1116,7 +1151,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(removeMotorcycleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modelComboBoxInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modelLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(confirmRemoveFromInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1206,29 +1241,28 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(modifyInventory)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(modifyBrandSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
-                            .addGap(0, 0, Short.MAX_VALUE)
-                            .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(modifyPriceQuantityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
-                                    .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
-                                            .addComponent(modelLabel4)
-                                            .addGap(39, 39, 39))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
-                                            .addComponent(modelLabel3)
-                                            .addGap(18, 18, 18))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
-                                            .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(brandLabel2)
-                                                .addComponent(modelLabel2))
-                                            .addGap(32, 32, 32)))
-                                    .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(modifyQuantityInputBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(modifyModelSelectBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addContainerGap(271, Short.MAX_VALUE))
+                    .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(modifyBrandSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(modifyPriceQuantityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
+                                .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
+                                        .addComponent(modelLabel4)
+                                        .addGap(39, 39, 39))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
+                                        .addComponent(modelLabel3)
+                                        .addGap(18, 18, 18))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
+                                        .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(brandLabel2)
+                                            .addComponent(modelLabel2))
+                                        .addGap(32, 32, 32)))
+                                .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(modifyQuantityInputBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(modifyModelSelectBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(377, Short.MAX_VALUE))
         );
         modifyInventoryPanelLayout.setVerticalGroup(
             modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1249,7 +1283,7 @@ public class Home extends javax.swing.JFrame {
                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modifyQuantityInputBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modelLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modifyPriceQuantityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modelLabel4))
@@ -1264,7 +1298,7 @@ public class Home extends javax.swing.JFrame {
         inventoryPanelLayout.setHorizontalGroup(
             inventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(inventoryTablePane, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(inventoryPanelParent, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(inventoryPanelParent, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(inventoryPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(inventoryMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2135,52 +2169,53 @@ public class Home extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmSaleButtonMouseExited
 
     private void confirmSaleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmSaleButtonActionPerformed
-        /*
-        if the customer is new update the customer database
-        */
+        //get all the inputs
+        //customer
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String identityNumber = idNumField.getText();
         String permanentAddress = permanentAddressField.getText();
         String currentAddress = currentAddressField.getText();
         int contactNumber = Integer.parseInt(contactNumberField.getText());
-        System.out.println(contactNumber);
         int bankAccountNum = Integer.parseInt(bankAccountNumField.getText());
-        System.out.println(bankAccountNum);
         
-        Customer updateCustomers = new Customer(
-                                             firstName, lastName, identityNumber,
-                                             permanentAddress, currentAddress,
-                                             contactNumber, bankAccountNum);
-        
-        //update the database
-        try {
-            updateCustomers.updateCustomerDatabase();
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            ErrorMessage errorMessage = new ErrorMessage();
-            errorMessage.setVisible(true);
-        } catch (Exception e){
-            System.out.println("An error updating the customers table");
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
-            ErrorMessage errorMessage = new ErrorMessage();
-            errorMessage.redefineErrorMessage("An error occured while updating customers!");
-            errorMessage.setVisible(true);
-        }
-        
+        //motorcycle
         //update the sold motorcycles
         String brand = brandComboBox.getSelectedItem().toString();
         String model = modelComboBox.getSelectedItem().toString();
+        String clutchType = clutchTypeSelectBox.getSelectedItem().toString();
+        System.out.println("Clutchites" + clutchType);
         String boardNumber = boardNumField.getText();
         int soldAmount = Integer.parseInt(currentPriceLabel.getText());
         boolean installmentChecked = installmentCheckBox.isSelected();
         
-        if(installmentChecked == true){ //if it is taken for installment
+        System.out.println("Clutchers " + clutchType);
+        if((identityNumber.isEmpty() == false) && (boardNumber.isEmpty() == false)){
+            //update customers
+            Customer updateCustomers = new Customer(
+                                             firstName, lastName, identityNumber,
+                                             permanentAddress, currentAddress,
+                                             contactNumber, bankAccountNum);
+             try {
+                updateCustomers.updateCustomerDatabase();
+             } catch (ClassNotFoundException | SQLException ex) {
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                ErrorMessage errorMessage = new ErrorMessage();
+                errorMessage.setVisible(true);
+            } catch (Exception e){
+                System.out.println("An error updating the customers table");
+                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, e);
+                ErrorMessage errorMessage = new ErrorMessage();
+                errorMessage.redefineErrorMessage("An error occured while updating customers!");
+                errorMessage.setVisible(true);
+            }
+            
+            if(installmentChecked == true){ //if it is taken for installment
             int downPayment = Integer.parseInt(downPaymentField.getText());
             int installmentPeriod = Integer.parseInt(InstallmentPeriodDropDownMenu.getSelectedItem().toString());
             
             //create sold motorcycle object
-            SoldMotorcycle installmentSoldMotorcycle = new SoldMotorcycle(brand, model, boardNumber, downPayment,
+            SoldMotorcycle installmentSoldMotorcycle = new SoldMotorcycle(brand, model, clutchType, boardNumber, downPayment,
                                                                           installmentPeriod, installmentChecked);
             try {
                 if(installmentSoldMotorcycle.soldIDNumber() == 0){
@@ -2208,17 +2243,18 @@ public class Home extends javax.swing.JFrame {
                 ErrorMessage errorMessage = new ErrorMessage();
                 errorMessage.setVisible(true);
             } catch (Exception e){
-                System.out.println("Error updating installments");
-                ErrorMessage errorMessage = new ErrorMessage();
-                errorMessage.redefineErrorMessage("An error occured while updating installments!");
-                errorMessage.setVisible(true);
+                    System.out.println("Error updating installments");
+                    ErrorMessage errorMessage = new ErrorMessage();
+                    errorMessage.redefineErrorMessage("An error occured while updating installments!");
+                    errorMessage.setVisible(true);
                 
             }
 
-        } else if(installmentChecked == false){ //it is taken for fullpayment
+            } else if(installmentChecked == false){ //it is taken for fullpayment
             
             //create sold motorcycle object
-            SoldMotorcycle fullPaidMotorcycle = new SoldMotorcycle(brand, model, boardNumber, soldAmount, installmentChecked);
+            SoldMotorcycle fullPaidMotorcycle = new SoldMotorcycle(brand, model, clutchType, 
+                                                                   boardNumber, soldAmount, installmentChecked);
             try {
                 //deduct from inventory and update the motorcycle table
                 if(fullPaidMotorcycle.soldIDNumber() == 0){
@@ -2234,26 +2270,47 @@ public class Home extends javax.swing.JFrame {
                     ErrorMessage errorMessage = new ErrorMessage();
                     errorMessage.redefineErrorMessage("Motorcycle with that BoardNumber Exists!");
                     errorMessage.setVisible(true);
+                    }
+                } catch (ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+                    ErrorMessage errorMessage = new ErrorMessage();
+                    errorMessage.setVisible(true);
                 }
-            } catch (ClassNotFoundException | SQLException ex) {
-                Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-                ErrorMessage errorMessage = new ErrorMessage();
-                errorMessage.setVisible(true);
-            }
-        }//end if
+            }//end if
         
-        //reset the fields
+            //reset the fields
         
-        resetFields(firstNameField, lastNameField, idNumField, permanentAddressField, currentAddressField, contactNumberField,
+            resetFields(firstNameField, lastNameField, idNumField, permanentAddressField, currentAddressField, contactNumberField,
                     bankAccountNumField);
-        brandComboBox.setSelectedIndex(-1);
-        modelComboBox.setSelectedIndex(-1);
-        boardNumField.setText("");
-        currentPriceLabel.setText("Motorcycle Price");
-        if(installmentCheckBox.isSelected() == true){
-            downPaymentField.setText("");
-            InstallmentPeriodDropDownMenu.setSelectedIndex(1);
-            installmentCheckBox.setSelected(false);
+            brandComboBox.setSelectedIndex(-1);
+            modelComboBox.setSelectedIndex(-1);
+            boardNumField.setText("");
+            currentPriceLabel.setText("Motorcycle Price");
+            clutchTypeSelectBox.setSelectedIndex(-1);
+            if(installmentCheckBox.isSelected() == true){
+                downPaymentField.setText("");
+                InstallmentPeriodDropDownMenu.setSelectedIndex(1);
+                installmentCheckBox.setSelected(false);
+            }
+            //show error messages
+        } else if((identityNumber.isEmpty() == true) && (boardNumber.isEmpty() == true)){
+            ErrorMessage bothMissingError = new ErrorMessage();
+            
+            bothMissingError.redefineErrorMessage("NID and BoardNumber is missing!");
+            bothMissingError.setVisible(true);
+            
+        } else if((identityNumber.isEmpty() == true)){
+            ErrorMessage idNumMissingError = new ErrorMessage();
+            idNumMissingError.redefineErrorMessage("NID Missing!");
+            idNumMissingError.setVisible(true);
+            
+        } else if(boardNumber.isEmpty() == true){
+            ErrorMessage boardNumMissingError = new ErrorMessage();
+            boardNumMissingError.redefineErrorMessage("BoardNumber Missing!");
+            boardNumMissingError.setVisible(true);
+        } else {
+            ErrorMessage randomError = new ErrorMessage();
+            randomError.setVisible(true);
         }
         
     }//GEN-LAST:event_confirmSaleButtonActionPerformed
@@ -2472,7 +2529,7 @@ public class Home extends javax.swing.JFrame {
     private void brandComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_brandComboBoxPopupMenuWillBecomeVisible
         //update the combo box views
         try {
-            UpdateUIView.updateComboBoxView(brandComboBox, UpdateUISQL.INSERT_BRAND_TO_COMBO_BOX, "Brand");
+            UpdateUIView.updateComboBoxView(clutchTypeSelectBox, brandComboBox, UpdateUISQL.INSERT_BRAND_TO_COMBO_BOX, "Brand");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMessage errorMessage = new ErrorMessage();
@@ -2545,11 +2602,12 @@ public class Home extends javax.swing.JFrame {
         //get the input
         String brand = brandInputField.getText();
         String model = modelInputField.getText();
+        String clutchType = clutchTypeSelectBoxInventory.getSelectedItem().toString();
         int quantityInStock = Integer.parseInt(quantityInputField.getText());
         int price = Integer.parseInt(priceInputField.getText());
         
         //create the update inventory object
-        InventoryMotorcycle updateInventory = new InventoryMotorcycle(brand, model, quantityInStock, price);
+        InventoryMotorcycle updateInventory = new InventoryMotorcycle(brand, model, clutchType, quantityInStock, price);
         
         //update the database
         try {
@@ -2568,6 +2626,7 @@ public class Home extends javax.swing.JFrame {
         
         //reset the fields
         resetFields(brandInputField, modelInputField, quantityInputField, priceInputField);
+        clutchTypeSelectBoxInventory.setSelectedIndex(-1);
         
     }//GEN-LAST:event_confirmAddToInventoryButtonActionPerformed
 
@@ -2862,6 +2921,10 @@ public class Home extends javax.swing.JFrame {
         paymentsField.setText("");
     }//GEN-LAST:event_confirmPayInstallmentActionPerformed
 
+    private void clutchTypeSelectBoxInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clutchTypeSelectBoxInventoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_clutchTypeSelectBoxInventoryActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2912,6 +2975,9 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel brandLabel1;
     private javax.swing.JLabel brandLabel2;
     private javax.swing.JLabel brandLabel3;
+    private javax.swing.JLabel clutchTypeLabel;
+    private javax.swing.JComboBox<String> clutchTypeSelectBox;
+    private javax.swing.JComboBox<String> clutchTypeSelectBoxInventory;
     private javax.swing.JButton confirmAddToInventoryButton;
     private javax.swing.JButton confirmAddUser;
     private javax.swing.JButton confirmModifyInventory;
@@ -2961,6 +3027,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

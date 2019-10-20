@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class Motorcycle {
     
-    String brand;
+    private String brand;
     public void setBrand(String brand){ //setter
         this.brand = brand;
     }
@@ -15,7 +15,7 @@ public class Motorcycle {
         return brand;
     }
     
-    String model;
+    private String model;
     public void setModel(String model){ //setter
         this.model = model;
     }
@@ -23,10 +23,19 @@ public class Motorcycle {
         return model;
     }
     
+    private String clutchType;
+    public void setClutchType(String clutchType){ //setter
+        this.clutchType = clutchType;
+    }
+    public String getClutchType(){ //getter
+        return clutchType;
+    }
+    
     //constructor
-    public Motorcycle(String brand, String model){
+    public Motorcycle(String brand, String model, String clutchType){
         this.brand = brand;
         this.model = model;
+        this.clutchType = clutchType;
     }
     
     //this constructor is for deleting from the database

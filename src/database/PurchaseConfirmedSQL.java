@@ -109,7 +109,7 @@ public class PurchaseConfirmedSQL {
     }//end deductFromInventory
     
     //update the table of sold motorcycles - if there is installment
-    public static void updateSoldMotorcyclesTableSQL(String brand, String model,
+    public static void updateSoldMotorcyclesTableSQL(String brand, String model, String clutchType,
                                                   String boardNum,
                                                   int downPayment, int installmentPeriod
                                                   ) throws ClassNotFoundException, SQLException{
@@ -126,10 +126,11 @@ public class PurchaseConfirmedSQL {
         isInstallment = "Yes"; //set installment to yes
             
         insertToSoldMotorcycleSQL = "INSERT INTO sold_motorcycles "
-                                  +  " (Brand, Model, BoardNumber, DateOfPurchase, Installment, Paid) "
+                                  +  " (Brand, Model, ClutchType, BoardNumber, DateOfPurchase, Installment, Paid) "
                                   +  "VALUES "
                                   +  "('" + brand + "', "
                                   +  "'" + model + "', "
+                                  +  "'" + clutchType + "', "
                                   +  "'" + boardNum + "', "
                                   +  "'" + currentTime + "', "
                                   +  "'" + isInstallment + "', "
@@ -143,7 +144,7 @@ public class PurchaseConfirmedSQL {
     
     //update the table of sold motorcycles - if there is no installment
     public static void updateSoldMotorcyclesTableSQL(String brand, String model,
-                                                  String boardNum, int soldAmount
+                                                  String clutchType, String boardNum, int soldAmount
                                                   ) throws ClassNotFoundException, SQLException{
         //init variables
         String isInstallment;
@@ -159,10 +160,11 @@ public class PurchaseConfirmedSQL {
         System.out.println(currentTime);
         System.out.println(soldAmount);
         insertToSoldMotorcycleSQL = "INSERT INTO sold_motorcycles "
-                                  +  " (Brand, Model, BoardNumber, DateOfPurchase, Installment, Paid) "
+                                  +  " (Brand, Model, ClutchType, BoardNumber, DateOfPurchase, Installment, Paid) "
                                   +  "VALUES "
                                   +  "('" + brand + "', "
                                   +  "'" + model + "', "
+                                  +  "'" + clutchType + "', "
                                   +  "'" + boardNum + "', "
                                   +  "'" + currentTime + "', "
                                   +  "'" + isInstallment + "', "

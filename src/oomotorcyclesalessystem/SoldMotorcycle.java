@@ -52,9 +52,9 @@ public class SoldMotorcycle extends Motorcycle{
         return installmentPeriod;
     }
 
-    public SoldMotorcycle(String brand, String model, String boardNumber,
+    public SoldMotorcycle(String brand, String model, String clutchType, String boardNumber,
                           int downPayment, int installmentPeriod, boolean installmentChecked) {
-        super(brand, model);
+        super(brand, model, clutchType);
         
         this.boardNumber = boardNumber;
         this.downPayment = downPayment;
@@ -62,8 +62,8 @@ public class SoldMotorcycle extends Motorcycle{
         this.installmentChecked = installmentChecked;
     }
     
-    public SoldMotorcycle(String brand, String model, String boardNumber, int soldAmount, boolean installmentChecked) {
-        super(brand, model);
+    public SoldMotorcycle(String brand, String model, String clutchType, String boardNumber, int soldAmount, boolean installmentChecked) {
+        super(brand, model, clutchType);
         
         this.boardNumber = boardNumber;
         this.soldAmount = soldAmount;
@@ -72,18 +72,18 @@ public class SoldMotorcycle extends Motorcycle{
     
     //deduct from motorcycle Inventory
     public void deductMotorcycleFromInventory() throws ClassNotFoundException, SQLException{
-        int quantityInStock = getQuantityInStock(this.model);
+        int quantityInStock = getQuantityInStock(this.getModel());
         
-        deductFromInventory(this.model, quantityInStock);
+        deductFromInventory(this.getModel(), quantityInStock);
     }
     
     //update the table
     public void updateSoldMotorcycleTable() throws ClassNotFoundException, SQLException{
         if(this.installmentChecked == true){
-            updateSoldMotorcyclesTableSQL(this.brand, this.model, this.boardNumber, this.downPayment, this.installmentPeriod);
+            updateSoldMotorcyclesTableSQL(this.getBrand(), this.getModel(), this.getClutchType(), this.boardNumber, this.downPayment, this.installmentPeriod);
             
         }else if(this.installmentChecked == false){
-            updateSoldMotorcyclesTableSQL(this.brand, this.model, this.boardNumber, this.soldAmount);
+            updateSoldMotorcyclesTableSQL(this.getBrand(), this.getModel(), this.getClutchType(), this.boardNumber, this.soldAmount);
         }
     }
     

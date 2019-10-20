@@ -19,6 +19,7 @@ public class UpdateUISQL {
     public static final String VIEW_INVENTORY_TABLE_SQL = "SELECT inventory.InventoryID,"
                                                         + "inventory.Brand,"
                                                         + "inventory.Model,"
+                                                        + "inventory.ClutchType,"
                                                         + "inventory.QuantityInStock,"
                                                         + "inventory.Price"
                                                         + " FROM inventory";
@@ -42,6 +43,7 @@ public class UpdateUISQL {
                                                             + "customers.NID,"
                                                             + "sold_motorcycles.Brand,"
                                                             + "sold_motorcycles.Model,"
+                                                            + "sold_motorcycles.ClutchType,"
                                                             + "sold_motorcycles.BoardNumber,"
                                                             + "sold_motorcycles.Installment,"
                                                             + "sold_motorcycles.Paid"
@@ -56,6 +58,7 @@ public class UpdateUISQL {
                                                            + "customers.NID,"
                                                            + "sold_motorcycles.Brand,"
                                                            + "sold_motorcycles.Model,"
+                                                           + "sold_motorcycles.ClutchType,"
                                                            + "sold_motorcycles.BoardNumber,"
                                                            + "payments.AmountDue,"
                                                            + "payments.DueDate,"
@@ -69,7 +72,7 @@ public class UpdateUISQL {
                                                            + " LEFT JOIN sold_motorcycles"
                                                            + " ON purchases.SoldID = sold_motorcycles.SoldID";
     
-    public static final String INSERT_BRAND_TO_COMBO_BOX = "SELECT Brand FROM inventory WHERE QuantityInStock != 0";
+    public static final String INSERT_BRAND_TO_COMBO_BOX = "SELECT Brand FROM inventory WHERE QuantityInStock != 0 AND ClutchType = '"; //concat here
     
     public static final String INSERT_MODEL_TO_COMBO_BOX = "SELECT Model FROM inventory WHERE Brand = '"; //concat the brand name in the insert function
     

@@ -52,6 +52,7 @@ public class DatabaseTables {
                                                           + "InventoryID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
                                                           + "Brand VARCHAR(15) NOT NULL,"
                                                           + "Model VARCHAR(15) NOT NULL UNIQUE,"
+                                                          + "ClutchType VARCHAR(10) NOT NULL," 
                                                           + "QuantityInStock INTEGER NOT NULL,"
                                                           + "Price INTEGER NOT NULL,"
                                                           + "PRIMARY KEY (InventoryID))";
@@ -64,6 +65,7 @@ public class DatabaseTables {
                                                                  + "SoldID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
                                                                  + "Brand VARCHAR(15) NOT NULL,"
                                                                  + "Model VARCHAR(15) NOT NULL,"
+                                                                 + "ClutchType VARCHAR(10) NOT NULL,"
                                                                  + "BoardNumber VARCHAR(10) NOT NULL UNIQUE,"
                                                                  + "DateOfPurchase TIMESTAMP,"
                                                                  + "Installment VARCHAR(3),"

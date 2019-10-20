@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/sath/Desktop/VC/OOMotorcycleSalesSystem/src/database/UpdateUIView.java</file>
+            <file>file:/C:/Users/sath/Desktop/VC/OOMotorcycleSalesSystem/src/oomotorcyclesalessystem/Payments.java</file>
+            <file>file:/C:/Users/sath/Desktop/VC/OOMotorcycleSalesSystem/src/oomotorcyclesalessystem/OOMotorcycleSalesSystem.java</file>
+            <file>file:/C:/Users/sath/Desktop/VC/OOMotorcycleSalesSystem/src/oomotorcyclesalessystem/InventoryMotorcycle.java</file>
+            <file>file:/C:/Users/sath/Desktop/VC/OOMotorcycleSalesSystem/src/database/DatabaseTables.java</file>
+            <file>file:/C:/Users/sath/Desktop/VC/OOMotorcycleSalesSystem/src/oomotorcyclesalessystem/SoldMotorcycle.java</file>
+            <file>file:/C:/Users/sath/Desktop/VC/OOMotorcycleSalesSystem/src/database/UserSQL.java</file>
+            <file>file:/C:/Users/sath/Desktop/VC/OOMotorcycleSalesSystem/src/database/UpdateUISQL.java</file>
+        </group>
     </open-files>
 </project-private>

@@ -16,6 +16,7 @@ public class ErrorMessage extends javax.swing.JFrame {
      */
     public ErrorMessage() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
     
     public void redefineErrorMessage(String text){

@@ -54,14 +54,15 @@ public class UpdateUIView {
                                        //being seen and deleted, and doesn't impact the other combo boxes
             comboBox.setSelectedIndex(-1); //set the selected index to -1. this allows us to use the next function
             comboBox.setSelectedItem(columnData); //try and select the data we want to add
-            }
             /*
             if the data is not there the selected index will be at -1. in that case we will add to the jcombobox
             otherwise we just move on
             */
             if(comboBox.getSelectedIndex() == -1){
                 comboBox.addItem(columnData);
-            }
+                }//end if(comboBox.getSelectedIndex() == -1)
+            }//end if(columnData.equals("admin") == false)
+
         }//end while
         
         rs.close();

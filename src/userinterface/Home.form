@@ -325,57 +325,56 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="brandLabel" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="brandComboBox" min="-2" pref="230" max="-2" attributes="0"/>
+                                                  <Component id="clutchTypeLabel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace pref="34" max="32767" attributes="0"/>
+                                                  <Component id="clutchTypeSelectBox" min="-2" pref="230" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" alignment="1" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" attributes="0">
-                                                          <Component id="priceLabel" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
-                                                          <Component id="boardNumLabel" min="-2" max="-2" attributes="0"/>
-                                                      </Group>
+                                                      <Component id="priceLabel" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="boardNumLabel" min="-2" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="currentPriceLabel" min="-2" max="-2" attributes="0"/>
                                                       <Component id="boardNumField" alignment="0" min="-2" pref="230" max="-2" attributes="0"/>
                                                   </Group>
                                                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
                                               </Group>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="brandLabel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Component id="brandComboBox" min="-2" pref="230" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                                          <EmptySpace pref="92" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
-                                                  <Component id="modelLabel" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="-2" attributes="0"/>
-                                                  <Component id="modelComboBox" min="-2" pref="254" max="-2" attributes="0"/>
+                                                  <Component id="installmentLabel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="installmentCheckBox" min="-2" pref="45" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="102" attributes="0">
+                                                  <Component id="modelLabel" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="modelComboBox" min="-2" pref="254" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
                                                   <Component id="installmentPeriodLabel" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace max="-2" attributes="0"/>
                                                   <Component id="InstallmentPeriodDropDownMenu" min="-2" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="monthsLabel" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="installmentLabel" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                                  <Component id="installmentCheckBox" min="-2" pref="45" max="-2" attributes="0"/>
-                                              </Group>
-                                              <Group type="102" alignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
                                                   <Component id="downPaymentLabel" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="downPaymentField" min="-2" pref="144" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="111" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="motorcycleDetailsSeparator" max="32767" attributes="0"/>
@@ -465,30 +464,37 @@
                           <Component id="contentSepratorOne" min="-2" pref="10" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="motorcycleDetailsLabel" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="motorcycleDetailsSeparator" min="-2" pref="10" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="motorcycleDetailsSeparator" min="-2" pref="10" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="clutchTypeLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="clutchTypeSelectBox" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
+                                      <Component id="modelLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="brandLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="brandComboBox" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
-                                      <Component id="modelLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="modelComboBox" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="boardNumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="installmentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="boardNumField" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-                                  <Component id="installmentCheckBox" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="modelComboBox" min="-2" pref="46" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                                          <Component id="installmentLabel" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                                          <Component id="installmentCheckBox" min="-2" pref="33" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="currentPriceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="priceLabel" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -496,12 +502,14 @@
                               <Component id="InstallmentPeriodDropDownMenu" alignment="3" min="-2" pref="46" max="-2" attributes="0"/>
                               <Component id="monthsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="34" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="downPaymentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boardNumLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="boardNumField" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="downPaymentField" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="downPaymentLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                          <EmptySpace pref="48" max="32767" attributes="0"/>
                           <Component id="confirmSaleButton" min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -898,6 +906,38 @@
                     <Property name="text" type="java.lang.String" value="Months"/>
                   </Properties>
                 </Component>
+                <Component class="javax.swing.JLabel" name="clutchTypeLabel">
+                  <Properties>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Nirmala UI Semilight" size="14" style="0"/>
+                    </Property>
+                    <Property name="text" type="java.lang.String" value="Clutch Type:"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="clutchTypeSelectBox">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="e5" green="e5" red="e5" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="NewsGoth Lt BT" size="14" style="0"/>
+                    </Property>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="3">
+                        <StringItem index="0" value="Manual"/>
+                        <StringItem index="1" value="SemiAuto"/>
+                        <StringItem index="2" value="Auto"/>
+                      </StringArray>
+                    </Property>
+                    <Property name="selectedIndex" type="int" value="-1"/>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="null"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>
@@ -1104,46 +1144,45 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="confirmAddToInventoryButton" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" attributes="0">
-                                          <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                              <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              <Component id="jSeparator1" alignment="0" min="-2" pref="475" max="-2" attributes="0"/>
-                                          </Group>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                                          <Component id="brandInputField" min="-2" pref="380" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jSeparator1" alignment="0" min="-2" pref="475" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="brandInputField" min="-2" pref="380" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Component id="modelInputField" min="-2" pref="380" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace max="32767" attributes="0"/>
-                                                      <Component id="priceInputField" min="-2" pref="380" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Group type="102" alignment="0" attributes="0">
-                                                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      <Component id="quantityInputField" min="-2" pref="380" max="-2" attributes="0"/>
-                                                  </Group>
+                                  <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                          <Component id="modelInputField" min="-2" pref="380" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="clutchTypeSelectBoxInventory" max="32767" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="priceInputField" min="-2" pref="150" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                  <Component id="quantityInputField" min="-2" pref="150" max="-2" attributes="0"/>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="291" max="32767" attributes="0"/>
+                              <EmptySpace pref="380" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1159,24 +1198,25 @@
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="brandInputField" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                  <Component id="modelInputField" min="-2" pref="32" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="modelInputField" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="quantityInputField" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="clutchTypeSelectBoxInventory" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="priceInputField" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="quantityInputField" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace pref="17" max="32767" attributes="0"/>
                               <Component id="confirmAddToInventoryButton" min="-2" pref="35" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1218,7 +1258,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="NewsGoth Lt BT" size="14" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Quantity:"/>
+                        <Property name="text" type="java.lang.String" value="Clutch Type:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel6">
@@ -1299,6 +1339,41 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmAddToInventoryButtonActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel19">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="NewsGoth Lt BT" size="14" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Quantity:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="clutchTypeSelectBoxInventory">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="e5" green="e5" red="e5" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="NewsGoth Lt BT" size="14" style="0"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="3">
+                            <StringItem index="0" value="Manual"/>
+                            <StringItem index="1" value="SemiAuto"/>
+                            <StringItem index="2" value="Auto"/>
+                          </StringArray>
+                        </Property>
+                        <Property name="selectedIndex" type="int" value="-1"/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="null"/>
+                        </Property>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="clutchTypeSelectBoxInventoryActionPerformed"/>
+                      </Events>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="removeMotorcycle">
@@ -1333,7 +1408,7 @@
                                       <Component id="brandComboBoxInventory" min="-2" pref="380" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="291" max="32767" attributes="0"/>
+                              <EmptySpace pref="380" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1354,7 +1429,7 @@
                                   <Component id="modelComboBoxInventory" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                                   <Component id="modelLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="21" max="32767" attributes="0"/>
+                              <EmptySpace pref="28" max="32767" attributes="0"/>
                               <Component id="confirmRemoveFromInventoryButton" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1484,40 +1559,38 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="modifyInventory" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jSeparator3" alignment="0" min="-2" pref="475" max="-2" attributes="0"/>
-                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Component id="modifyBrandSelectBox" min="-2" pref="380" max="-2" attributes="0"/>
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="modifyPriceQuantityBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
-                                              <Group type="102" alignment="1" attributes="0">
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="modelLabel4" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="modelLabel3" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                                      </Group>
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Group type="103" groupAlignment="1" attributes="0">
-                                                              <Component id="brandLabel2" min="-2" max="-2" attributes="0"/>
-                                                              <Component id="modelLabel2" min="-2" max="-2" attributes="0"/>
-                                                          </Group>
-                                                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                                      </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="modifyBrandSelectBox" min="-2" pref="380" max="-2" attributes="0"/>
+                                          <Component id="modifyPriceQuantityBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="modelLabel4" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="modifyQuantityInputBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
-                                                      <Component id="modifyModelSelectBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="modelLabel3" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="separate" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Group type="103" groupAlignment="1" attributes="0">
+                                                          <Component id="brandLabel2" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="modelLabel2" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="modifyQuantityInputBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                                                  <Component id="modifyModelSelectBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="271" max="32767" attributes="0"/>
+                              <EmptySpace pref="377" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1543,7 +1616,7 @@
                                   <Component id="modifyQuantityInputBox" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="modelLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="19" max="32767" attributes="0"/>
+                              <EmptySpace pref="26" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="modifyPriceQuantityBox" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="modelLabel4" alignment="3" min="-2" max="-2" attributes="0"/>

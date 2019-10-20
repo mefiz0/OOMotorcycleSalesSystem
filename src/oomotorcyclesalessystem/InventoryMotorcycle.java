@@ -28,8 +28,8 @@ public class InventoryMotorcycle extends Motorcycle {
     }
     
     //this constructor is for inserting into the database 
-    public InventoryMotorcycle(String brand, String model, int quantityInStock, int price) {
-        super(brand, model);
+    public InventoryMotorcycle(String brand, String model, String clutchType, int quantityInStock, int price) {
+        super(brand, model, clutchType);
         
         this.quantityInStock = quantityInStock;
         this.price = price;
@@ -64,8 +64,9 @@ public class InventoryMotorcycle extends Motorcycle {
         PreparedStatement statement; //prepared statement improves perfomance
         
         //insert into the motorcycles table
-        statement = connection.DatabaseConnection().prepareStatement("INSERT INTO inventory (Brand, Model, QuantityInStock, Price)"
-                                                        + " VALUES ('" + this.brand + "', '" + this.model + "', "
+        statement = connection.DatabaseConnection().prepareStatement("INSERT INTO inventory (Brand, Model, ClutchType, QuantityInStock, Price)"
+                                                        + " VALUES ('" + this.getBrand() + "', '" + this.getModel() + "', "
+                                                        + "'" + this.getClutchType() +"', " 
                                                         + this.quantityInStock + ", " + this.price + ")");
         statement.execute();
         statement.close();
@@ -77,7 +78,7 @@ public class InventoryMotorcycle extends Motorcycle {
         //get the motorcycleID
         DatabaseConnection connection = new DatabaseConnection();
         //creates a sql statement and gets the id from motorcycle table
-        String deleteQuery = "DELETE FROM inventory WHERE model = '" + this.model + "'" ;
+        String deleteQuery = "DELETE FROM inventory WHERE model = '" + this.getModel() + "'" ;
         PreparedStatement deleteStatement = connection.DatabaseConnection().prepareStatement(deleteQuery); //creates a sql statement
         deleteStatement.execute();
         
@@ -88,7 +89,7 @@ public class InventoryMotorcycle extends Motorcycle {
     
     public void modifyMotorcycleDatabase() throws ClassNotFoundException, SQLException{
         String modifyQuery = "UPDATE inventory SET QuantityInStock = " +this.quantityInStock + ", "
-                           + "Price = " + this.price + " WHERE Model = '" + this.model + "'";
+                           + "Price = " + this.price + " WHERE Model = '" + this.getModel() + "'";
         
         //create connection
         DatabaseConnection connection = new DatabaseConnection();

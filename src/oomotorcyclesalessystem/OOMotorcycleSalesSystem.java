@@ -23,24 +23,11 @@ public class OOMotorcycleSalesSystem {
         } catch (SQLException ex) {
             Logger.getLogger(OOMotorcycleSalesSystem.class.getName()).log(Level.SEVERE, null, ex);
         }
-        // test 
-        Statement stmt;
-        try {
-            stmt = connect.DatabaseConnection().createStatement();
-     
-            ResultSet rs = stmt.executeQuery(database.UpdateUISQL.VIEW_INSTALLMENTS_TABLE_SQL);
+        
+        setLookAndFeel("Windows"); //set the look and feel to windows default
+        
+        SwingUtilities.invokeLater(new Runnable(){ //executes as a runnable on the AWT event dispatching thread, to make it more threadsafe.
             
-            System.out.println(rs);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(OOMotorcycleSalesSystem.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (SQLException ex) {
-            Logger.getLogger(OOMotorcycleSalesSystem.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        setLookAndFeel("Windows");
-        
-        SwingUtilities.invokeLater(new Runnable(){
-
             @Override
             public void run() {
                 LoginPage login = new LoginPage();
@@ -50,6 +37,7 @@ public class OOMotorcycleSalesSystem {
         });
     }
     
+    //this method sets the look and feel of the UI
     public static void setLookAndFeel(String laf){
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if (laf.equals(info.getName())) {
