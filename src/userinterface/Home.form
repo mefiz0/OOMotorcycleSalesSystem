@@ -1478,29 +1478,20 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="confirmRemoveFromInventoryButton1" alignment="0" max="32767" attributes="0"/>
+                          <Component id="confirmModifyInventory" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="removeMotorcycleLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="modifyInventory" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jSeparator3" alignment="0" min="-2" pref="475" max="-2" attributes="0"/>
                                   <Group type="103" alignment="0" groupAlignment="1" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                                          <Component id="brandLabel2" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="brandComboBoxInventory1" min="-2" pref="380" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="modifyBrandSelectBox" min="-2" pref="380" max="-2" attributes="0"/>
                                       <Group type="102" attributes="0">
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="priceInputField1" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                                              <Component id="modifyPriceQuantityBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
                                               <Group type="102" alignment="1" attributes="0">
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Group type="102" alignment="1" attributes="0">
-                                                          <Component id="modelLabel2" min="-2" max="-2" attributes="0"/>
-                                                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                                      </Group>
                                                       <Group type="102" alignment="1" attributes="0">
                                                           <Component id="modelLabel4" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
@@ -1509,10 +1500,17 @@
                                                           <Component id="modelLabel3" min="-2" max="-2" attributes="0"/>
                                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                                       </Group>
+                                                      <Group type="102" alignment="1" attributes="0">
+                                                          <Group type="103" groupAlignment="1" attributes="0">
+                                                              <Component id="brandLabel2" min="-2" max="-2" attributes="0"/>
+                                                              <Component id="modelLabel2" min="-2" max="-2" attributes="0"/>
+                                                          </Group>
+                                                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                                   <Group type="103" groupAlignment="0" attributes="0">
-                                                      <Component id="quantityInputField1" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
-                                                      <Component id="modelComboBoxInventory1" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                                                      <Component id="modifyQuantityInputBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                                                      <Component id="modifyModelSelectBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -1527,42 +1525,42 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
-                              <Component id="removeMotorcycleLabel1" min="-2" max="-2" attributes="0"/>
+                              <Component id="modifyInventory" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="brandComboBoxInventory1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="modifyBrandSelectBox" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="brandLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="modelComboBoxInventory1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="modifyModelSelectBox" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="modelLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="quantityInputField1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="modifyQuantityInputBox" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="modelLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="19" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="priceInputField1" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                                  <Component id="modifyPriceQuantityBox" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="modelLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="confirmRemoveFromInventoryButton1" min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="confirmModifyInventory" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="removeMotorcycleLabel1">
+                    <Component class="javax.swing.JLabel" name="modifyInventory">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="NewsGoth Lt BT" size="18" style="1"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Remove Motorcycle"/>
+                        <Property name="text" type="java.lang.String" value="Modify Motorcycle"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JSeparator" name="jSeparator3">
@@ -1580,7 +1578,7 @@
                         <Property name="text" type="java.lang.String" value="Brand:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="brandComboBoxInventory1">
+                    <Component class="javax.swing.JComboBox" name="modifyBrandSelectBox">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="e5" green="e5" red="e5" type="rgb"/>
@@ -1596,8 +1594,7 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="brandComboBoxInventory1PopupMenuWillBecomeInvisible"/>
-                        <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="brandComboBoxInventory1PopupMenuWillBecomeVisible"/>
+                        <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="modifyBrandSelectBoxPopupMenuWillBecomeVisible"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -1611,7 +1608,7 @@
                         <Property name="text" type="java.lang.String" value="Model:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JComboBox" name="modelComboBoxInventory1">
+                    <Component class="javax.swing.JComboBox" name="modifyModelSelectBox">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="e5" green="e5" red="e5" type="rgb"/>
@@ -1627,13 +1624,13 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="modelComboBoxInventory1PopupMenuWillBecomeVisible"/>
+                        <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="modifyModelSelectBoxPopupMenuWillBecomeVisible"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                       </AuxValues>
                     </Component>
-                    <Component class="javax.swing.JButton" name="confirmRemoveFromInventoryButton1">
+                    <Component class="javax.swing.JButton" name="confirmModifyInventory">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="c7" green="e5" red="d1" type="rgb"/>
@@ -1652,12 +1649,12 @@
                         <Property name="opaque" type="boolean" value="true"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="confirmRemoveFromInventoryButton1MouseEntered"/>
-                        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="confirmRemoveFromInventoryButton1MouseExited"/>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmRemoveFromInventoryButton1ActionPerformed"/>
+                        <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="confirmModifyInventoryMouseEntered"/>
+                        <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="confirmModifyInventoryMouseExited"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmModifyInventoryActionPerformed"/>
                       </Events>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="quantityInputField1">
+                    <Component class="javax.swing.JFormattedTextField" name="modifyQuantityInputBox">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="e5" green="e5" red="e5" type="rgb"/>
@@ -1670,7 +1667,7 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="priceInputField1">
+                    <Component class="javax.swing.JFormattedTextField" name="modifyPriceQuantityBox">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="e5" green="e5" red="e5" type="rgb"/>

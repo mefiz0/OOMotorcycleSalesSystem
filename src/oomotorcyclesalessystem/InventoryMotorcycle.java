@@ -35,10 +35,19 @@ public class InventoryMotorcycle extends Motorcycle {
         this.price = price;
     }
     
+    //this constructors is for updating the database
+    public InventoryMotorcycle(String model, int quantityInStock, int price){
+        super(model);
+        
+        this.quantityInStock = quantityInStock;
+        this.price = price;
+    }
+    
     //this constructor is for deleting from the database
     public InventoryMotorcycle(String model){
         super(model);
     }
+    
     
     
     /*
@@ -75,5 +84,17 @@ public class InventoryMotorcycle extends Motorcycle {
         deleteStatement.close();
         connection.DatabaseConnection().close();
         
+    }
+    
+    public void modifyMotorcycleDatabase() throws ClassNotFoundException, SQLException{
+        String modifyQuery = "UPDATE inventory SET QuantityInStock = " +this.quantityInStock + ", "
+                           + "Price = " + this.price + " WHERE Model = '" + this.model + "'";
+        
+        //create connection
+        DatabaseConnection connection = new DatabaseConnection();
+        PreparedStatement statement = connection.DatabaseConnection().prepareStatement(modifyQuery);
+        statement.execute();
+        statement.close();
+        connection.DatabaseConnection().close();
     }
 }

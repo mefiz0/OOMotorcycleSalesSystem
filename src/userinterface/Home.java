@@ -220,15 +220,15 @@ public class Home extends javax.swing.JFrame {
         modelComboBoxInventory = new javax.swing.JComboBox<>();
         confirmRemoveFromInventoryButton = new javax.swing.JButton();
         modifyInventoryPanel = new javax.swing.JPanel();
-        removeMotorcycleLabel1 = new javax.swing.JLabel();
+        modifyInventory = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         brandLabel2 = new javax.swing.JLabel();
-        brandComboBoxInventory1 = new javax.swing.JComboBox<>();
+        modifyBrandSelectBox = new javax.swing.JComboBox<>();
         modelLabel2 = new javax.swing.JLabel();
-        modelComboBoxInventory1 = new javax.swing.JComboBox<>();
-        confirmRemoveFromInventoryButton1 = new javax.swing.JButton();
-        quantityInputField1 = new javax.swing.JFormattedTextField();
-        priceInputField1 = new javax.swing.JFormattedTextField();
+        modifyModelSelectBox = new javax.swing.JComboBox<>();
+        confirmModifyInventory = new javax.swing.JButton();
+        modifyQuantityInputBox = new javax.swing.JFormattedTextField();
+        modifyPriceQuantityBox = new javax.swing.JFormattedTextField();
         modelLabel3 = new javax.swing.JLabel();
         modelLabel4 = new javax.swing.JLabel();
         customersPanel = new javax.swing.JPanel();
@@ -1124,72 +1124,71 @@ public class Home extends javax.swing.JFrame {
 
         modifyInventoryPanel.setBackground(new java.awt.Color(255, 255, 255));
 
-        removeMotorcycleLabel1.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 18)); // NOI18N
-        removeMotorcycleLabel1.setText("Remove Motorcycle");
+        modifyInventory.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 18)); // NOI18N
+        modifyInventory.setText("Modify Motorcycle");
 
         jSeparator3.setBackground(new java.awt.Color(204, 204, 204));
 
         brandLabel2.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
         brandLabel2.setText("Brand:");
 
-        brandComboBoxInventory1.setBackground(new java.awt.Color(229, 229, 229));
-        brandComboBoxInventory1.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        brandComboBoxInventory1.setBorder(null);
-        brandComboBoxInventory1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+        modifyBrandSelectBox.setBackground(new java.awt.Color(229, 229, 229));
+        modifyBrandSelectBox.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modifyBrandSelectBox.setBorder(null);
+        modifyBrandSelectBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                brandComboBoxInventory1PopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                brandComboBoxInventory1PopupMenuWillBecomeVisible(evt);
+                modifyBrandSelectBoxPopupMenuWillBecomeVisible(evt);
             }
         });
 
         modelLabel2.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
         modelLabel2.setText("Model:");
 
-        modelComboBoxInventory1.setBackground(new java.awt.Color(229, 229, 229));
-        modelComboBoxInventory1.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
-        modelComboBoxInventory1.setBorder(null);
-        modelComboBoxInventory1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+        modifyModelSelectBox.setBackground(new java.awt.Color(229, 229, 229));
+        modifyModelSelectBox.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modifyModelSelectBox.setBorder(null);
+        modifyModelSelectBox.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                modelComboBoxInventory1PopupMenuWillBecomeVisible(evt);
+                modifyModelSelectBoxPopupMenuWillBecomeVisible(evt);
             }
         });
 
-        confirmRemoveFromInventoryButton1.setBackground(new java.awt.Color(209, 229, 199));
-        confirmRemoveFromInventoryButton1.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
-        confirmRemoveFromInventoryButton1.setText("Confirm");
-        confirmRemoveFromInventoryButton1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        confirmRemoveFromInventoryButton1.setContentAreaFilled(false);
-        confirmRemoveFromInventoryButton1.setFocusPainted(false);
-        confirmRemoveFromInventoryButton1.setOpaque(true);
-        confirmRemoveFromInventoryButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+        confirmModifyInventory.setBackground(new java.awt.Color(209, 229, 199));
+        confirmModifyInventory.setFont(new java.awt.Font("NewsGoth Lt BT", 1, 14)); // NOI18N
+        confirmModifyInventory.setText("Confirm");
+        confirmModifyInventory.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        confirmModifyInventory.setContentAreaFilled(false);
+        confirmModifyInventory.setFocusPainted(false);
+        confirmModifyInventory.setOpaque(true);
+        confirmModifyInventory.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                confirmRemoveFromInventoryButton1MouseEntered(evt);
+                confirmModifyInventoryMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                confirmRemoveFromInventoryButton1MouseExited(evt);
+                confirmModifyInventoryMouseExited(evt);
             }
         });
-        confirmRemoveFromInventoryButton1.addActionListener(new java.awt.event.ActionListener() {
+        confirmModifyInventory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmRemoveFromInventoryButton1ActionPerformed(evt);
+                confirmModifyInventoryActionPerformed(evt);
             }
         });
 
-        quantityInputField1.setBackground(new java.awt.Color(229, 229, 229));
-        quantityInputField1.setBorder(null);
-        quantityInputField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        modifyQuantityInputBox.setBackground(new java.awt.Color(229, 229, 229));
+        modifyQuantityInputBox.setBorder(null);
+        modifyQuantityInputBox.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
-        priceInputField1.setBackground(new java.awt.Color(229, 229, 229));
-        priceInputField1.setBorder(null);
-        priceInputField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        modifyPriceQuantityBox.setBackground(new java.awt.Color(229, 229, 229));
+        modifyPriceQuantityBox.setBorder(null);
+        modifyPriceQuantityBox.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
 
         modelLabel3.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
         modelLabel3.setText("Quantity:");
@@ -1201,63 +1200,61 @@ public class Home extends javax.swing.JFrame {
         modifyInventoryPanel.setLayout(modifyInventoryPanelLayout);
         modifyInventoryPanelLayout.setHorizontalGroup(
             modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(confirmRemoveFromInventoryButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(confirmModifyInventory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(removeMotorcycleLabel1)
+                    .addComponent(modifyInventory)
                     .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
-                            .addGap(24, 24, 24)
-                            .addComponent(brandLabel2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(brandComboBoxInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(modifyBrandSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
                             .addGap(0, 0, Short.MAX_VALUE)
                             .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(priceInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(modifyPriceQuantityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
                                     .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
-                                            .addComponent(modelLabel2)
-                                            .addGap(32, 32, 32))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
                                             .addComponent(modelLabel4)
                                             .addGap(39, 39, 39))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
                                             .addComponent(modelLabel3)
-                                            .addGap(18, 18, 18)))
+                                            .addGap(18, 18, 18))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
+                                            .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(brandLabel2)
+                                                .addComponent(modelLabel2))
+                                            .addGap(32, 32, 32)))
                                     .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(quantityInputField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(modelComboBoxInventory1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                        .addComponent(modifyQuantityInputBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(modifyModelSelectBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
                 .addContainerGap(271, Short.MAX_VALUE))
         );
         modifyInventoryPanelLayout.setVerticalGroup(
             modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(removeMotorcycleLabel1)
+                .addComponent(modifyInventory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(brandComboBoxInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifyBrandSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(brandLabel2))
                 .addGap(14, 14, 14)
                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modelComboBoxInventory1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifyModelSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modelLabel2))
                 .addGap(18, 18, 18)
                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(quantityInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifyQuantityInputBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modelLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(priceInputField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(modifyPriceQuantityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modelLabel4))
                 .addGap(18, 18, 18)
-                .addComponent(confirmRemoveFromInventoryButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(confirmModifyInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         inventoryPanelParent.add(modifyInventoryPanel, "card3");
@@ -1267,7 +1264,7 @@ public class Home extends javax.swing.JFrame {
         inventoryPanelLayout.setHorizontalGroup(
             inventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(inventoryTablePane, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(inventoryPanelParent, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(inventoryPanelParent, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             .addGroup(inventoryPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(inventoryMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -1955,7 +1952,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(parentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 713, Short.MAX_VALUE)
+                .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
         );
         layout.setVerticalGroup(
@@ -2611,6 +2608,10 @@ public class Home extends javax.swing.JFrame {
             ErrorMessage errorMessage = new ErrorMessage();
             errorMessage.setVisible(true);
         }
+        
+        //reset the values
+        brandComboBoxInventory.setSelectedIndex(-1);
+        modelComboBoxInventory.setSelectedIndex(-1);
     }//GEN-LAST:event_confirmRemoveFromInventoryButtonActionPerformed
 
     private void brandComboBoxInventoryPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_brandComboBoxInventoryPopupMenuWillBecomeVisible
@@ -2634,29 +2635,62 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_modelComboBoxInventoryPopupMenuWillBecomeVisible
 
-    private void brandComboBoxInventory1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_brandComboBoxInventory1PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_brandComboBoxInventory1PopupMenuWillBecomeInvisible
+    private void modifyBrandSelectBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_modifyBrandSelectBoxPopupMenuWillBecomeVisible
+        //update view from database
+        try {
+            UpdateUIView.updateComboBoxView(modifyBrandSelectBox, UpdateUISQL.INSERT_BRAND_TO_COMBO_BOX, "Brand");
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
+        }
+    }//GEN-LAST:event_modifyBrandSelectBoxPopupMenuWillBecomeVisible
 
-    private void brandComboBoxInventory1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_brandComboBoxInventory1PopupMenuWillBecomeVisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_brandComboBoxInventory1PopupMenuWillBecomeVisible
+    private void modifyModelSelectBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_modifyModelSelectBoxPopupMenuWillBecomeVisible
+        //update view from database
+        try {
+            UpdateUIView.updateComboBoxView(modifyBrandSelectBox, modifyModelSelectBox, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
+        }
+    }//GEN-LAST:event_modifyModelSelectBoxPopupMenuWillBecomeVisible
 
-    private void modelComboBoxInventory1PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_modelComboBoxInventory1PopupMenuWillBecomeVisible
+    private void confirmModifyInventoryMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmModifyInventoryMouseEntered
         // TODO add your handling code here:
-    }//GEN-LAST:event_modelComboBoxInventory1PopupMenuWillBecomeVisible
+    }//GEN-LAST:event_confirmModifyInventoryMouseEntered
 
-    private void confirmRemoveFromInventoryButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmRemoveFromInventoryButton1MouseEntered
+    private void confirmModifyInventoryMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmModifyInventoryMouseExited
         // TODO add your handling code here:
-    }//GEN-LAST:event_confirmRemoveFromInventoryButton1MouseEntered
+    }//GEN-LAST:event_confirmModifyInventoryMouseExited
 
-    private void confirmRemoveFromInventoryButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmRemoveFromInventoryButton1MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmRemoveFromInventoryButton1MouseExited
-
-    private void confirmRemoveFromInventoryButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmRemoveFromInventoryButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_confirmRemoveFromInventoryButton1ActionPerformed
+    private void confirmModifyInventoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmModifyInventoryActionPerformed
+        //get the values
+        String brand = modifyBrandSelectBox.getSelectedItem().toString();
+        String model = modifyModelSelectBox.getSelectedItem().toString();
+        int quantity = Integer.parseInt(modifyQuantityInputBox.getText());
+        int price = Integer.parseInt(modifyPriceQuantityBox.getText());
+        
+        //create inventoryMotorcycle object
+        InventoryMotorcycle modifyMotorcycle = new InventoryMotorcycle(model, quantity, price);
+        
+        //update the database
+        try {
+            modifyMotorcycle.modifyMotorcycleDatabase();
+            database.UpdateUIView.updateTableView(inventoryTable, database.UpdateUISQL.VIEW_INVENTORY_TABLE_SQL);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //reset the fields
+        modifyBrandSelectBox.setSelectedIndex(-1);
+        modifyModelSelectBox.setSelectedIndex(-1);
+        modifyQuantityInputBox.setText("");
+        modifyPriceQuantityBox.setText("");
+    }//GEN-LAST:event_confirmModifyInventoryActionPerformed
 
     private void viewUsersAccessMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_viewUsersAccessMouseEntered
         // TODO add your handling code here:
@@ -2873,7 +2907,6 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel boardNumLabel;
     private javax.swing.JComboBox<String> brandComboBox;
     private javax.swing.JComboBox<String> brandComboBoxInventory;
-    private javax.swing.JComboBox<String> brandComboBoxInventory1;
     private javax.swing.JTextField brandInputField;
     private javax.swing.JLabel brandLabel;
     private javax.swing.JLabel brandLabel1;
@@ -2881,10 +2914,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel brandLabel3;
     private javax.swing.JButton confirmAddToInventoryButton;
     private javax.swing.JButton confirmAddUser;
+    private javax.swing.JButton confirmModifyInventory;
     private javax.swing.JButton confirmModifyUser;
     private javax.swing.JButton confirmPayInstallment;
     private javax.swing.JButton confirmRemoveFromInventoryButton;
-    private javax.swing.JButton confirmRemoveFromInventoryButton1;
     private javax.swing.JButton confirmRemoveUser;
     private javax.swing.JButton confirmSaleButton;
     private javax.swing.JLabel contactNumLabel;
@@ -2953,15 +2986,19 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JPanel menu;
     private javax.swing.JComboBox<String> modelComboBox;
     private javax.swing.JComboBox<String> modelComboBoxInventory;
-    private javax.swing.JComboBox<String> modelComboBoxInventory1;
     private javax.swing.JTextField modelInputField;
     private javax.swing.JLabel modelLabel;
     private javax.swing.JLabel modelLabel1;
     private javax.swing.JLabel modelLabel2;
     private javax.swing.JLabel modelLabel3;
     private javax.swing.JLabel modelLabel4;
+    private javax.swing.JComboBox<String> modifyBrandSelectBox;
+    private javax.swing.JLabel modifyInventory;
     private javax.swing.JButton modifyInventoryButton;
     private javax.swing.JPanel modifyInventoryPanel;
+    private javax.swing.JComboBox<String> modifyModelSelectBox;
+    private javax.swing.JFormattedTextField modifyPriceQuantityBox;
+    private javax.swing.JFormattedTextField modifyQuantityInputBox;
     private javax.swing.JComboBox<String> modifyRoleDropDownMenu;
     private javax.swing.JButton modifyUserBUtton;
     private javax.swing.JComboBox<String> modifyUsernameDropDownMenu;
@@ -2977,14 +3014,11 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JTextField permanentAddressField;
     private javax.swing.JLabel permanentAddressLabel;
     private javax.swing.JFormattedTextField priceInputField;
-    private javax.swing.JFormattedTextField priceInputField1;
     private javax.swing.JLabel priceLabel;
     private javax.swing.JFormattedTextField quantityInputField;
-    private javax.swing.JFormattedTextField quantityInputField1;
     private javax.swing.JButton removeInventoryButton;
     private javax.swing.JPanel removeMotorcycle;
     private javax.swing.JLabel removeMotorcycleLabel;
-    private javax.swing.JLabel removeMotorcycleLabel1;
     private javax.swing.JButton removeUserButton;
     private javax.swing.JLabel removeUserLabel;
     private javax.swing.JPanel removeUsersPanel;
