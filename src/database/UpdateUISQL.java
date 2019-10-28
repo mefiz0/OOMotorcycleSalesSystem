@@ -74,6 +74,8 @@ public class UpdateUISQL {
     
     public static final String INSERT_BRAND_TO_COMBO_BOX = "SELECT Brand FROM inventory WHERE QuantityInStock != 0 AND ClutchType = '"; //concat here
     
+     public static final String INSERT_BRAND_TO_COMBO_BOX_QUANTITY_ZERO = "SELECT Brand FROM inventory WHERE ClutchType = '"; //concat here
+    
     public static final String INSERT_MODEL_TO_COMBO_BOX = "SELECT Model FROM inventory WHERE Brand = '"; //concat the brand name in the insert function
     
     public static final String INSERT_USER_TO_COMBO_BOX = "SELECT Username FROM users";

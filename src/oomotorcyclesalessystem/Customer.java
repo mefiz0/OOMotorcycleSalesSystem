@@ -30,11 +30,11 @@ public class Customer {
         return identityNumber;
     }
     
-    private int contactNumber;
-    public void setContactNumber(int contactNumber){ //setter
+    private long contactNumber;
+    public void setContactNumber(long contactNumber){ //setter
         this.contactNumber = contactNumber;
     }
-    public int getContactNumber(){
+    public long getContactNumber(){
         return contactNumber;
     }
     
@@ -54,11 +54,11 @@ public class Customer {
         return currentAddress;
     }
     
-    private int bankAccountNumber;
-    public void setBankAccountNumber(int bankAccountNumber){ //setter
+    private long bankAccountNumber;
+    public void setBankAccountNumber(long bankAccountNumber){ //setter
         this.bankAccountNumber = bankAccountNumber;
     }
-    public int getBankAccountNumber(){ //getter
+    public long getBankAccountNumber(){ //getter
         return bankAccountNumber;
     }
     
@@ -68,7 +68,7 @@ public class Customer {
     
     public Customer(String firstName, String lastName, String idNumber,
                               String permanentAddress, String currentAddress,
-                              int contactNum, int bankAccountNum){
+                              long contactNum, long bankAccountNum){
         this.firstName = firstName;
         this.lastName = lastName;
         this.identityNumber = idNumber;
@@ -85,8 +85,8 @@ public class Customer {
        String idNumber = this.getIdentityNumber();
        String permanentAddress = this.getPermanentAddress();
        String currentAddress = this.getCurrentAddress();
-       int ContactNumber = this.getContactNumber();
-       int bankAccountNum = this.getBankAccountNumber();
+       long ContactNumber = this.getContactNumber();
+       long bankAccountNum = this.getBankAccountNumber();
        
        addToCustomers(idNumber, firstName, lastName, permanentAddress, currentAddress, ContactNumber, bankAccountNum);
     }

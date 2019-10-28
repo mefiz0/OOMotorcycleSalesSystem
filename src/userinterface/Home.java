@@ -223,6 +223,8 @@ public class Home extends javax.swing.JFrame {
         modelLabel1 = new javax.swing.JLabel();
         modelComboBoxInventory = new javax.swing.JComboBox<>();
         confirmRemoveFromInventoryButton = new javax.swing.JButton();
+        clutchTypeMenuRemove = new javax.swing.JComboBox<>();
+        brandLabel4 = new javax.swing.JLabel();
         modifyInventoryPanel = new javax.swing.JPanel();
         modifyInventory = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
@@ -235,6 +237,8 @@ public class Home extends javax.swing.JFrame {
         modifyPriceQuantityBox = new javax.swing.JFormattedTextField();
         modelLabel3 = new javax.swing.JLabel();
         modelLabel4 = new javax.swing.JLabel();
+        modifyClutchSelectBox = new javax.swing.JComboBox<>();
+        brandLabel5 = new javax.swing.JLabel();
         customersPanel = new javax.swing.JPanel();
         customersScrollPane = new javax.swing.JScrollPane();
         customersTable = new javax.swing.JTable();
@@ -510,14 +514,16 @@ public class Home extends javax.swing.JFrame {
 
         contactNumberField.setBackground(new java.awt.Color(229, 229, 229));
         contactNumberField.setBorder(null);
-        contactNumberField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
+        contactNumberField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#######################0"))));
+        contactNumberField.setToolTipText("Enter a number thats 7 digits long");
 
         bankAccountNumLabel.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         bankAccountNumLabel.setText("Bank Account No:");
 
         bankAccountNumField.setBackground(new java.awt.Color(229, 229, 229));
         bankAccountNumField.setBorder(null);
-        bankAccountNumField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("################0"))));
+        bankAccountNumField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("##################################0"))));
+        bankAccountNumField.setToolTipText("Enter a number 17 digits long");
 
         permanentAddressLabel.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 14)); // NOI18N
         permanentAddressLabel.setText("Parmenent Address:");
@@ -550,7 +556,6 @@ public class Home extends javax.swing.JFrame {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                brandComboBoxPopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 brandComboBoxPopupMenuWillBecomeVisible(evt);
@@ -570,6 +575,7 @@ public class Home extends javax.swing.JFrame {
                 modelComboBoxPopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                modelComboBoxPopupMenuWillBecomeVisible(evt);
             }
         });
 
@@ -681,7 +687,7 @@ public class Home extends javax.swing.JFrame {
                                         .addComponent(brandLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(brandComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(makeSalePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(makeSalePaneLayout.createSequentialGroup()
                                         .addComponent(installmentLabel)
@@ -701,7 +707,7 @@ public class Home extends javax.swing.JFrame {
                                         .addComponent(downPaymentLabel)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(downPaymentField, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(48, 48, 48))
+                        .addGap(163, 163, 163))
                     .addGroup(makeSalePaneLayout.createSequentialGroup()
                         .addComponent(motorcycleDetailsSeparator)
                         .addGap(66, 66, 66))))
@@ -1072,7 +1078,6 @@ public class Home extends javax.swing.JFrame {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                brandComboBoxInventoryPopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
                 brandComboBoxInventoryPopupMenuWillBecomeVisible(evt);
@@ -1116,6 +1121,15 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        clutchTypeMenuRemove.setBackground(new java.awt.Color(229, 229, 229));
+        clutchTypeMenuRemove.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        clutchTypeMenuRemove.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "SemiAuto", "Auto" }));
+        clutchTypeMenuRemove.setSelectedIndex(-1);
+        clutchTypeMenuRemove.setBorder(null);
+
+        brandLabel4.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        brandLabel4.setText("Clutch:");
+
         javax.swing.GroupLayout removeMotorcycleLayout = new javax.swing.GroupLayout(removeMotorcycle);
         removeMotorcycle.setLayout(removeMotorcycleLayout);
         removeMotorcycleLayout.setHorizontalGroup(
@@ -1124,17 +1138,23 @@ public class Home extends javax.swing.JFrame {
             .addGroup(removeMotorcycleLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(removeMotorcycleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(removeMotorcycleLayout.createSequentialGroup()
-                        .addComponent(modelLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(modelComboBoxInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(removeMotorcycleLabel)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(removeMotorcycleLayout.createSequentialGroup()
-                        .addComponent(brandLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(brandComboBoxInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(380, Short.MAX_VALUE))
+                        .addGroup(removeMotorcycleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(removeMotorcycleLayout.createSequentialGroup()
+                                .addGroup(removeMotorcycleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(modelLabel1)
+                                    .addComponent(brandLabel1))
+                                .addGap(19, 19, 19))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, removeMotorcycleLayout.createSequentialGroup()
+                                .addComponent(brandLabel4)
+                                .addGap(18, 18, 18)))
+                        .addGroup(removeMotorcycleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(brandComboBoxInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(modelComboBoxInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clutchTypeMenuRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(271, Short.MAX_VALUE))
         );
         removeMotorcycleLayout.setVerticalGroup(
             removeMotorcycleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1143,15 +1163,19 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(removeMotorcycleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(7, 7, 7)
                 .addGroup(removeMotorcycleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(brandLabel1)
-                    .addComponent(brandComboBoxInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                    .addComponent(clutchTypeMenuRemove, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(brandLabel4))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(removeMotorcycleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(brandComboBoxInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(brandLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(removeMotorcycleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modelComboBoxInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modelLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(confirmRemoveFromInventoryButton, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -1231,6 +1255,15 @@ public class Home extends javax.swing.JFrame {
         modelLabel4.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
         modelLabel4.setText("Price:");
 
+        modifyClutchSelectBox.setBackground(new java.awt.Color(229, 229, 229));
+        modifyClutchSelectBox.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        modifyClutchSelectBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manual", "SemiAuto", "Auto" }));
+        modifyClutchSelectBox.setSelectedIndex(-1);
+        modifyClutchSelectBox.setBorder(null);
+
+        brandLabel5.setFont(new java.awt.Font("NewsGoth Lt BT", 0, 14)); // NOI18N
+        brandLabel5.setText("Clutch:");
+
         javax.swing.GroupLayout modifyInventoryPanelLayout = new javax.swing.GroupLayout(modifyInventoryPanel);
         modifyInventoryPanel.setLayout(modifyInventoryPanelLayout);
         modifyInventoryPanelLayout.setHorizontalGroup(
@@ -1238,31 +1271,34 @@ public class Home extends javax.swing.JFrame {
             .addComponent(confirmModifyInventory, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(modifyInventory)
-                    .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(modifyInventory, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(modifyClutchSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(modifyBrandSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(modifyPriceQuantityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
                                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
-                                        .addComponent(modelLabel4)
-                                        .addGap(39, 39, 39))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
                                         .addComponent(modelLabel3)
                                         .addGap(18, 18, 18))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, modifyInventoryPanelLayout.createSequentialGroup()
                                         .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(brandLabel2)
-                                            .addComponent(modelLabel2))
+                                            .addComponent(modelLabel2)
+                                            .addComponent(brandLabel5))
                                         .addGap(32, 32, 32)))
                                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(modifyQuantityInputBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(modifyModelSelectBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(377, Short.MAX_VALUE))
+                                    .addGroup(modifyInventoryPanelLayout.createSequentialGroup()
+                                        .addComponent(modifyQuantityInputBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(38, 38, 38)
+                                        .addComponent(modelLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(modifyPriceQuantityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(modifyModelSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(386, Short.MAX_VALUE))
         );
         modifyInventoryPanelLayout.setVerticalGroup(
             modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1271,7 +1307,11 @@ public class Home extends javax.swing.JFrame {
                 .addComponent(modifyInventory)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(modifyClutchSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(brandLabel5))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modifyBrandSelectBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(brandLabel2))
@@ -1282,11 +1322,9 @@ public class Home extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(modifyQuantityInputBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modelLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addGroup(modifyInventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(modifyPriceQuantityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(modelLabel4))
+                    .addComponent(modelLabel3)
+                    .addComponent(modelLabel4)
+                    .addComponent(modifyPriceQuantityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(confirmModifyInventory, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -1986,7 +2024,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
+                .addComponent(parentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 713, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
         );
         layout.setVerticalGroup(
@@ -2176,8 +2214,8 @@ public class Home extends javax.swing.JFrame {
         String identityNumber = idNumField.getText();
         String permanentAddress = permanentAddressField.getText();
         String currentAddress = currentAddressField.getText();
-        int contactNumber = Integer.parseInt(contactNumberField.getText());
-        int bankAccountNum = Integer.parseInt(bankAccountNumField.getText());
+        long contactNumber = Long.parseLong(contactNumberField.getText());
+        long bankAccountNum = Long.parseLong(bankAccountNumField.getText());
         
         //motorcycle
         //update the sold motorcycles
@@ -2501,18 +2539,6 @@ public class Home extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_idNumFieldFocusLost
 
-    private void brandComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_brandComboBoxPopupMenuWillBecomeInvisible
-        //update the drop down menus based on which brand of motorcycle is selected
-        try {
-            modelComboBox.removeAllItems();
-            UpdateUIView.updateComboBoxView(brandComboBox, modelComboBox, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            ErrorMessage errorMessage = new ErrorMessage();
-            errorMessage.setVisible(true);
-        }        
-    }//GEN-LAST:event_brandComboBoxPopupMenuWillBecomeInvisible
-
     private void modelComboBoxPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_modelComboBoxPopupMenuWillBecomeInvisible
         try {
             currentPriceLabel.setText((UpdateUIView.updatePriceLabel(modelComboBox)));
@@ -2630,17 +2656,6 @@ public class Home extends javax.swing.JFrame {
         
     }//GEN-LAST:event_confirmAddToInventoryButtonActionPerformed
 
-    private void brandComboBoxInventoryPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_brandComboBoxInventoryPopupMenuWillBecomeInvisible
-        //update view from database
-        try {
-            UpdateUIView.updateComboBoxView(brandComboBoxInventory, modelComboBoxInventory, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-            ErrorMessage errorMessage = new ErrorMessage();
-            errorMessage.setVisible(true);
-        }
-    }//GEN-LAST:event_brandComboBoxInventoryPopupMenuWillBecomeInvisible
-
     private void confirmRemoveFromInventoryButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmRemoveFromInventoryButtonMouseEntered
         // TODO add your handling code here:
         confirmAddToInventoryButton.setBackground(new Color(178, 229, 153));
@@ -2675,7 +2690,7 @@ public class Home extends javax.swing.JFrame {
 
     private void brandComboBoxInventoryPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_brandComboBoxInventoryPopupMenuWillBecomeVisible
         try {
-            UpdateUIView.updateComboBoxView(brandComboBoxInventory, UpdateUISQL.INSERT_BRAND_TO_COMBO_BOX, "Brand");
+            UpdateUIView.updateComboBoxView(clutchTypeMenuRemove,brandComboBoxInventory, UpdateUISQL.INSERT_BRAND_TO_COMBO_BOX_QUANTITY_ZERO, "Brand");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMessage errorMessage = new ErrorMessage();
@@ -2697,7 +2712,7 @@ public class Home extends javax.swing.JFrame {
     private void modifyBrandSelectBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_modifyBrandSelectBoxPopupMenuWillBecomeVisible
         //update view from database
         try {
-            UpdateUIView.updateComboBoxView(modifyBrandSelectBox, UpdateUISQL.INSERT_BRAND_TO_COMBO_BOX, "Brand");
+            UpdateUIView.updateComboBoxView(modifyClutchSelectBox, modifyBrandSelectBox, UpdateUISQL.INSERT_BRAND_TO_COMBO_BOX_QUANTITY_ZERO, "Brand");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMessage errorMessage = new ErrorMessage();
@@ -2925,6 +2940,17 @@ public class Home extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_clutchTypeSelectBoxInventoryActionPerformed
 
+    private void modelComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_modelComboBoxPopupMenuWillBecomeVisible
+        try {
+            modelComboBox.removeAllItems();
+            UpdateUIView.updateComboBoxView(brandComboBox, modelComboBox, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorMessage errorMessage = new ErrorMessage();
+            errorMessage.setVisible(true);
+        }
+    }//GEN-LAST:event_modelComboBoxPopupMenuWillBecomeVisible
+
     /**
      * @param args the command line arguments
      */
@@ -2975,7 +3001,10 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel brandLabel1;
     private javax.swing.JLabel brandLabel2;
     private javax.swing.JLabel brandLabel3;
+    private javax.swing.JLabel brandLabel4;
+    private javax.swing.JLabel brandLabel5;
     private javax.swing.JLabel clutchTypeLabel;
+    private javax.swing.JComboBox<String> clutchTypeMenuRemove;
     private javax.swing.JComboBox<String> clutchTypeSelectBox;
     private javax.swing.JComboBox<String> clutchTypeSelectBoxInventory;
     private javax.swing.JButton confirmAddToInventoryButton;
@@ -3060,6 +3089,7 @@ public class Home extends javax.swing.JFrame {
     private javax.swing.JLabel modelLabel3;
     private javax.swing.JLabel modelLabel4;
     private javax.swing.JComboBox<String> modifyBrandSelectBox;
+    private javax.swing.JComboBox<String> modifyClutchSelectBox;
     private javax.swing.JLabel modifyInventory;
     private javax.swing.JButton modifyInventoryButton;
     private javax.swing.JPanel modifyInventoryPanel;

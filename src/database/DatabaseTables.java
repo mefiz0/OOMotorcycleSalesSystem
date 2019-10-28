@@ -35,13 +35,13 @@ public class DatabaseTables {
     */
     public static final String CREATE_CUSTOMERS_TABLE_SQL = "CREATE TABLE customers ("
                                                           + "CustomerID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),"
-                                                          + "FirstName VARCHAR(30) NOT NULL,"
-                                                          + "LastName VARCHAR(30) NOT NULL,"
-                                                          + "NID VARCHAR(20) NOT NULL UNIQUE,"
+                                                          + "FirstName VARCHAR(50) NOT NULL,"
+                                                          + "LastName VARCHAR(50) NOT NULL,"
+                                                          + "NID VARCHAR(50) NOT NULL UNIQUE,"
                                                           + "PermanentAddress VARCHAR(60) NOT NULL,"
                                                           + "CurrentAddress VARCHAR(20) NOT NULL,"
-                                                          + "ContactNumber INTEGER NOT NULL,"
-                                                          + "BankAccount INTEGER NOT NULL,"
+                                                          + "ContactNumber BIGINT NOT NULL,"
+                                                          + "BankAccount BIGINT NOT NULL,"
                                                           + "PRIMARY KEY (CustomerID))";
     
     //create table inventory

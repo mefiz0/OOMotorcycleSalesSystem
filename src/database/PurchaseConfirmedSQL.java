@@ -21,8 +21,8 @@ public class PurchaseConfirmedSQL {
                                String lastName,
                                String permanentAddress,
                                String currentAddress,
-                               int contactNumber,
-                               int bankAccountNum) throws ClassNotFoundException, SQLException{
+                               long contactNumber,
+                               long bankAccountNum) throws ClassNotFoundException, SQLException{
         
         if(checkCustomerExists(identityNumber) == 0){ //check if the customer exists
             String insertToCustomer = "INSERT INTO customers "

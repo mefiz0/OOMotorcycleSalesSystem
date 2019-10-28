@@ -347,7 +347,7 @@
                                                   <Component id="brandComboBox" min="-2" pref="230" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
-                                          <EmptySpace pref="92" max="32767" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
                                           <Group type="103" groupAlignment="0" attributes="0">
                                               <Group type="102" attributes="0">
                                                   <Component id="installmentLabel" min="-2" max="-2" attributes="0"/>
@@ -374,7 +374,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="163" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="motorcycleDetailsSeparator" max="32767" attributes="0"/>
@@ -614,8 +614,9 @@
                       <Border info="null"/>
                     </Property>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-                      <Format format="#0" subtype="-1" type="0"/>
+                      <Format format="#######################0" subtype="-1" type="0"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Enter a number thats 7 digits long"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="bankAccountNumLabel">
@@ -635,8 +636,9 @@
                       <Border info="null"/>
                     </Property>
                     <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-                      <Format format="################0" subtype="-1" type="0"/>
+                      <Format format="##################################0" subtype="-1" type="0"/>
                     </Property>
+                    <Property name="toolTipText" type="java.lang.String" value="Enter a number 17 digits long"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="permanentAddressLabel">
@@ -727,7 +729,6 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="brandComboBoxPopupMenuWillBecomeInvisible"/>
                     <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="brandComboBoxPopupMenuWillBecomeVisible"/>
                   </Events>
                   <AuxValues>
@@ -759,6 +760,7 @@
                   </Properties>
                   <Events>
                     <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="modelComboBoxPopupMenuWillBecomeInvisible"/>
+                    <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="modelComboBoxPopupMenuWillBecomeVisible"/>
                   </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -1395,20 +1397,30 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="modelLabel1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="modelComboBoxInventory" min="-2" pref="380" max="-2" attributes="0"/>
-                                  </Group>
                                   <Component id="removeMotorcycleLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jSeparator2" alignment="0" min="-2" pref="475" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="brandLabel1" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                                      <Component id="brandComboBoxInventory" min="-2" pref="380" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="modelLabel1" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="brandLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="brandLabel4" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="brandComboBoxInventory" min="-2" pref="380" max="-2" attributes="0"/>
+                                          <Component id="modelComboBoxInventory" min="-2" pref="380" max="-2" attributes="0"/>
+                                          <Component id="clutchTypeMenuRemove" alignment="0" min="-2" pref="380" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="380" max="32767" attributes="0"/>
+                              <EmptySpace pref="271" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1419,17 +1431,22 @@
                               <Component id="removeMotorcycleLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="brandLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="brandComboBoxInventory" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Component id="clutchTypeMenuRemove" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Component id="brandLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="brandComboBoxInventory" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
+                                  <Component id="brandLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="modelComboBoxInventory" alignment="3" min="-2" pref="43" max="-2" attributes="0"/>
                                   <Component id="modelLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="28" max="32767" attributes="0"/>
+                              <EmptySpace pref="41" max="32767" attributes="0"/>
                               <Component id="confirmRemoveFromInventoryButton" min="-2" pref="35" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1475,7 +1492,6 @@
                         </Property>
                       </Properties>
                       <Events>
-                        <EventHandler event="popupMenuWillBecomeInvisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="brandComboBoxInventoryPopupMenuWillBecomeInvisible"/>
                         <EventHandler event="popupMenuWillBecomeVisible" listener="javax.swing.event.PopupMenuListener" parameters="javax.swing.event.PopupMenuEvent" handler="brandComboBoxInventoryPopupMenuWillBecomeVisible"/>
                       </Events>
                       <AuxValues>
@@ -1536,6 +1552,38 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmRemoveFromInventoryButtonActionPerformed"/>
                       </Events>
                     </Component>
+                    <Component class="javax.swing.JComboBox" name="clutchTypeMenuRemove">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="e5" green="e5" red="e5" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="NewsGoth Lt BT" size="14" style="0"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="3">
+                            <StringItem index="0" value="Manual"/>
+                            <StringItem index="1" value="SemiAuto"/>
+                            <StringItem index="2" value="Auto"/>
+                          </StringArray>
+                        </Property>
+                        <Property name="selectedIndex" type="int" value="-1"/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="null"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="brandLabel4">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="NewsGoth Lt BT" size="14" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Clutch:"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="modifyInventoryPanel">
@@ -1556,20 +1604,16 @@
                           <Component id="confirmModifyInventory" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="modifyInventory" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jSeparator3" alignment="0" min="-2" pref="475" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="1" attributes="0">
+                                          <Component id="modifyClutchSelectBox" min="-2" pref="380" max="-2" attributes="0"/>
                                           <Component id="modifyBrandSelectBox" min="-2" pref="380" max="-2" attributes="0"/>
-                                          <Component id="modifyPriceQuantityBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="1" attributes="0">
+                                          <Group type="102" attributes="0">
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="102" alignment="1" attributes="0">
-                                                      <Component id="modelLabel4" min="-2" max="-2" attributes="0"/>
-                                                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                                                  </Group>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Component id="modelLabel3" min="-2" max="-2" attributes="0"/>
                                                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -1578,19 +1622,26 @@
                                                       <Group type="103" groupAlignment="1" attributes="0">
                                                           <Component id="brandLabel2" min="-2" max="-2" attributes="0"/>
                                                           <Component id="modelLabel2" min="-2" max="-2" attributes="0"/>
+                                                          <Component id="brandLabel5" alignment="1" min="-2" max="-2" attributes="0"/>
                                                       </Group>
                                                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                                   </Group>
                                               </Group>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="modifyQuantityInputBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
-                                                  <Component id="modifyModelSelectBox" alignment="1" min="-2" pref="380" max="-2" attributes="0"/>
+                                                  <Group type="102" attributes="0">
+                                                      <Component id="modifyQuantityInputBox" min="-2" pref="150" max="-2" attributes="0"/>
+                                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                                                      <Component id="modelLabel4" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                                      <Component id="modifyPriceQuantityBox" min="-2" pref="150" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="modifyModelSelectBox" min="-2" pref="380" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="377" max="32767" attributes="0"/>
+                              <EmptySpace pref="386" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1601,7 +1652,12 @@
                               <Component id="modifyInventory" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="modifyClutchSelectBox" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="brandLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace pref="9" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="modifyBrandSelectBox" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="brandLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1615,11 +1671,8 @@
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="modifyQuantityInputBox" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="modelLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace pref="26" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="modifyPriceQuantityBox" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="modelLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="modifyPriceQuantityBox" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="confirmModifyInventory" min="-2" pref="35" max="-2" attributes="0"/>
@@ -1767,6 +1820,38 @@
                           <Font name="NewsGoth Lt BT" size="14" style="0"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Price:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="modifyClutchSelectBox">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="e5" green="e5" red="e5" type="rgb"/>
+                        </Property>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="NewsGoth Lt BT" size="14" style="0"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="3">
+                            <StringItem index="0" value="Manual"/>
+                            <StringItem index="1" value="SemiAuto"/>
+                            <StringItem index="2" value="Auto"/>
+                          </StringArray>
+                        </Property>
+                        <Property name="selectedIndex" type="int" value="-1"/>
+                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                          <Border info="null"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="brandLabel5">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="NewsGoth Lt BT" size="14" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Clutch:"/>
                       </Properties>
                     </Component>
                   </SubComponents>
