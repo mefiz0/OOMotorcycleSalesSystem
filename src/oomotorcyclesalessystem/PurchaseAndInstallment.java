@@ -14,11 +14,11 @@ public class PurchaseAndInstallment {
         public BigDecimal rate = new BigDecimal(1.75).setScale(2, RoundingMode.HALF_UP); //define rate
         
         public Date getDueDate(int installmentPeriod){ //get the dueDate for the installment
-        Calendar cal  = Calendar.getInstance();
+        Calendar cal  = Calendar.getInstance(); //create a new calendar object
         
-        cal.add(Calendar.MONTH, installmentPeriod);
+        cal.add(Calendar.MONTH, installmentPeriod); //add the installment period
         
-        Date dueDate = new java.sql.Date(cal.getTime().getTime());
+        Date dueDate = new java.sql.Date(cal.getTime().getTime()); //add due date
         
         return dueDate;
         }

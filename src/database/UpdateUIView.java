@@ -103,6 +103,39 @@ public class UpdateUIView {
         }
     }//end updateComboBoxView
     
+    //update the view of combo boxes based on the view of another combo box
+    public static void updateComboBoxView(JComboBox comboBoxOne, JComboBox comboBoxTwo, JComboBox comboBoxThree, String sqlQuery,
+                                          String columnName) throws ClassNotFoundException, SQLException{
+        
+        //get the currently selected value of the other combobox and generate a sql query based on that
+        try{
+            String currentClutchType = comboBoxOne.getSelectedItem().toString();
+            String currentlySelected = comboBoxTwo.getSelectedItem().toString();
+            String selectQuery = sqlQuery +  currentlySelected + "' AND ClutchType = '" + currentClutchType + "'"; //concat the strings
+            //sqlQuery = "SELECT Model FROM motorcycles WHERE Brand = '"
+            
+            DatabaseConnection connection = new DatabaseConnection(); //create the connection object
+            connection.DatabaseConnection(); //connect to the database
+        
+            PreparedStatement ps = connection.DatabaseConnection().prepareStatement(selectQuery);
+        
+            ResultSet rs = ps.executeQuery(); //get the result set
+            
+            comboBoxThree.removeAllItems(); //clear the jcombobox
+
+            while(rs.next()){
+                String columnData = rs.getString(columnName);
+                comboBoxThree.addItem(columnData);
+            }//end while
+            
+            rs.close();
+            ps.close();
+            connection.DatabaseConnection().close();
+        }catch (Exception e){
+            System.out.println("No data in the combo box!"); //if there is nothing to view, this error will be thrown
+        }
+    }//end updateComboBoxView
+    
     //update the price jlabel
     public static String updatePriceLabel(JComboBox modelComboBox) throws ClassNotFoundException, SQLException{
         

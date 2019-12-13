@@ -84,31 +84,4 @@ public class DatabaseConnection {
         return connection;
     }//end initDB
     
-    //this function checks the status of all the tables
-    public boolean checkAllTablesStatus() throws ClassNotFoundException, SQLException{
-        boolean checkOK = true;
-        Class.forName(DRIVER);
-        Connection connection = DriverManager.getConnection(JDBC_URL);
-
-        Statement checkTables = connection.createStatement();
-        DatabaseMetaData dbmd = connection.getMetaData();
-        
-        //contains all the tables names
-        String[] tableName = {"users", "access_history", "customers", "motorcycles", "inventory",
-                                            "sold_motorcycles", "purchases", "payments"};
-        
-        //loop through all the tables
-        for(String s: tableName){
-            ResultSet rs = dbmd.getTables(null, null, s.toUpperCase() , null);
-            //checks the metadata
-            if(rs.next()){
-            checkOK = true;
-            }else{
-
-            checkOK = false;
-            break;
-            }
-        }
-        return checkOK;
-    }
 }

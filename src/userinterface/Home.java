@@ -1336,7 +1336,7 @@ public class Home extends javax.swing.JFrame {
         inventoryPanelLayout.setHorizontalGroup(
             inventoryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(inventoryTablePane, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(inventoryPanelParent, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(inventoryPanelParent, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             .addGroup(inventoryPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(inventoryMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -2024,7 +2024,7 @@ public class Home extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(parentPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 713, Short.MAX_VALUE)
+                .addComponent(parentPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 713, Short.MAX_VALUE)
                 .addGap(4, 4, 4))
         );
         layout.setVerticalGroup(
@@ -2943,7 +2943,7 @@ public class Home extends javax.swing.JFrame {
     private void modelComboBoxPopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_modelComboBoxPopupMenuWillBecomeVisible
         try {
             modelComboBox.removeAllItems();
-            UpdateUIView.updateComboBoxView(brandComboBox, modelComboBox, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
+            UpdateUIView.updateComboBoxView(clutchTypeSelectBox, brandComboBox, modelComboBox, UpdateUISQL.INSERT_MODEL_TO_COMBO_BOX, "Model");
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
             ErrorMessage errorMessage = new ErrorMessage();
